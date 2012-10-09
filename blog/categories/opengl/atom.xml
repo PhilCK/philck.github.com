@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenGL | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/opengl/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-09T21:10:30+01:00</updated>
+  <updated>2012-10-09T22:43:47+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Texture Importers]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/05/02/texture-importer/"/>
+    <updated>2011-05-02T19:58:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/05/02/texture-importer</id>
+    <content type="html"><![CDATA[<p>I wrote these importers (Targa and Bitmap) for OpenGL (Well any API I guess), I originally wrote these for the PS2 because the importer we were given was such a pain to use.</p>
+
+<p><img src="/post_images/SideProjects/texture_loader.png" title="'textures'" ></p>
+
+<p>The Targa was interesting as it has quite a few features in the file spec, the fact you can orientate the image when storing to disc any way you want I found a little unnecessary. Code can be gotten here if you are interested, they are pretty much complete, although they don’t support RLE compression.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OpenGL Tardis]]></title>

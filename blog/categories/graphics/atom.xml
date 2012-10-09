@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Graphics | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/graphics/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-09T21:10:30+01:00</updated>
+  <updated>2012-10-09T22:43:47+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -14,11 +14,37 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Playstation 2 FishEye]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/ps2-fisheye/"/>
-    <updated>2012-10-09T19:55:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/ps2-fisheye</id>
+    <title type="html"><![CDATA[Honors Project]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/10/08/honors-project/"/>
+    <updated>2012-10-08T18:45:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/10/08/honors-project</id>
     <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Playstation 2 FishEye]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye/"/>
+    <updated>2012-02-02T19:55:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye</id>
+    <content type="html"><![CDATA[<p>We were tasked with creating a 'visual effect' for the PS2 using its VCL code. This was quite interesting, I thought I'd found all the ways to crash a PS2, then another one comes along. Get your VCL code wrong, and boom!</p>
+
+<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a try fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
+
+<p>[pic in-coming]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Texture Importers]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/05/02/texture-importer/"/>
+    <updated>2011-05-02T19:58:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/05/02/texture-importer</id>
+    <content type="html"><![CDATA[<p>I wrote these importers (Targa and Bitmap) for OpenGL (Well any API I guess), I originally wrote these for the PS2 because the importer we were given was such a pain to use.</p>
+
+<p><img src="/post_images/SideProjects/texture_loader.png" title="'textures'" ></p>
+
+<p>The Targa was interesting as it has quite a few features in the file spec, the fact you can orientate the image when storing to disc any way you want I found a little unnecessary. Code can be gotten here if you are interested, they are pretty much complete, although they don’t support RLE compression.</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-09T21:10:30+01:00</updated>
+  <updated>2012-10-09T22:43:47+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -14,122 +14,101 @@
 
   
   <entry>
-    <title type="html"><![CDATA[isometric_perspective]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/isometric-perspective/"/>
-    <updated>2012-10-09T19:59:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/isometric-perspective</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[texture_importer]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/texture-importer/"/>
-    <updated>2012-10-09T19:58:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/texture-importer</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[quadtree]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/quadtree/"/>
-    <updated>2012-10-09T19:58:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/quadtree</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby_and_chipmunk]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/ruby-and-chipmunk/"/>
-    <updated>2012-10-09T19:57:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/ruby-and-chipmunk</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rtw_programming_contest]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/rtw-programming-contest/"/>
-    <updated>2012-10-09T19:57:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/rtw-programming-contest</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[sudoku_solver]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/sudoku-solver/"/>
-    <updated>2012-10-09T19:56:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/sudoku-solver</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Falling Blocks]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/falling-blocks/"/>
-    <updated>2012-10-09T19:56:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/falling-blocks</id>
-    <content type="html"><![CDATA[<p>I did this for a little bit of fun on the train to and from Uni.</p>
+    <title type="html"><![CDATA[Ruby Bezier]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/10/09/ruby-bezier/"/>
+    <updated>2012-10-09T22:24:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/10/09/ruby-bezier</id>
+    <content type="html"><![CDATA[<p>We&#8217;ve been doing alot of Bezier stuff in class at the moment. And slip ups are easy in these circumstances.</p>
 
-<iframe src="http://player.vimeo.com/video/10747643" width="500" height="750" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+<p>I made this little ruby script to help me, maybe helps you? Push in your &#8216;t&#8217; value and your control points.</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[twitter_smilies]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/twitter-smilies/"/>
-    <updated>2012-10-09T19:55:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/twitter-smilies</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby_vector_wars]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/ruby-vector-wars/"/>
-    <updated>2012-10-09T19:55:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/ruby-vector-wars</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby_a_star]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/ruby-a-star/"/>
-    <updated>2012-10-09T19:55:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/ruby-a-star</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Playstation 2 FishEye]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/ps2-fisheye/"/>
-    <updated>2012-10-09T19:55:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/ps2-fisheye</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[sound_and_circles]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/sound-and-circles/"/>
-    <updated>2012-10-09T19:54:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/sound-and-circles</id>
-    <content type="html"><![CDATA[
+<div><script src='https://gist.github.com/3861578.js?file='></script>
+<noscript><pre><code>
+# Ruby 1.9
+
+def casteljau_bez(t, control_points, i = 1)
+
+    print &quot;b#{i} : &quot;
+
+    nextset = []
+
+    (control_points.length - 1).times do |p|
+
+
+        point   = control_points[p]
+        n_point = control_points[p + 1]
+
+        a = 1 - t
+        b = t
+
+        result = []
+
+        # Get x
+        result &lt;&lt; ( (a * point[0]) + (b * n_point[0]) )
+        # Get y
+        result &lt;&lt; ( (a * point[1]) + (b * n_point[1]) )
+
+
+        nextset &lt;&lt; result
+
+
+        print &quot;(#{result[0].round(4)}, #{result[1].round(4)}) \t&quot;
+    end
+
+    puts &quot;&quot;
+
+
+    if(nextset.length &gt; 1)
+        casteljau_bez(t, nextset, i + 1)
+    end
+
+end
+
+
+t = ARGV[0].to_f
+control_points = []
+
+(ARGV.length - 1).times do |p|
+  point = ARGV[p + 1].split(&quot;,&quot;)
+  point[0] = point[0].to_f
+  point[1] = point[1].to_f
+
+  control_points &lt;&lt; point
+end
+
+#casteljau_bez(0.6, [[3,3], [4,2], [-1,0], [6, 1], [8, 5]]),
+
+
+# Pass in t_value and list of points
+# example Ruby rbez.rb 0.2 3,3 2,3 5,3 2,3
+casteljau_bez(t, control_points)
+</code></pre></noscript></div>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Honors Project]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/honors-project/"/>
-    <updated>2012-10-09T18:45:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/honors-project</id>
+    <link href="http://PhilCK.github.com/blog/2012/10/08/honors-project/"/>
+    <updated>2012-10-08T18:45:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/10/08/honors-project</id>
     <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Thrid Year Group Project]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/09/09/group-project/"/>
+    <updated>2012-09-09T21:55:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/09/09/group-project</id>
+    <content type="html"><![CDATA[<p>As part of our 3rd year in Uni, we had todo a group project. This was mainly an exercise in working with other disciplines and clients. A small group of us wanted to create our own game rather than pick from a selection of pre-produced briefs, so we pitched the game idea to the school, and managed to pickup some artists and audio people which we needed otherwise programmer art would have been a feature of our game.</p>
+
+<p>A wee clip of one of the levels.</p>
+
+<iframe src="http://player.vimeo.com/video/50893418" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>The main idea is you have no direct control over the player, but instead can morph into different objects that in-turn move you in the environment. During our final pitches Disney saw our game and showed some interest, nothings come of it yet, but it was nice to have somebody outside of the Uni show some interest in the game.</p>
 ]]></content>
   </entry>
   
@@ -177,6 +156,19 @@ This was our initial game pitch.</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Playstation 2 FishEye]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye/"/>
+    <updated>2012-02-02T19:55:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye</id>
+    <content type="html"><![CDATA[<p>We were tasked with creating a &#8216;visual effect&#8217; for the PS2 using its VCL code. This was quite interesting, I thought I&#8217;d found all the ways to crash a PS2, then another one comes along. Get your VCL code wrong, and boom!</p>
+
+<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a try fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
+
+<p>[pic in-coming]</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Faultline Terrain]]></title>
     <link href="http://PhilCK.github.com/blog/2012/02/01/faultline-terrain/"/>
     <updated>2012-02-01T19:58:00+00:00</updated>
@@ -187,6 +179,33 @@ This was our initial game pitch.</p>
 
 
 <p>This first attempt was a little mental, the falloff for the fault size was quadratic and started very large. The result was these scary mountainous landscapes.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime Text C++ Build]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/01/13/sublime-cpp-build/"/>
+    <updated>2012-01-13T22:34:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/01/13/sublime-cpp-build</id>
+    <content type="html"><![CDATA[<p>Sublime Text is currently my editor of choice, but no build support for C++ makes me sad.</p>
+
+<p>This gist is a very basic build for C++, its not suitable for big projects, but good to test out single file snippets.</p>
+
+<div><script src='https://gist.github.com/1566100.js?file='></script>
+<noscript><pre><code>C++ Sublime Text Build
+======================
+
+This builds single C++ files in Sublime Text, handy for testing small things.
+
+Works With
+----------
+- OSX (Assuming xcode installed)
+- Linux (Should work if g++ is installed)
+- Windows (Need CL working)
+
+
+Thanks to adnansky for Linux Test and Shell update.</code></pre></noscript></div>
+
 ]]></content>
   </entry>
   
@@ -209,6 +228,19 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Quadtree]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/09/18/quadtree/"/>
+    <updated>2011-09-18T19:58:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/09/18/quadtree</id>
+    <content type="html"><![CDATA[<p>This was my first attempt at using a some sort of spatial partitioning system to divide up the world.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/SideProjects/quad_tree.png" title="'Quadtree'" ></p>
+
+<p>When a certain number of objects enter a leaf, the tree will subdivide, if an object is on the border of two leafs it will defer to the parent node. All in all it was quite easy to make this dynamic quadtree, there are a few improvements however that could be done, such as re-centering the tree to try and balance it out.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Isometric Level Editor]]></title>
     <link href="http://PhilCK.github.com/blog/2011/08/18/isometric-level-editor/"/>
     <updated>2011-08-18T19:58:00+01:00</updated>
@@ -218,6 +250,260 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
 <p><img src="http://PhilCK.github.com/post_images/SideProjects/iso_editor.png" title="'Iso Editor'" ></p>
 
 <p>It was writen in Ruby using Gosu for the output.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Isometric Perspective]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/05/05/isometric-perspective/"/>
+    <updated>2011-05-05T19:59:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/05/05/isometric-perspective</id>
+    <content type="html"><![CDATA[<p>This is a quick overview on how to achieve an isometric perspective.
+The example code is written in Ruby, it also assumes you know how to draw an image onto the screen, as this tutorial is just an overview. It should be quite easy to re-write this in the language of your choice, Ruby is easy to read.</p>
+
+<h3>Square Tiles</h3>
+
+<p>I’ll use this map data for this article.
+A 3 x 3 array, containing the symbol :grass.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@level_data</span> <span class="o">=</span> <span class="o">[</span>
+</span><span class='line'>   <span class="o">[</span><span class="ss">:grass</span><span class="p">,</span> <span class="ss">:grass</span><span class="p">,</span> <span class="ss">:grass</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>   <span class="o">[</span><span class="ss">:grass</span><span class="p">,</span> <span class="ss">:grass</span><span class="p">,</span> <span class="ss">:grass</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>   <span class="o">[</span><span class="ss">:grass</span><span class="p">,</span> <span class="ss">:grass</span><span class="p">,</span> <span class="ss">:grass</span><span class="o">]</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Assuming you have a square tile how would we draw a plane old top down tile view like this. We loop through the array multiplying the coordinates of the array with the height and width of the tile.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/sq_tiles.png" title="'How tiled squares might look.'" ></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span>  <span class="o">=</span> <span class="mi">64</span>
+</span><span class='line'><span class="no">Tile</span><span class="o">::</span><span class="no">HEIGHT</span> <span class="o">=</span> <span class="mi">64</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">draw</span>
+</span><span class='line'>   <span class="vi">@level_data</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>      <span class="vi">@level_data</span><span class="o">[</span><span class="n">y</span><span class="o">].</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>         <span class="c1"># multiply the array index with HEIGHT and WIDTH</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span>
+</span><span class='line'>         <span class="n">coord_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">HEIGHT</span>
+</span><span class='line'>         <span class="no">Tile</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span><span class="n">coord_x</span><span class="p">,</span> <span class="n">coord_y</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is in fact 80% of the way there.</p>
+
+<h3>Switching To Isometric Tiles</h3>
+
+<p>Next we are going to switch to isometric tiles. First you need to create an isometric tile in some sort of editor (Photoshop etc.). Isometric tiles are a diamond shape thats width is twice the height.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_tile.png" title="'How an Iso tile might look.'" ></p>
+
+<p>Also we are going to redeﬁne Tile::HEIGHT then try again.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span>  <span class="o">=</span> <span class="mi">64</span>
+</span><span class='line'><span class="no">Tile</span><span class="o">::</span><span class="no">HEIGHT</span> <span class="o">=</span> <span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span> <span class="o">/</span> <span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then using the code from the ﬁrst part (and assuming you now have a tile that is 64 wide and 32 high.) we should get an image like this. Ah, somethings not quite right, but its almost there.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_tiles.png" title="'How an Iso tiles might look.'" ></p>
+
+<h3>Line Up The Horizontal Tiles Correctly</h3>
+
+<p>Here we are left with a choice on how to arrange our data, I’ll show you both and leave it to you to decide which is more suitable for your game. For both methods we need to offset the rows so it will ﬁt. We need to shift it by half with width, I’ve added a new constant for clarity.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tile</span><span class="o">::</span><span class="no">HALF_WIDTH</span> <span class="o">=</span> <span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span> <span class="o">/</span> <span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>First you can shift only the odd (or even) rows.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">draw</span>
+</span><span class='line'>   <span class="vi">@level_data</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>      <span class="vi">@level_data</span><span class="o">[</span><span class="n">y</span><span class="o">].</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span>
+</span><span class='line'>         <span class="n">coord_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">HEIGHT</span>
+</span><span class='line'>         <span class="c1"># check to see if y if odd or even, then adds the offset.</span>
+</span><span class='line'>         <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">!=</span> <span class="mi">0</span>
+</span><span class='line'>            <span class="n">coord_x</span> <span class="o">+=</span> <span class="no">Tile</span><span class="o">::</span><span class="no">HALF_WIDTH</span>
+</span><span class='line'>         <span class="k">end</span>
+</span><span class='line'>         <span class="no">Tile</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span><span class="n">coord_x</span><span class="p">,</span> <span class="n">coord_y</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This should give you something like this.The alternative is we could offset every row.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_tiles_align_a.png" title="'One alignment option.'" ></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">draw</span>
+</span><span class='line'>   <span class="vi">@level_data</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>      <span class="vi">@level_data</span><span class="o">[</span><span class="n">y</span><span class="o">].</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span>
+</span><span class='line'>         <span class="n">coord_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">HEIGHT</span>
+</span><span class='line'>         <span class="c1"># offset every row</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">+=</span> <span class="p">(</span><span class="no">Tile</span><span class="o">::</span><span class="no">HALF_WIDTH</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+</span><span class='line'>         <span class="no">Tile</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span><span class="n">coord_x</span><span class="p">,</span> <span class="n">coord_y</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which should result in.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_tiles_align_b.png" title="'Another alignment option.'" ></p>
+
+<p>OK, so things should start to be looking right, but we have one more hurdle left the height offset.</p>
+
+<h3>Lining Up The Vertical Tiles Correctly</h3>
+
+<p>Lining up the tiles vertically is very easy we just need to change one line of the code.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">draw</span>
+</span><span class='line'>   <span class="vi">@level_data</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>      <span class="vi">@level_data</span><span class="o">[</span><span class="n">y</span><span class="o">].</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span>
+</span><span class='line'>         <span class="n">coord_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">HALF_HEIGHT</span> <span class="c1"># multiply by HALF_HEIGHT instead of HEIGHT</span>
+</span><span class='line'>         <span class="c1"># offset every row</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">+=</span> <span class="p">(</span><span class="no">Tile</span><span class="o">::</span><span class="no">HALF_WIDTH</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+</span><span class='line'>         <span class="no">Tile</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span><span class="n">coord_x</span><span class="p">,</span> <span class="n">coord_y</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The result should be a nice isometric view.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_tiles_align_c.png" title="'Well Done.'" ></p>
+
+<p>Done! Well almost.</p>
+
+<h3>Heightmaps And Z-Order</h3>
+
+<p>This is really an optional extra, it all depends on what you are trying to achieve. We need to redesign our tile first. It needs to be 6 sided like a hexagon, but it doesn&#8217;t have to be exact.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_height_tile.png" title="'Iso cube.'" ></p>
+
+<p>The depth of this is the same as the height, but you can make it as high as you need. Most of the draw code stays the same, we just need to take in a height value. For the purpose of this tutorial the height is calculated from the array index however in reality you would have a height map which the values of each tile could be loaded. There is also another thing we need to do since we are now drawing tiles on top of each other. We need draw the tiles from back to front so we don’t get any weird drawing effects. In this example we just use the array&#8217;s Y position, this ensures that the tiles are drawn in the correct order.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">draw</span>
+</span><span class='line'>   <span class="vi">@level_data</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span>
+</span><span class='line'>      <span class="vi">@level_data</span><span class="o">[</span><span class="n">y</span><span class="o">].</span><span class="n">length</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">WIDTH</span>
+</span><span class='line'>         <span class="n">coord_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="no">Tile</span><span class="o">::</span><span class="no">HALF_HEIGHT</span>
+</span><span class='line'>         <span class="n">coord_x</span> <span class="o">+=</span> <span class="p">(</span><span class="no">Tile</span><span class="o">::</span><span class="no">HALF_WIDTH</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># height based on x array index</span>
+</span><span class='line'>         <span class="n">coord_y</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">5</span>
+</span><span class='line'>         <span class="no">Tile</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span><span class="n">coord_x</span><span class="p">,</span> <span class="n">coord_y</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># &lt;-- Added Z-Order to the draw function.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Woot we have a set of weird steps. Enjoy…</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_steps.png" title="'Iso steps.'" ></p>
+
+<p>An example of different tiles.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/IsoTutorial/iso_height_example.png" title="'Iso map.'" ></p>
+
+<p>Full Ruby Code (Uses libgosu)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Texture Importers]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/05/02/texture-importer/"/>
+    <updated>2011-05-02T19:58:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/05/02/texture-importer</id>
+    <content type="html"><![CDATA[<p>I wrote these importers (Targa and Bitmap) for OpenGL (Well any API I guess), I originally wrote these for the PS2 because the importer we were given was such a pain to use.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/SideProjects/texture_loader.png" title="'textures'" ></p>
+
+<p>The Targa was interesting as it has quite a few features in the file spec, the fact you can orientate the image when storing to disc any way you want I found a little unnecessary. Code can be gotten here if you are interested, they are pretty much complete, although they don’t support RLE compression.</p>
 ]]></content>
   </entry>
   
@@ -236,6 +522,15 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Twitter Smilies]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/04/11/twitter-smilies/"/>
+    <updated>2011-04-11T19:55:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/04/11/twitter-smilies</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Playstation 2 Tempest Clone]]></title>
     <link href="http://PhilCK.github.com/blog/2011/02/01/ps2-tempest/"/>
     <updated>2011-02-01T19:55:00+00:00</updated>
@@ -248,9 +543,96 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
 
 <p>In the process of making this game I wrote a little graphics library to deal with rendering, it was pretty much based on old-school OpenGL as that was what we were leaning at the time.</p>
 
-<p>Liquid error: No such file or directory - python -c &#8220;import sys; print sys.executable&#8221;</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsColor</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
+</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsBegin</span><span class="p">(</span><span class="n">GS_POINT</span><span class="p">);</span>
+</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsVertex3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsEnd</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>The library is pretty slow in all honestly but this was due to the matrix transformations killing the PS2’s CPU, part of the courswork spec was not to use the VU, so I wasn’t able to take advantage of the fast math available.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bitblt Ninja]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja/"/>
+    <updated>2011-01-09T19:56:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja</id>
+    <content type="html"><![CDATA[<p>Graphics programming coursework. This is a clone of Fruit Ninja, but with assessment papers instead of fruits.
+It was done using Microsoft&#8217;s Bitblt function. A bit crude bit it does the job.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/Coursework/prof_ninja.jpg" title="'Prof Ninja'" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ludum Dare 18]]></title>
+    <link href="http://PhilCK.github.com/blog/2010/08/10/ld18/"/>
+    <updated>2010-08-10T19:56:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2010/08/10/ld18</id>
+    <content type="html"><![CDATA[<p>My first time into the LD I was a little worried about it, not really the long hours coding, but could I make a game in 48 hours? Well in the end yes I could (otherwise I wouldn&#8217;t be writing this and deny I ever took part in it.) and this was entry here.</p>
+
+<h3>Development</h3>
+
+<p>I was using Gosu and C++, C++ maybe not the best choice for this but I was keen to improve my C++ so it was a good in that regard.
+When I got my prototype up and running I was very revealed.</p>
+
+<iframe src="http://player.vimeo.com/video/14315698" width="500" height="667" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>This was a huge milestone for me, I was able to goto bed happy that I was well on my way.
+After a terrible night sleep, dreaming of code and other horrific things, I was able to concentrate on adding the graphics and tightening my code.</p>
+
+<iframe src="http://player.vimeo.com/video/14320140" width="500" height="667" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>I have to admit I had plenty of time to add better audio, but I was tired and my Irn-Bru was all gone, I just threw some crudely made sfxr sounds into and and called it a day, submitted it, and crawled into bed.</p>
+
+<h3>Reaction</h3>
+
+<p>The morning (after having what could only be described as a coding hangover) I started go get some reactions to the game, they were generally positive, and the negative ones were generally about the difficultly of the game which I accept was mental.</p>
+
+<blockquote><p>Simple, neat looking, fun and nice humor :). Good work</p><footer><strong>Jhelle</strong> <cite><a href='http://www.ludumdare.com/compo/ludum-dare-18/?action=preview&uid=581'>LD18 - Entry</a></cite></footer></blockquote>
+
+
+
+
+<blockquote><p>Well that was rather morbid. I think it was the only game about throwing people off skyscrapers, so points for that</p><footer><strong>pekuja</strong> <cite><a href='http://www.ludumdare.com/compo/ludum-dare-18/?action=preview&uid=581'>LD18 - Entry</a></cite></footer></blockquote>
+
+
+<p>I managed get rank 5th in the humur catagory amazingly. So job well done.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Gosu Accelerometer]]></title>
+    <link href="http://PhilCK.github.com/blog/2010/06/21/gosu-accelerometer/"/>
+    <updated>2010-06-21T19:56:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2010/06/21/gosu-accelerometer</id>
+    <content type="html"><![CDATA[<p>Added accelerometer support to Gosu.</p>
+
+<iframe src="http://player.vimeo.com/video/12735275" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>Although I’m not sure I’ll ever use it again though, I just don’t like games that make me shake my device.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sudoku Solver]]></title>
+    <link href="http://PhilCK.github.com/blog/2010/05/01/sudoku-solver/"/>
+    <updated>2010-05-01T19:56:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2010/05/01/sudoku-solver</id>
+    <content type="html"><![CDATA[<p>My first year coursework for the C++ module was to make a game of Sudoku, and optionally a solver.
+I chose to add the solver it was quite cool really, it uses a stack and brute-forces the answer.</p>
+
+<iframe src="http://player.vimeo.com/video/11747399" width="500" height="750" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
 ]]></content>
   </entry>
   

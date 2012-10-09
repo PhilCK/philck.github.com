@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: A Star | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/a-star/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2012-10-09T22:43:47+01:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby A Star]]></title>
+    <link href="http://PhilCK.github.com/blog/2008/11/01/ruby-a-star/"/>
+    <updated>2008-11-01T19:55:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2008/11/01/ruby-a-star</id>
+    <content type="html"><![CDATA[<p>Using this guide, I implemented a Ruby version for the A* algorithm.</p>
+
+<p><img src="/post_images/SideProjects/ruby_a_star.png" title="'A Star'" ></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PS2 | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/ps2/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-09T21:10:30+01:00</updated>
+  <updated>2012-10-09T22:43:47+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -15,10 +15,14 @@
   
   <entry>
     <title type="html"><![CDATA[Playstation 2 FishEye]]></title>
-    <link href="http://PhilCK.github.com/blog/2012/10/09/ps2-fisheye/"/>
-    <updated>2012-10-09T19:55:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2012/10/09/ps2-fisheye</id>
-    <content type="html"><![CDATA[
+    <link href="http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye/"/>
+    <updated>2012-02-02T19:55:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye</id>
+    <content type="html"><![CDATA[<p>We were tasked with creating a 'visual effect' for the PS2 using its VCL code. This was quite interesting, I thought I'd found all the ways to crash a PS2, then another one comes along. Get your VCL code wrong, and boom!</p>
+
+<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a try fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
+
+<p>[pic in-coming]</p>
 ]]></content>
   </entry>
   
@@ -35,7 +39,15 @@
 
 <p>In the process of making this game I wrote a little graphics library to deal with rendering, it was pretty much based on old-school OpenGL as that was what we were leaning at the time.</p>
 
-<p>Liquid error: undefined method `Py_IsInitialized' for RubyPython::Python:Module</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsColor</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
+</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsBegin</span><span class="p">(</span><span class="n">GS_POINT</span><span class="p">);</span>
+</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsVertex3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsEnd</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>The library is pretty slow in all honestly but this was due to the matrix transformations killing the PS2’s CPU, part of the courswork spec was not to use the VU, so I wasn’t able to take advantage of the fast math available.</p>
 ]]></content>
