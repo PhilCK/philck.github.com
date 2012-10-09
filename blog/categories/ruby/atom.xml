@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2012-10-09T21:10:30+01:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Falling Blocks]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/10/09/falling-blocks/"/>
+    <updated>2012-10-09T19:56:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/10/09/falling-blocks</id>
+    <content type="html"><![CDATA[<p>I did this for a little bit of fun on the train to and from Uni.</p>
+
+<iframe src="http://player.vimeo.com/video/10747643" width="500" height="750" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Isometric Level Editor]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/08/18/isometric-level-editor/"/>
+    <updated>2011-08-18T19:58:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/08/18/isometric-level-editor</id>
+    <content type="html"><![CDATA[<p>This was a little bit of fun. I made this Minecraft inspired isometric level editor, I was planning on making it a game but decided against it in the end. Still I think it came out nice :)</p>
+
+<p><img src="/post_images/SideProjects/iso_editor.png" title="'Iso Editor'" ></p>
+
+<p>It was writen in Ruby using Gosu for the output.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fractal Trees]]></title>
+    <link href="http://PhilCK.github.com/blog/2009/06/07/fractal-trees/"/>
+    <updated>2009-06-07T19:57:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2009/06/07/fractal-trees</id>
+    <content type="html"><![CDATA[<p>Fractal trees, or recursion trees.
+This was a my first foray into the procedural world.</p>
+
+<p><img src="/post_images/SideProjects/trees.png" title="'Odd looking trees'" ></p>
+]]></content>
+  </entry>
+  
+</feed>

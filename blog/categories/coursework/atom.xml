@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Coursework | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/coursework/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2012-10-09T21:10:30+01:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Faultline Terrain]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/02/01/faultline-terrain/"/>
+    <updated>2012-02-01T19:58:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/02/01/faultline-terrain</id>
+    <content type="html"><![CDATA[<p>This was an experiment of making procedural terrains using the faultline method.</p>
+
+<iframe src="http://player.vimeo.com/video/35978061" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>This first attempt was a little mental, the falloff for the fault size was quadratic and started very large. The result was these scary mountainous landscapes.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lua Proof Of Concept]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/10/01/lua-proof-of-concept/"/>
+    <updated>2011-10-01T19:58:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/10/01/lua-proof-of-concept</id>
+    <content type="html"><![CDATA[<p>As part of our group-project in uni, we looked into the possibility of using Lua embedded with our framework, which was built upon Gosu.
+There was a desire to use Lua to speed up iteration speeds, and also to include non-programmer types in the development of the game.
+The actual embededing of Lua and Luabind was relatively easy, the hard part came in the finicky little bits of LuaBind, and the difficulty of of debugging Lua scripts.</p>
+
+<iframe src="http://player.vimeo.com/video/31367803" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>We ended up ditching Lua for two reasons, its drain on my time, and the lack of interest (although initially shown) from the non-programmer's in the group to use it.</p>
+
+<p>I’d like to revisit this some day though.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenGL Tardis]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/04/25/opengl-tardis/"/>
+    <updated>2011-04-25T19:59:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/04/25/opengl-tardis</id>
+    <content type="html"><![CDATA[<p>This was my second year coursework for Graphics Programming. I was very disappointed in the module as a whole - I struggle to see the benefit of learning the fixed function pipeline any more, along with every feature of OpenGL that no longer exists. The module felt like it was put together by somebody who didn't care, and the claim that we would learn the theory of graphic programming turned out to be marketing speak, for learning next to nothing useful.</p>
+
+<iframe src="http://player.vimeo.com/video/22864220" width="500" height="370" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>Disappointment of the module aside I was happy enough with outcome of my coursework, I created the models (but not the textures) in Blender, and used Milkshape to import them (the only model loader I had at the time was a Milkshape one). Milkshape kept flipping the normals on me for some reason, the solution was rather mental, I turned them inside out in Blender and Milkshape flipped them back around.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Playstation 2 Tempest Clone]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/02/01/ps2-tempest/"/>
+    <updated>2011-02-01T19:55:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/02/01/ps2-tempest</id>
+    <content type="html"><![CDATA[<p>I enjoyed this one :) I made a Tempest 2000 clone for my Playstation 2 coursework. The main purpose for this module was really just general software development, but you got to make a game out of it.</p>
+
+<p><img src="/post_images/Coursework/squall.png" title="'Tempest Clone'" ></p>
+
+<p>Looking back there are so many things wrong with this game, the enemies couldn’t jump from there lanes, which was because I had pretty much coded my self into a corner.</p>
+
+<p>In the process of making this game I wrote a little graphics library to deal with rendering, it was pretty much based on old-school OpenGL as that was what we were leaning at the time.</p>
+
+<p>Liquid error: undefined method `Py_IsInitialized' for RubyPython::Python:Module</p>
+
+<p>The library is pretty slow in all honestly but this was due to the matrix transformations killing the PS2’s CPU, part of the courswork spec was not to use the VU, so I wasn’t able to take advantage of the fast math available.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bitblt Ninja]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja/"/>
+    <updated>2011-01-09T19:56:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja</id>
+    <content type="html"><![CDATA[<p>Graphics programming coursework. This is a clone of Fruit Ninja, but with assessment papers instead of fruits.
+It was done using Microsoft's Bitblt function. A bit crude bit it does the job.</p>
+
+<p><img src="/post_images/Coursework/prof_ninja.jpg" title="'Prof Ninja'" ></p>
+]]></content>
+  </entry>
+  
+</feed>

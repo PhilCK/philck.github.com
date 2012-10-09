@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: OpenGL | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/opengl/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2012-10-09T21:10:30+01:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[OpenGL Tardis]]></title>
+    <link href="http://PhilCK.github.com/blog/2011/04/25/opengl-tardis/"/>
+    <updated>2011-04-25T19:59:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2011/04/25/opengl-tardis</id>
+    <content type="html"><![CDATA[<p>This was my second year coursework for Graphics Programming. I was very disappointed in the module as a whole - I struggle to see the benefit of learning the fixed function pipeline any more, along with every feature of OpenGL that no longer exists. The module felt like it was put together by somebody who didn't care, and the claim that we would learn the theory of graphic programming turned out to be marketing speak, for learning next to nothing useful.</p>
+
+<iframe src="http://player.vimeo.com/video/22864220" width="500" height="370" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>Disappointment of the module aside I was happy enough with outcome of my coursework, I created the models (but not the textures) in Blender, and used Milkshape to import them (the only model loader I had at the time was a Milkshape one). Milkshape kept flipping the normals on me for some reason, the solution was rather mental, I turned them inside out in Blender and Milkshape flipped them back around.</p>
+]]></content>
+  </entry>
+  
+</feed>

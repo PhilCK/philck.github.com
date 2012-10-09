@@ -1,15 +1,111 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://PhilCK.github.com/blog/2009/06/07/fractal-trees/</loc>
+        <lastmod>2012-10-09T20:34:56+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2010/06/21/gosu-accelerometer/</loc>
+        <lastmod>2012-10-09T20:36:59+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2010/08/10/ld18/</loc>
+        <lastmod>2012-10-09T20:53:15+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja/</loc>
+        <lastmod>2012-10-09T20:18:34+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2011/02/01/ps2-tempest/</loc>
+        <lastmod>2012-10-09T21:01:51+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2011/04/25/opengl-tardis/</loc>
+        <lastmod>2012-10-09T20:56:33+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2011/08/18/isometric-level-editor/</loc>
+        <lastmod>2012-10-09T20:40:11+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2011/10/01/lua-proof-of-concept/</loc>
+        <lastmod>2012-10-09T20:32:08+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/02/01/faultline-terrain/</loc>
+        <lastmod>2012-10-09T20:29:45+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/05/22/dare-pitch/</loc>
+        <lastmod>2012-10-09T20:21:12+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/08/14/dare-contest/</loc>
+        <lastmod>2012-10-09T20:14:25+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://PhilCK.github.com/blog/2012/10/09/honors-project/</loc>
-        <lastmod>2012-10-09T19:16:16+01:00</lastmod>
+        <lastmod>2012-10-09T20:15:22+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/sound-and-circles/</loc>
+        <lastmod>2012-10-09T19:54:48+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/ps2-fisheye/</loc>
+        <lastmod>2012-10-09T20:57:12+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/ruby-a-star/</loc>
+        <lastmod>2012-10-09T19:55:05+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/ruby-vector-wars/</loc>
+        <lastmod>2012-10-09T19:55:14+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/twitter-smilies/</loc>
+        <lastmod>2012-10-09T19:55:30+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/falling-blocks/</loc>
+        <lastmod>2012-10-09T20:23:55+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/sudoku-solver/</loc>
+        <lastmod>2012-10-09T19:56:43+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/rtw-programming-contest/</loc>
+        <lastmod>2012-10-09T19:57:07+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/ruby-and-chipmunk/</loc>
+        <lastmod>2012-10-09T19:57:32+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/quadtree/</loc>
+        <lastmod>2012-10-09T19:58:36+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/texture-importer/</loc>
+        <lastmod>2012-10-09T19:58:58+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/isometric-perspective/</loc>
+        <lastmod>2012-10-09T19:59:10+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PhilCK.github.com/about/</loc>
+        <lastmod>2012-10-09T20:07:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://PhilCK.github.com/blog/archives/</loc>
-        <lastmod>2012-10-09T19:16:16+01:00</lastmod>
+        <lastmod>2012-10-09T21:01:51+01:00</lastmod>
     </url>
     <url>
         <loc>http://PhilCK.github.com/</loc>
-        <lastmod>2012-10-09T19:16:16+01:00</lastmod>
+        <lastmod>2012-10-09T21:01:51+01:00</lastmod>
     </url>
 </urlset>

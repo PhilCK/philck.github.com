@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Procedural | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/procedural/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2012-10-09T21:10:30+01:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Faultline Terrain]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/02/01/faultline-terrain/"/>
+    <updated>2012-02-01T19:58:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/02/01/faultline-terrain</id>
+    <content type="html"><![CDATA[<p>This was an experiment of making procedural terrains using the faultline method.</p>
+
+<iframe src="http://player.vimeo.com/video/35978061" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>This first attempt was a little mental, the falloff for the fault size was quadratic and started very large. The result was these scary mountainous landscapes.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fractal Trees]]></title>
+    <link href="http://PhilCK.github.com/blog/2009/06/07/fractal-trees/"/>
+    <updated>2009-06-07T19:57:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2009/06/07/fractal-trees</id>
+    <content type="html"><![CDATA[<p>Fractal trees, or recursion trees.
+This was a my first foray into the procedural world.</p>
+
+<p><img src="/post_images/SideProjects/trees.png" title="'Odd looking trees'" ></p>
+]]></content>
+  </entry>
+  
+</feed>
