@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Competition | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/competition/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-10T09:22:32+01:00</updated>
+  <updated>2012-10-10T16:22:25+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -43,11 +43,11 @@ Albert hacked in a two player mode which was seriously alot of fun :)</p>
     <link href="http://PhilCK.github.com/blog/2010/08/10/ld18/"/>
     <updated>2010-08-10T19:56:00+01:00</updated>
     <id>http://PhilCK.github.com/blog/2010/08/10/ld18</id>
-    <content type="html"><![CDATA[<p>My first time into the LD I was a little worried about it, not really the long hours coding, but could I make a game in 48 hours? Well in the end yes I could (otherwise I wouldn't be writing this and deny I ever took part in it.) and this was entry here.</p>
+    <content type="html"><![CDATA[<p>My first time into the <a href="http://www.ludumdare.com/" title="Ludum Dare">LD</a> I was a little worried about it, not really the long hours coding, but could I make a game in 48 hours? Well in the end yes I could (otherwise I wouldn't be writing this and deny I ever took part in it.) and this was <a href="http://www.ludumdare.com/compo/ludum-dare-18/?action=preview&amp;uid=581" title="Ludum Dare 18">entry</a> here.</p>
 
 <h3>Development</h3>
 
-<p>I was using Gosu and C++, C++ maybe not the best choice for this but I was keen to improve my C++ so it was a good in that regard.
+<p>I was using <a href="http://www.libgosu.org/" title="Gosu">Gosu</a> and C++, C++ maybe not the best choice for this but I was keen to improve my C++ so it was a good in that regard.
 When I got my prototype up and running I was very revealed.</p>
 
 <iframe src="http://player.vimeo.com/video/14315698" width="500" height="667" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
@@ -59,7 +59,7 @@ After a terrible night sleep, dreaming of code and other horrific things, I was 
 <iframe src="http://player.vimeo.com/video/14320140" width="500" height="667" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 
-<p>I have to admit I had plenty of time to add better audio, but I was tired and my Irn-Bru was all gone, I just threw some crudely made sfxr sounds into and and called it a day, submitted it, and crawled into bed.</p>
+<p>I have to admit I had plenty of time to add better audio, but I was tired and my <a href="http://www.youtube.com/watch?v=pdDhW9Lwepc&amp;feature=related" title="Irn Bru">Irn-Bru</a> was all gone, I just threw some crudely made <a href="http://www.drpetter.se/project_sfxr.html" title="SFXR">sfxr</a> sounds into and and called it a day, submitted it, and crawled into bed.</p>
 
 <h3>Reaction</h3>
 
@@ -69,7 +69,7 @@ After a terrible night sleep, dreaming of code and other horrific things, I was 
 
 <p><blockquote><p>Well that was rather morbid. I think it was the only game about throwing people off skyscrapers, so points for that</p><footer><strong>pekuja</strong> <cite><a href='http://www.ludumdare.com/compo/ludum-dare-18/?action=preview&amp;uid=581'>LD18 - Entry</a></cite></footer></blockquote></p>
 
-<p>I managed get rank 5th in the humur catagory amazingly. So job well done.</p>
+<p>I managed get rank 5th in the <a href="http://www.ludumdare.com/compo/ludum-dare-18/?action=top&amp;cat=Humor" title="Humor Ranking">humor</a> category amazingly. So job well done.</p>
 ]]></content>
   </entry>
   

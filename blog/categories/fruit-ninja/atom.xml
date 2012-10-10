@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fruit Ninja | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/fruit-ninja/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-10T09:22:32+01:00</updated>
+  <updated>2012-10-10T16:22:25+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -18,8 +18,8 @@
     <link href="http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja/"/>
     <updated>2011-01-09T19:56:00+00:00</updated>
     <id>http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja</id>
-    <content type="html"><![CDATA[<p>Graphics programming coursework. This is a clone of Fruit Ninja, but with assessment papers instead of fruits.
-It was done using Microsoft's Bitblt function. A bit crude bit it does the job.</p>
+    <content type="html"><![CDATA[<p>Graphics programming coursework. This is a clone of <a href="http://en.wikipedia.org/wiki/Fruit_Ninja" title="Fruit Ninja">Fruit Ninja</a>, but with assessment papers instead of fruits.
+It was done using Microsoft's <a href="http://msdn.microsoft.com/en-us/library/dd183370" title="MSDN">Bitblt</a> function. A bit crude bit it does the job.</p>
 
 <p><img src="/post_images/Coursework/prof_ninja.jpg" title="'Prof Ninja'" ></p>
 ]]></content>

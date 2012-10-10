@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coursework | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/coursework/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-10T09:22:32+01:00</updated>
+  <updated>2012-10-10T16:22:25+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -18,7 +18,15 @@
     <link href="http://PhilCK.github.com/blog/2012/10/08/honors-project/"/>
     <updated>2012-10-08T18:45:00+01:00</updated>
     <id>http://PhilCK.github.com/blog/2012/10/08/honors-project</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>The topic for my honors project was a hard decision. The two main contenders were <a href="http://en.wikipedia.org/wiki/Deferred_shading#Deferred_lighting" title="Deferred Lighting">deferred lighting</a> and <a href="http://en.wikipedia.org/wiki/MegaTexture#Virtual_texturing" title="Virtual Texturing">virtual texturing</a>, with a visual programming language and VR headsets taking the runners up topics. In the end I chose virtual texturing. Something that Rage used to generate some very petty scenes, and some very interesting texture popping.</p>
+
+<p><img src="/post_images/Honors/Rage.jpg" title="'Rage'" ></p>
+
+<p>The basic idea is that you create a massive texture file, in Rages case I believe they could be up to 128,000 x 128,000 pixels then just stream off the hard-drive (or disc) the information you need based on your position in the world.</p>
+
+<p><blockquote><p>Regardless of how much detail its texture might contain, you cannot display more texels than the screen has pixels.</p><footer><strong>Ben Garney</strong> <cite>Game Programming Gems 7 - Clipmapping</cite></footer></blockquote></p>
+
+<p>The motivation is an old one, textures in the distance need not have as much detail in them as textures closer to the camera. But the two texture files might take up the same space on the GPU. So if we can stream in the amount of information when we need it we can save our-selfs a lot of memory.</p>
 ]]></content>
   </entry>
   
@@ -57,9 +65,9 @@
     <link href="http://PhilCK.github.com/blog/2011/10/01/lua-proof-of-concept/"/>
     <updated>2011-10-01T19:58:00+01:00</updated>
     <id>http://PhilCK.github.com/blog/2011/10/01/lua-proof-of-concept</id>
-    <content type="html"><![CDATA[<p>As part of our group-project in uni, we looked into the possibility of using Lua embedded with our framework, which was built upon Gosu.
+    <content type="html"><![CDATA[<p>As part of our group-project in uni, we looked into the possibility of using <a href="http://www.lua.org/" title="Lua">Lua</a> embedded with our framework, which was built upon <a href="http://www.libgosu.org/" title="Gosu">Gosu</a>.
 There was a desire to use Lua to speed up iteration speeds, and also to include non-programmer types in the development of the game.
-The actual embededing of Lua and Luabind was relatively easy, the hard part came in the finicky little bits of LuaBind, and the difficulty of of debugging Lua scripts.</p>
+The actual embededing of Lua and <a href="http://www.rasterbar.com/products/luabind.html" title="LuaBind">Luabind</a> was relatively easy, the hard part came in the finicky little bits of LuaBind, and the difficulty of of debugging Lua scripts.</p>
 
 <iframe src="http://player.vimeo.com/video/31367803" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
@@ -80,7 +88,7 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
 <iframe src="http://player.vimeo.com/video/22864220" width="500" height="370" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 
-<p>Disappointment of the module aside I was happy enough with outcome of my coursework, I created the models (but not the textures) in Blender, and used Milkshape to import them (the only model loader I had at the time was a Milkshape one). Milkshape kept flipping the normals on me for some reason, the solution was rather mental, I turned them inside out in Blender and Milkshape flipped them back around.</p>
+<p>Disappointment of the module aside I was happy enough with outcome of my coursework, I created the models (but not the textures) in <a href="http://www.blender.org/" title="Blender">Blender</a>, and used <a href="http://chumbalum.swissquake.ch/" title="Milkshape">Milkshape</a> to import them (the only model loader I had at the time was a Milkshape one). Milkshape kept flipping the normals on me for some reason, the solution was rather mental, I turned them inside out in Blender and Milkshape flipped them back around.</p>
 ]]></content>
   </entry>
   

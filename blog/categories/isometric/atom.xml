@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Isometric | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/isometric/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-10T09:22:32+01:00</updated>
+  <updated>2012-10-10T16:22:25+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -22,7 +22,7 @@
 
 <p><img src="/post_images/SideProjects/iso_editor.png" title="'Iso Editor'" ></p>
 
-<p>It was writen in Ruby using Gosu for the output.</p>
+<p>It was writen in Ruby using <a href="http://www.libgosu.org" title="Gosu">Gosu</a> for the output.</p>
 ]]></content>
   </entry>
   
@@ -285,7 +285,7 @@ A 3 x 3 array, containing the symbol :grass.</p>
 
 <p><img src="/post_images/IsoTutorial/iso_height_example.png" title="'Iso map.'" ></p>
 
-<p>Full Ruby Code (Uses libgosu)</p>
+<p>Full Ruby <a href="http://pastie.org/1635807" title="Full Code">Code</a> (Uses libgosu)</p>
 ]]></content>
   </entry>
   

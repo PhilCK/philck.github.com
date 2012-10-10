@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Pathfinding | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/pathfinding/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-10T09:22:32+01:00</updated>
+  <updated>2012-10-10T16:22:25+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -18,7 +18,7 @@
     <link href="http://PhilCK.github.com/blog/2008/11/01/ruby-a-star/"/>
     <updated>2008-11-01T19:55:00+00:00</updated>
     <id>http://PhilCK.github.com/blog/2008/11/01/ruby-a-star</id>
-    <content type="html"><![CDATA[<p>Using this guide, I implemented a Ruby version for the A* algorithm.</p>
+    <content type="html"><![CDATA[<p>Using this <a href="http://www.policyalmanac.org/games/aStarTutorial.htm" title="A Star tutorial">guide</a>, I implemented a Ruby version for the A* algorithm.</p>
 
 <p><img src="/post_images/SideProjects/ruby_a_star.png" title="'A Star'" ></p>
 ]]></content>
