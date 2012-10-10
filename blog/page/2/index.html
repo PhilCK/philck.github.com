@@ -9,7 +9,7 @@
   <meta name="author" content="Phil CK">
 
   
-  <meta name="description" content="This was a little bit of fun. I made this Minecraft inspired isometric level editor, I was planning on making it a game but decided against it in the &hellip;">
+  <meta name="description" content="This was my first attempt at using a some sort of spatial partitioning system to divide up the world. When a certain number of objects enter a leaf, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +73,48 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/09/18/quadtree/">Quadtree</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-18T19:58:00+01:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This was my first attempt at using a some sort of spatial partitioning system to divide up the world.</p>
+
+<p><img src="/post_images/SideProjects/quad_tree.png" title="'Quadtree'" ></p>
+
+<p>When a certain number of objects enter a leaf, the tree will subdivide, if an object is on the border of two leafs it will defer to the parent node. All in all it was quite easy to make this dynamic quadtree, there are a few improvements however that could be done, such as re-centering the tree to try and balance it out.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -718,48 +760,6 @@ After a terrible night sleep, dreaming of code and other horrific things, I was 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2010/05/01/sudoku-solver/">Sudoku Solver</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-01T19:56:00+01:00" pubdate data-updated="true">May 1<span>st</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My first year coursework for the C++ module was to make a game of Sudoku, and optionally a solver.
-I chose to add the solver it was quite cool really, it uses a stack and brute-forces the answer.</p>
-
-<iframe src="http://player.vimeo.com/video/11747399" width="500" height="750" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -777,6 +777,10 @@ I chose to add the solver it was quite cool really, it uses a stack and brute-fo
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/09/cpp-unit-test/">C++ Unit Testing</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/09/ruby-bezier/">Ruby Bezier</a>
       </li>
     
@@ -790,10 +794,6 @@ I chose to add the solver it was quite cool really, it uses a stack and brute-fo
     
       <li class="post">
         <a href="/blog/2012/08/14/dare-contest/">Dare to Be Digital 2012</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/22/dare-pitch/">Dare Pitch</a>
       </li>
     
   </ul>

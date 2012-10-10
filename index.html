@@ -9,7 +9,10 @@
   <meta name="author" content="Phil CK">
 
   
-  <meta name="description" content="We&#8217;ve been doing alot of Bezier stuff in class at the moment. And slip ups are easy in these circumstances. I made this little ruby script to &hellip;">
+  <meta name="description" content="Simple C++ Unit Testing
+======================= About
+-----
+There are loads of C++ unit testing frameworks out there, I created this one because I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +76,115 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/10/09/cpp-unit-test/">C++ Unit Testing</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-09T22:57:00+01:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div><script src='https://gist.github.com/1534852.js?file='></script>
+<noscript><pre><code>Simple C++ Unit Testing
+=======================
+
+About
+-----
+There are loads of C++ unit testing frameworks out there, I created this one because I was doing lots of small projects on a varity of platforms, which included 10 year old compilers. This testing facility aims to be simple to use and simple to install, only using a single header file and basic features.
+
+Features
+--------
+- Single header.
+- It should be very compatible. (Tested on gcc 2.95.2)
+- Easy to write tests.
+- Prints out assert failures with the values.
+
+Todo
+----
+- Deal with exceptions.
+- Fixtures / Suites.
+- Cleaner outputs.
+- Check usage with STLPort (possible iostream problems).
+- Tidy UnitTests class.
+
+Issues
+------
+- Current doesn't catch exceptions.
+
+Usage
+-----
+
+Include in your test page.
+
+```cpp
+#include &quot;UnitTest.hpp&quot;
+```
+
+Write your tests.
+
+```cpp
+TEST(ThisIsYourAssertCheck)
+{
+    SomeObj obj;
+    ASSERT_CHECK(obj.exists()); // Checks for true.
+}
+
+TEST(ThisIsYourEqualCheck)
+{
+    SomeObj obj;
+    ASSERT_EQUAL(obj.health(), 100); // Checks for equality.
+}
+
+TEST(ThisIsYourRangeCheck)
+{
+    SomeObj obj
+    ASSERT_RANGE(obj.speed(), 10.5, 0.5); // Checks that speed is within 0.5 of 10.5.
+}
+```
+
+Run your tests
+
+```cpp
+int main()
+{
+    UnitTests::runAllTests();
+    
+    return 0;
+}
+
+Licence
+-------
+public domain</code></pre></noscript></div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -393,7 +505,7 @@ This was our initial game pitch.</p>
 
   <div class="entry-content"><p>We were tasked with creating a &#8216;visual effect&#8217; for the PS2 using its VCL code. This was quite interesting, I thought I&#8217;d found all the ways to crash a PS2, then another one comes along. Get your VCL code wrong, and boom!</p>
 
-<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a try fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
+<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a true fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
 
 <p>[pic in-coming]</p>
 </div>
@@ -549,48 +661,6 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2011/09/18/quadtree/">Quadtree</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-18T19:58:00+01:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This was my first attempt at using a some sort of spatial partitioning system to divide up the world.</p>
-
-<p><img src="/post_images/SideProjects/quad_tree.png" title="'Quadtree'" ></p>
-
-<p>When a certain number of objects enter a leaf, the tree will subdivide, if an object is on the border of two leafs it will defer to the parent node. All in all it was quite easy to make this dynamic quadtree, there are a few improvements however that could be done, such as re-centering the tree to try and balance it out.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -606,6 +676,10 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/09/cpp-unit-test/">C++ Unit Testing</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/10/09/ruby-bezier/">Ruby Bezier</a>
       </li>
     
@@ -619,10 +693,6 @@ The actual embededing of Lua and Luabind was relatively easy, the hard part came
     
       <li class="post">
         <a href="/blog/2012/08/14/dare-contest/">Dare to Be Digital 2012</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/22/dare-pitch/">Dare Pitch</a>
       </li>
     
   </ul>

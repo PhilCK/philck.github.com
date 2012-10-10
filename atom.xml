@@ -4,7 +4,7 @@
   <title><![CDATA[Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-09T22:43:47+01:00</updated>
+  <updated>2012-10-10T09:22:32+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C++ Unit Testing]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/10/09/cpp-unit-test/"/>
+    <updated>2012-10-09T22:57:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/10/09/cpp-unit-test</id>
+    <content type="html"><![CDATA[<div><script src='https://gist.github.com/1534852.js?file='></script>
+<noscript><pre><code>Simple C++ Unit Testing
+=======================
+
+About
+-----
+There are loads of C++ unit testing frameworks out there, I created this one because I was doing lots of small projects on a varity of platforms, which included 10 year old compilers. This testing facility aims to be simple to use and simple to install, only using a single header file and basic features.
+
+Features
+--------
+- Single header.
+- It should be very compatible. (Tested on gcc 2.95.2)
+- Easy to write tests.
+- Prints out assert failures with the values.
+
+Todo
+----
+- Deal with exceptions.
+- Fixtures / Suites.
+- Cleaner outputs.
+- Check usage with STLPort (possible iostream problems).
+- Tidy UnitTests class.
+
+Issues
+------
+- Current doesn't catch exceptions.
+
+Usage
+-----
+
+Include in your test page.
+
+```cpp
+#include &quot;UnitTest.hpp&quot;
+```
+
+Write your tests.
+
+```cpp
+TEST(ThisIsYourAssertCheck)
+{
+    SomeObj obj;
+    ASSERT_CHECK(obj.exists()); // Checks for true.
+}
+
+TEST(ThisIsYourEqualCheck)
+{
+    SomeObj obj;
+    ASSERT_EQUAL(obj.health(), 100); // Checks for equality.
+}
+
+TEST(ThisIsYourRangeCheck)
+{
+    SomeObj obj
+    ASSERT_RANGE(obj.speed(), 10.5, 0.5); // Checks that speed is within 0.5 of 10.5.
+}
+```
+
+Run your tests
+
+```cpp
+int main()
+{
+    UnitTests::runAllTests();
+    
+    return 0;
+}
+
+Licence
+-------
+public domain</code></pre></noscript></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby Bezier]]></title>
@@ -162,7 +242,7 @@ This was our initial game pitch.</p>
     <id>http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye</id>
     <content type="html"><![CDATA[<p>We were tasked with creating a &#8216;visual effect&#8217; for the PS2 using its VCL code. This was quite interesting, I thought I&#8217;d found all the ways to crash a PS2, then another one comes along. Get your VCL code wrong, and boom!</p>
 
-<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a try fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
+<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a true fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
 
 <p>[pic in-coming]</p>
 ]]></content>
@@ -620,19 +700,6 @@ After a terrible night sleep, dreaming of code and other horrific things, I was 
 
 
 <p>Although I’m not sure I’ll ever use it again though, I just don’t like games that make me shake my device.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sudoku Solver]]></title>
-    <link href="http://PhilCK.github.com/blog/2010/05/01/sudoku-solver/"/>
-    <updated>2010-05-01T19:56:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2010/05/01/sudoku-solver</id>
-    <content type="html"><![CDATA[<p>My first year coursework for the C++ module was to make a game of Sudoku, and optionally a solver.
-I chose to add the solver it was quite cool really, it uses a stack and brute-forces the answer.</p>
-
-<iframe src="http://player.vimeo.com/video/11747399" width="500" height="750" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
 ]]></content>
   </entry>
   

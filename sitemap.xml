@@ -86,7 +86,7 @@
     </url>
     <url>
         <loc>http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye/</loc>
-        <lastmod>2012-10-09T22:21:50+01:00</lastmod>
+        <lastmod>2012-10-09T22:48:53+01:00</lastmod>
     </url>
     <url>
         <loc>http://PhilCK.github.com/blog/2012/05/22/dare-pitch/</loc>
@@ -109,15 +109,19 @@
         <lastmod>2012-10-09T22:34:08+01:00</lastmod>
     </url>
     <url>
+        <loc>http://PhilCK.github.com/blog/2012/10/09/cpp-unit-test/</loc>
+        <lastmod>2012-10-09T22:58:16+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://PhilCK.github.com/about/</loc>
         <lastmod>2012-10-09T20:07:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://PhilCK.github.com/blog/archives/</loc>
-        <lastmod>2012-10-09T22:39:04+01:00</lastmod>
+        <lastmod>2012-10-09T22:58:16+01:00</lastmod>
     </url>
     <url>
         <loc>http://PhilCK.github.com/</loc>
-        <lastmod>2012-10-09T22:39:04+01:00</lastmod>
+        <lastmod>2012-10-09T22:58:16+01:00</lastmod>
     </url>
 </urlset>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Graphics | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/graphics/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-09T22:43:47+01:00</updated>
+  <updated>2012-10-10T09:22:32+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -29,7 +29,7 @@
     <id>http://PhilCK.github.com/blog/2012/02/02/ps2-fisheye</id>
     <content type="html"><![CDATA[<p>We were tasked with creating a 'visual effect' for the PS2 using its VCL code. This was quite interesting, I thought I'd found all the ways to crash a PS2, then another one comes along. Get your VCL code wrong, and boom!</p>
 
-<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a try fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
+<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a true fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
 
 <p>[pic in-coming]</p>
 ]]></content>
