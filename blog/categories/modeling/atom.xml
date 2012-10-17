@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Modeling | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/modeling/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2012-10-17T11:38:53+01:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[sketchfab]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/10/17/sketchfab/"/>
+    <updated>2012-10-17T11:29:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/10/17/sketchfab</id>
+    <content type="html"><![CDATA[<p>I'm not an artist, but I have to do some modeling out of necessity in the past and I've done a little for some fun.</p>
+
+<p>Any way this website, <a href="https://sketchfab.com" title="Sketchfab">Sketchfab</a> is a really cool way of showing off artwork.</p>
+
+<iframe frameborder="0" height="480" width="500" allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true" src="http://skfb.ly/li1cba?autostart=0&transparent=0&autospin=0&controls=1&watermark=1"></iframe>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>
