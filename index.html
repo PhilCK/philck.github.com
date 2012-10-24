@@ -9,7 +9,7 @@
   <meta name="author" content="Phil CK">
 
   
-  <meta name="description" content="I&#8217;m not an artist, but I have to do some modeling out of necessity in the past and I&#8217;ve done a little for some fun. Any way this website &hellip;">
+  <meta name="description" content="So for my Honors project I&#8217;ve decided on virtual textures, its a rather scary term (at least to me) but it actually has a lot in common with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +73,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/10/24/virtual-texture/">Virtual Texture</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-24T16:00:00+01:00" pubdate data-updated="true">Oct 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So for my Honors project I&#8217;ve decided on <a href="http://en.wikipedia.org/wiki/MegaTexture#Virtual_texturing" title="Virtual Texture">virtual textures</a>, its a rather scary term (at least to me) but it actually has a lot in common with <a href="http://en.wikipedia.org/wiki/Virtual_memory" title="Virtual Memory">virtual memory</a>, and in most cases you can simply swap the word &#8216;memory&#8217; with &#8216;texture&#8217; to get an idea how it works.</p>
+
+<blockquote><p>VTM systems are more flexible and mimic the virtual memory management of the OS:</p><footer><strong>Matthäus G Chajdas et al</strong> <cite>GPU Pro - Virtual Texturing 101</cite></footer></blockquote>
+
+
+<p>That make me feel a little easier about topic. So what we have is an actual texture on a disc which contains all the data that we need but to much to squeeze into the GPU. A texture on the GPU which contains all the data that we currently need. And a <a href="http://en.wikipedia.org/wiki/Page_table" title="Page Table">page table</a> thats lets us find out where the bit of texture is that we are looking for, as it might not be in the same place when we come back to (Hence the virtual bit).</p>
+
+<p>Rage has some nice visualisations you can turn on. On the left its showing the page numbers, and on the right its show the mip levels its rendering at. Green being the lowest, red highest.</p>
+
+<p><img src="/post_images/Honors/rage_vis.jpg"></p>
+
+<p>Well thats all very nice and all, but what does it actually give us? It would allow artists to create completely unique (ie. no repeating textures) texture detail over a very large area, it should also reduce our memory footprint as we are only loading up the data we need when we need it.</p>
+
+<p>With all things though this doesn&#8217;t come free. The first problem is its slow to hit the disc for data. When you are trying to load up data you could get a lot of texture popping. That isn&#8217;t really desirable however it is almost inevitable with this kind of solution, there are some tricks to reduce it but it comes down to the usual game of trying to balance things out. Another problem (on the development side not runtime) is hardware <a href="http://en.wikipedia.org/wiki/Bilinear_filtering" title="Bilinear filtering">filtering</a>. When the hardware is doing a bilinear filtering it will be using data from its neighboring texels, which in this case could be an entirely different texture.</p>
+
+<p>There is really good video on Virtual textures it over at <a href="http://silverspaceship.com/src/svt/" title="Silver Spaceship">silverspaceship.com</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -558,83 +611,6 @@ Thanks to adnansky for Linux Test and Shell update.</code></pre></noscript></div
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2011/12/28/cpp-unit-test/">C++ Unit Testing</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-28T22:57:00+00:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve been trying to make my own unit testing suite for some cpp, I&#8217;m fairly happy with it so far.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">ThisIsYourAssertCheck</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">SomeObj</span> <span class="n">obj</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">ASSERT_CHECK</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">exists</span><span class="p">());</span> <span class="c1">// Checks for true.</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">ThisIsYourEqualCheck</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">SomeObj</span> <span class="n">obj</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">ASSERT_EQUAL</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">health</span><span class="p">(),</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// Checks for equality.</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">ThisIsYourRangeCheck</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">SomeObj</span> <span class="n">obj</span>
-</span><span class='line'>    <span class="n">ASSERT_RANGE</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">speed</span><span class="p">(),</span> <span class="mf">10.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span> <span class="c1">// Checks that speed is within 0.5 of 10.5.</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Whole thing can be found <a href="https://gist.github.com/1534852" title="Unit Tester">here.</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -650,7 +626,11 @@ Thanks to adnansky for Linux Test and Shell update.</code></pre></noscript></div
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/10/17/sketchfab/">sketchfab</a>
+        <a href="/blog/2012/10/24/virtual-texture/">Virtual Texture</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/17/sketchfab/">Sketchfab</a>
       </li>
     
       <li class="post">
@@ -663,10 +643,6 @@ Thanks to adnansky for Linux Test and Shell update.</code></pre></noscript></div
     
       <li class="post">
         <a href="/blog/2012/09/09/group-project/">Thrid Year Group Project</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/14/dare-contest/">Dare to Be Digital 2012</a>
       </li>
     
   </ul>

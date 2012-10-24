@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Honors | Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/blog/categories/honors/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-17T11:38:53+01:00</updated>
+  <updated>2012-10-24T19:41:09+01:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Virtual Texture]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/10/24/virtual-texture/"/>
+    <updated>2012-10-24T16:00:00+01:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/10/24/virtual-texture</id>
+    <content type="html"><![CDATA[<p>So for my Honors project I've decided on <a href="http://en.wikipedia.org/wiki/MegaTexture#Virtual_texturing" title="Virtual Texture">virtual textures</a>, its a rather scary term (at least to me) but it actually has a lot in common with <a href="http://en.wikipedia.org/wiki/Virtual_memory" title="Virtual Memory">virtual memory</a>, and in most cases you can simply swap the word 'memory' with 'texture' to get an idea how it works.</p>
+
+<p><blockquote><p>VTM systems are more flexible and mimic the virtual memory management of the OS:</p><footer><strong>Matthäus G Chajdas et al</strong> <cite>GPU Pro - Virtual Texturing 101</cite></footer></blockquote></p>
+
+<p>That make me feel a little easier about topic. So what we have is an actual texture on a disc which contains all the data that we need but to much to squeeze into the GPU. A texture on the GPU which contains all the data that we currently need. And a <a href="http://en.wikipedia.org/wiki/Page_table" title="Page Table">page table</a> thats lets us find out where the bit of texture is that we are looking for, as it might not be in the same place when we come back to (Hence the virtual bit).</p>
+
+<p>Rage has some nice visualisations you can turn on. On the left its showing the page numbers, and on the right its show the mip levels its rendering at. Green being the lowest, red highest.</p>
+
+<p><img src="/post_images/Honors/rage_vis.jpg"></p>
+
+<p>Well thats all very nice and all, but what does it actually give us? It would allow artists to create completely unique (ie. no repeating textures) texture detail over a very large area, it should also reduce our memory footprint as we are only loading up the data we need when we need it.</p>
+
+<p>With all things though this doesn't come free. The first problem is its slow to hit the disc for data. When you are trying to load up data you could get a lot of texture popping. That isn't really desirable however it is almost inevitable with this kind of solution, there are some tricks to reduce it but it comes down to the usual game of trying to balance things out. Another problem (on the development side not runtime) is hardware <a href="http://en.wikipedia.org/wiki/Bilinear_filtering" title="Bilinear filtering">filtering</a>. When the hardware is doing a bilinear filtering it will be using data from its neighboring texels, which in this case could be an entirely different texture.</p>
+
+<p>There is really good video on Virtual textures it over at <a href="http://silverspaceship.com/src/svt/" title="Silver Spaceship">silverspaceship.com</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Honors Project]]></title>
