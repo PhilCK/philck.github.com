@@ -4,7 +4,7 @@
   <title><![CDATA[Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-10-24T19:59:17+01:00</updated>
+  <updated>2012-11-04T01:11:41+00:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Student TIGA Award]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/11/04/student-tiga-award/"/>
+    <updated>2012-11-04T00:38:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/11/04/student-tiga-award</id>
+    <content type="html"><![CDATA[<p>Holy Crap! We won a <a href="http://awards.tiga.org/awards_categories.php" title="TIGA Awards 2012">TIGA</a> award! The <a href="http://www.youtube.com/watch?v=MTblb7fRSSY" title="GravTech">game</a> we made for <a href="http://www.daretobedigital.com/" title="Dare">Dare to Digital</a> won in the student category. A totally amazing surprise, still sinking in really.</p>
+
+<p><img src="http://PhilCK.github.com/post_images/Dare/tiga.jpg" title="'TIGA'" ></p>
+
+<p>So gutted I couldn&#8217;t make it to the award ceremony, but they are sending out award in the post which simply can&#8217;t come <em>fast</em> enough.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Virtual Texture]]></title>
@@ -654,18 +667,6 @@ A 3 x 3 array, containing the symbol :grass.</p>
 
 
 <p>The library is pretty slow in all honestly but this was due to the matrix transformations killing the PS2’s CPU, part of the courswork spec was not to use the VU, so I wasn’t able to take advantage of the fast math available.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bitblt Ninja]]></title>
-    <link href="http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja/"/>
-    <updated>2011-01-09T19:56:00+00:00</updated>
-    <id>http://PhilCK.github.com/blog/2011/01/09/bitblt-ninja</id>
-    <content type="html"><![CDATA[<p>Graphics programming coursework. This is a clone of <a href="http://en.wikipedia.org/wiki/Fruit_Ninja" title="Fruit Ninja">Fruit Ninja</a>, but with assessment papers instead of fruits.
-It was done using Microsoft&#8217;s <a href="http://msdn.microsoft.com/en-us/library/dd183370" title="MSDN">Bitblt</a> function. A bit crude bit it does the job.</p>
-
-<p><img src="http://PhilCK.github.com/post_images/Coursework/prof_ninja.jpg" title="'Prof Ninja'" ></p>
 ]]></content>
   </entry>
   

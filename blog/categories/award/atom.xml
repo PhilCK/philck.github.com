@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Award | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/award/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2012-11-04T01:11:41+00:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Student TIGA Award]]></title>
+    <link href="http://PhilCK.github.com/blog/2012/11/04/student-tiga-award/"/>
+    <updated>2012-11-04T00:38:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2012/11/04/student-tiga-award</id>
+    <content type="html"><![CDATA[<p>Holy Crap! We won a <a href="http://awards.tiga.org/awards_categories.php" title="TIGA Awards 2012">TIGA</a> award! The <a href="http://www.youtube.com/watch?v=MTblb7fRSSY" title="GravTech">game</a> we made for <a href="http://www.daretobedigital.com/" title="Dare">Dare to Digital</a> won in the student category. A totally amazing surprise, still sinking in really.</p>
+
+<p><img src="/post_images/Dare/tiga.jpg" title="'TIGA'" ></p>
+
+<p>So gutted I couldn't make it to the award ceremony, but they are sending out award in the post which simply can't come <em>fast</em> enough.</p>
+]]></content>
+  </entry>
+  
+</feed>
