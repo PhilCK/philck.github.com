@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Maths | Phil Cooper-King]]></title>
+  <link href="http://PhilCK.github.com/blog/categories/maths/atom.xml" rel="self"/>
+  <link href="http://PhilCK.github.com/"/>
+  <updated>2013-03-16T21:42:40+00:00</updated>
+  <id>http://PhilCK.github.com/</id>
+  <author>
+    <name><![CDATA[Phil CK]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Free Form Deformation]]></title>
+    <link href="http://PhilCK.github.com/blog/2013/01/25/free-form-deformation/"/>
+    <updated>2013-01-25T20:53:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2013/01/25/free-form-deformation</id>
+    <content type="html"><![CDATA[<p>This was fun, we had to create a 'Free Form Deformation' application for our Maths module at Uni. I also got an opportunity to try my extrude rotate and scale skills in <a href="http://www.blender.org/">Blender 3D</a></p>
+
+<iframe frameborder="0" height="480" width="500" allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true" src="http://skfb.ly/lk4igec0ba?autostart=0&transparent=0&autospin=0&controls=1&watermark=1"></iframe>
+
+
+<p>The model turned out ok, although I think I should have made it less cartoonish to allow the FFD app to apply stylised roof.</p>
+
+<p>I made this in Unity, mostly following <a href="http://tom.cs.byu.edu/~tom/papers/ffd.pdfe">this</a> paper by Sederberg and Parry.</p>
+
+<iframe src="http://player.vimeo.com/video/61951471" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

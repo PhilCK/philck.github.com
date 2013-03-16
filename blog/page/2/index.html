@@ -9,7 +9,7 @@
   <meta name="author" content="Phil CK">
 
   
-  <meta name="description" content="Sublime Text is currently my editor of choice, but no build support for C++ makes me sad. This gist is a very basic build for C++, its not suitable &hellip;">
+  <meta name="description" content="We were tasked with creating a &#8216;visual effect&#8217; for the PS2 using its VCL code. This was quite interesting, I thought I&#8217;d found all &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +73,91 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/02/02/ps2-fisheye/">Playstation 2 FishEye</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-02T19:55:00+00:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We were tasked with creating a &#8216;visual effect&#8217; for the PS2 using its VCL code. This was quite interesting, I thought I&#8217;d found all the ways to crash a PS2, then another one comes along. Get your VCL code wrong, and boom!</p>
+
+<p>I ended up thinking of it as a vertex shader, and created a fish eye type effect. Its not a true fish eye effect because I am actually moving the vertices which means you can peek around corners so to speak.</p>
+
+<p>[pic in-coming]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/02/01/faultline-terrain/">Faultline Terrain</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-01T19:58:00+00:00" pubdate data-updated="true">Feb 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This was an experiment of making procedural terrains using the faultline method.</p>
+
+<iframe src="http://player.vimeo.com/video/35978061" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>This first attempt was a little mental, the falloff for the fault size was quadratic and started very large. The result was these scary mountainous landscapes.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -693,101 +778,6 @@ A 3 x 3 array, containing the symbol :grass.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2011/04/11/twitter-smilies/">Twitter Smilies</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-11T19:55:00+01:00" pubdate data-updated="true">Apr 11<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2011/02/01/ps2-tempest/">Playstation 2 Tempest Clone</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-01T19:55:00+00:00" pubdate data-updated="true">Feb 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I enjoyed this one :) I made a Tempest 2000 clone for my Playstation 2 coursework. The main purpose for this module was really just general software development, but you got to make a game out of it.</p>
-
-<p><img src="/post_images/Coursework/squall.png" title="'Tempest Clone'" ></p>
-
-<p>Looking back there are so many things wrong with this game, the enemies couldn’t jump from there lanes, which was because I had pretty much coded my self into a corner.</p>
-
-<p>In the process of making this game I wrote a little graphics library to deal with rendering, it was pretty much based on old-school OpenGL as that was what we were leaning at the time.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsColor</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
-</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsBegin</span><span class="p">(</span><span class="n">GS_POINT</span><span class="p">);</span>
-</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsVertex3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsEnd</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The library is pretty slow in all honestly but this was due to the matrix transformations killing the PS2’s CPU, part of the courswork spec was not to use the VU, so I wasn’t able to take advantage of the fast math available.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -805,6 +795,14 @@ A 3 x 3 array, containing the symbol :grass.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/01/global-game-jam-13/">Global Game Jam 2013</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/25/free-form-deformation/">Free Form Deformation</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/04/student-tiga-award/">Student TIGA Award</a>
       </li>
     
@@ -814,14 +812,6 @@ A 3 x 3 array, containing the symbol :grass.</p>
     
       <li class="post">
         <a href="/blog/2012/10/17/sketchfab/">Sketchfab</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/09/ruby-bezier/">Ruby Bezier</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/honors-project/">Honors Project</a>
       </li>
     
   </ul>
@@ -883,7 +873,7 @@ A 3 x 3 array, containing the symbol :grass.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Phil CK -
+  Copyright &copy; 2013 - Phil CK -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

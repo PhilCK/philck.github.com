@@ -4,7 +4,7 @@
   <title><![CDATA[Phil Cooper-King]]></title>
   <link href="http://PhilCK.github.com/atom.xml" rel="self"/>
   <link href="http://PhilCK.github.com/"/>
-  <updated>2012-11-04T01:11:41+00:00</updated>
+  <updated>2013-03-16T21:42:40+00:00</updated>
   <id>http://PhilCK.github.com/</id>
   <author>
     <name><![CDATA[Phil CK]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Global Game Jam 2013]]></title>
+    <link href="http://PhilCK.github.com/blog/2013/02/01/global-game-jam-13/"/>
+    <updated>2013-02-01T20:54:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2013/02/01/global-game-jam-13</id>
+    <content type="html"><![CDATA[<p>So a few of us decided to jump into the <a href="http://globalgamejam.org/">Global Game Jam 2013</a>, Our Uni (<a href="http://www.abertay.ac.uk">Abertay</a>) was one of the venues in <a href="http://www.scottishgamejam.org/">Scotland</a>. The theme was a <a href="http://globalgamejam.org/news/2013/01/26/ggj13-theme">heart beat</a>, after a few different ideas we settled on the idea of Cupid going on a bloody rampage, I think this is what happens when you are sleep deprived.</p>
+
+<p>This was the result of our hard work.</p>
+
+<iframe src="http://player.vimeo.com/video/61953421" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>Something I noted was our &#8216;progress&#8217; was utterly dreadful. I&#8217;ve done a few 48 hour competitions and I&#8217;m generally the first to suggest having constant breaks eat right and sleep lots. This time though all that went out the window, I was having to commute to the venue as I don&#8217;t live in the same city, and Sunday trains are very limited. So I made the decision just to stay at the venue and try and catch some sleep on a couch. Really there was a good atmosphere in the venue which lead to people not sleeping much. Looking back at our progress we could have made the same game even if we went home and had a good long sleep.</p>
+
+<p>I know its nothing &#8216;new&#8217; but in an industry that almost prides itself on &#8216;crunch&#8217; you have to wonder if really there is <a href="http://www.lindsredding.com/2012/03/11/a-overdue-lesson-in-perspective/">any point</a> to it at all.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Free Form Deformation]]></title>
+    <link href="http://PhilCK.github.com/blog/2013/01/25/free-form-deformation/"/>
+    <updated>2013-01-25T20:53:00+00:00</updated>
+    <id>http://PhilCK.github.com/blog/2013/01/25/free-form-deformation</id>
+    <content type="html"><![CDATA[<p>This was fun, we had to create a &#8216;Free Form Deformation&#8217; application for our Maths module at Uni. I also got an opportunity to try my extrude rotate and scale skills in <a href="http://www.blender.org/">Blender 3D</a></p>
+
+<iframe frameborder="0" height="480" width="500" allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true" src="http://skfb.ly/lk4igec0ba?autostart=0&transparent=0&autospin=0&controls=1&watermark=1"></iframe>
+
+
+<p>The model turned out ok, although I think I should have made it less cartoonish to allow the FFD app to apply stylised roof.</p>
+
+<p>I made this in Unity, mostly following <a href="http://tom.cs.byu.edu/~tom/papers/ffd.pdfe">this</a> paper by Sederberg and Parry.</p>
+
+<iframe src="http://player.vimeo.com/video/61951471" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Student TIGA Award]]></title>
@@ -630,43 +669,6 @@ A 3 x 3 array, containing the symbol :grass.</p>
 
 
 <p>Disappointment of the module aside I was happy enough with outcome of my coursework, I created the models (but not the textures) in <a href="http://www.blender.org/" title="Blender">Blender</a>, and used <a href="http://chumbalum.swissquake.ch/" title="Milkshape">Milkshape</a> to import them (the only model loader I had at the time was a Milkshape one). Milkshape kept flipping the normals on me for some reason, the solution was rather mental, I turned them inside out in Blender and Milkshape flipped them back around.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Twitter Smilies]]></title>
-    <link href="http://PhilCK.github.com/blog/2011/04/11/twitter-smilies/"/>
-    <updated>2011-04-11T19:55:00+01:00</updated>
-    <id>http://PhilCK.github.com/blog/2011/04/11/twitter-smilies</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Playstation 2 Tempest Clone]]></title>
-    <link href="http://PhilCK.github.com/blog/2011/02/01/ps2-tempest/"/>
-    <updated>2011-02-01T19:55:00+00:00</updated>
-    <id>http://PhilCK.github.com/blog/2011/02/01/ps2-tempest</id>
-    <content type="html"><![CDATA[<p>I enjoyed this one :) I made a Tempest 2000 clone for my Playstation 2 coursework. The main purpose for this module was really just general software development, but you got to make a game out of it.</p>
-
-<p><img src="http://PhilCK.github.com/post_images/Coursework/squall.png" title="'Tempest Clone'" ></p>
-
-<p>Looking back there are so many things wrong with this game, the enemies couldn’t jump from there lanes, which was because I had pretty much coded my self into a corner.</p>
-
-<p>In the process of making this game I wrote a little graphics library to deal with rendering, it was pretty much based on old-school OpenGL as that was what we were leaning at the time.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsColor</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
-</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsBegin</span><span class="p">(</span><span class="n">GS_POINT</span><span class="p">);</span>
-</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsVertex3f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-</span><span class='line'><span class="n">gfx</span><span class="p">.</span><span class="n">gsEnd</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The library is pretty slow in all honestly but this was due to the matrix transformations killing the PS2’s CPU, part of the courswork spec was not to use the VU, so I wasn’t able to take advantage of the fast math available.</p>
 ]]></content>
   </entry>
   
