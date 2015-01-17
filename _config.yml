@@ -1,0 +1,32 @@
+# Site settings
+title:       CooperKing.net
+email:       phil@cooperking.net
+author:      Phil CK
+description: "My general musings"
+baseurl:     ""
+url:         "http://www.cooperking.net"
+
+# Google analytics
+google_analytics:
+
+# Optional features
+animated:           false
+show_related_posts: true
+show_post_footers:  false
+
+# Social icons
+show_social_icons: true
+github_username: PhilCK
+twitter_username: philcooperking
+google_plus_id:
+linkedin_username: philcooperking
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Build settings
+markdown:     kramdown
+permalink:    pretty
+paginate:     3
+sass:
+  compressed: true
