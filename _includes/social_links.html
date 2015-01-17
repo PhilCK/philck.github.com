@@ -16,6 +16,12 @@
     {% if site.linkedin_username %}
       <a class="fa fa-linkedin" href="https://www.linkedin.com/in/{{ site.linkedin_username }}"></a>
     {% endif %}
+    {% if site.youtube_username %}
+      <a class="fa fa-youtube-play" href="https://www.youtube.com/user/{{ site.youtube_username }}/videos"></a>
+    {% endif %}
+    {% if site.vimeo_username %}
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/{{ site.vimeo_username }}"></a>
+    {% endif %}
   </div>
   <div class="right">
     {% if site.bitcoin_url %}

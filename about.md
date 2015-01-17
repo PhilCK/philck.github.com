@@ -1,19 +1,19 @@
 ---
 layout: page
-title: About Pixyll
+title: About Me
 permalink: /about/
 ---
 
-This Jekyll theme was crafted with <3 by [John Otander](http://johnotander.com)
-([@4lpine](https://twitter.com/4lpine)).
+My name is Phil Cooper-King, I'm a programmer by day, and by night ... I also code :/ I spend most of my time in C++ and I'm one of these nuts that actually enjoys it. Currently I work for [EsriUK][1] as a Product Engineer, in my spare time I write little games and things of that nature.
 
-Checkout the [Github repository](https://github.com/johnotander/pixyll) to download it,
-request a feature, report a bug, or contribute. It's free, and open source
-([MIT](http://opensource.org/licenses/MIT)).
 
-Thanks to the following:
+However when the wind is right, I head down to the beach and fly kites. Scotland has lovely beaches, and the best weather in the world to keep the crowds away from them :)
 
-* [BASSCSS](http://basscss.com)
-* [Jekyll](http://jekyllrb.com)
-* [Refills](http://refills.bourbon.io/)
-* [Solarized](http://ethanschoonover.com/solarized)
+![Kite]({{ site.url }}/images/about_kite.jpg)
+
+The blog is created using [Jekyll][2] and displayed using the [Pixyll][3] theme.
+
+
+[1]: http://www.esriuk.com
+[2]: http://jekyllrb.com/
+[3]: http://pixyll.com/
