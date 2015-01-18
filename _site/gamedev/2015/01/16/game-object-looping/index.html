@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Game Object Looping &#8211; CooperKing.net</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Looping through game objects efficiently.">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="gamedev">
+    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/01/16/game-object-looping/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Game Object Looping">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/01/16/game-object-looping/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Game Object Looping</h1>
+  <span class="post-meta">Jan 16, 2015</span><br>
+  
+  <span class="post-meta small">4 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>I was porting over one of my hobby projects from OSX to Windows, when I noticed that in debug performance was terrible on Windows. So I cracked open the <a href="http://www.codersnotes.com/sleepy">Very Sleepy</a> profiler to try and find where my performance had gone. It turned out that on Windows MSVS does of lot of debug stuff with STL which kills <a href="https://benc45.wordpress.com/2008/07/13/performance-killer-debug-iterator-support-in-visual-studio/">performance</a>, but as I was profiling I was quite shocked to see how much time was being spent looping through game objects and calling the various hook methods ( <code>obj-&gt;update()</code> etc.).</p>
+
+<p>With a little digging it became very obvious why game objects where taking so much time. However after some researching online I was quite surprised how much I came across people suggesting <code>std::list&lt; GameObject* &gt;</code> as a method to store and iterate your game objects.</p>
+
+<h3 id="list-gameobject-">List&lt; GameObject* &gt;</h3>
+
+<p>I see this a lot (I’ve done it also). It seems that because we want to delete the objects from the container people opt for using a list.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">GameObject</span><span class="o">*&gt;</span> <span class="n">myListOfGameObjects</span><span class="p">;</span>
+
+<span class="n">myListOfGameObjects</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span> <span class="n">PlayerObject</span><span class="p">());</span>
+<span class="c1">// ... other allocations</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">obj</span> <span class="p">:</span> <span class="n">myListOfGameObjects</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">obj</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+<p>This is a flawed approach, while inserting and deleting are fast, we will still be spending the vast majority of the time looping through the items to call the hook. However since this isn’t a contiguous container we are jumping all around the memory. So cache-misses abound.</p>
+
+<h3 id="vector-gameobject-">Vector&lt; GameObject* &gt;</h3>
+
+<p>This is what have been doing, but while it served its purpose its still not quite right. Inserting and deleting are slightly more expensive, but really not as expensive as you might imagine. There is a nice talk from <a href="https://www.youtube.com/watch?v=YQs6IC-vgmo">Bjarne Stroustrup</a> about it. Essentially modern hardware is pretty good at inserting and deleting in contiguous memory.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">GameObject</span><span class="o">*</span> <span class="o">&gt;</span> <span class="n">myVecOfGameObjects</span><span class="p">;</span>
+
+<span class="n">myListOfGameObjects</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span> <span class="n">PlayerObject</span><span class="p">());</span>
+<span class="c1">// ... other allocations</span>
+<span class="c1">// ... looping call the update() hook etc.</span>
+
+<span class="n">it</span> <span class="o">=</span> <span class="n">myVecOfGameObjects</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span> <span class="c1">// This isn&#39;t as expensive as you first think.</span></code></pre></div>
+
+<p>But the same problem still exists. While our pointers are contiguous now, are objects certainly are not. Rubbish!</p>
+
+<h3 id="vector-gameobject--1">Vector&lt; GameObject &gt;</h3>
+
+<p>Part of the issue is that we are allocating objects at runtime, which means a polymorphic base class, which means also means using the <code>new</code> operator. This scatters our objects around the place.</p>
+
+<p>Wouldn’t it be nice if we could just do something like this.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GameObject</span><span class="o">&gt;</span> <span class="n">myVecOfGameObjects</span><span class="p">;</span>
+
+<span class="n">myVecOfGameObjects</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">PlayerObject</span><span class="p">());</span>
+<span class="n">myVecOfGameObjects</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">EnemyObject</span><span class="p">());</span>
+
+<span class="c1">// .. loop though and delete etc.</span></code></pre></div>
+
+<p>What is this magic! <a href="http://channel9.msdn.com/Events/GoingNative/2013/Inheritance-Is-The-Base-Class-of-Evil">Sean Parent’s</a> talk on ‘Inheritance Is the Base Class of Evil’ talk, explains it better than I could, it’s well worth the watch. It’s worth noting that his talk isn’t centered around performance.</p>
+
+<h3 id="benchmarks">Benchmarks</h3>
+
+<p>I ran some very very quick and dirty benchmark tests and these are my results.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">3971 ms - std::list&lt; GameObject* &gt;
+3675 ms - std::vector&lt; GameObject* &gt;
+3100 ms - std::vector&lt; GameObject &gt;</code></pre></div>
+
+<p>Fairly significant from <code>list&lt; GameObject* &gt;</code> to <code>vector&lt; GameObject &gt;</code>.</p>
+
+<h3 id="whats-else">Whats Else</h3>
+
+<p><a href="http://channel9.msdn.com/Events/GoingNative/2013/Inheritance-Is-The-Base-Class-of-Evil">Sean Parent’s</a> method was designed to remove base classes. From my perspective my game object base class is a way of interacting with the game engine. So I’d rather keep it.</p>
+
+<p>Since I want to keep my base class of evil I’m stuck with heap allocations. This is C++ however, so what I could feasibly do is pre-allocate a memory pool for my game objects. Which means my allocations are fast, and I have a contiguous container of memory <em>of objects</em> not pointers.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">Base</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">reserveSize</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="mi">256</span><span class="p">)];</span> <span class="c1">// Or as big as your biggest object.</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Base</span><span class="o">&gt;</span> <span class="n">myReservedMemory</span><span class="p">;</span>
+<span class="n">myReservedMemory</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">512</span><span class="p">);</span>
+
+<span class="k">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">myReservedMemory</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">new</span> <span class="n">PlayerObject</span><span class="p">();</span>
+<span class="k">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">myReservedMemory</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">new</span> <span class="n">EnemyObject</span><span class="p">();</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">obj</span> <span class="p">:</span> <span class="n">myReservedMemory</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">GameObject</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">obj</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+<p>So how does that compare with Sean Parent’s method.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">3100 ms - std::vector&lt; GameObject &gt;
+3109 ms - std::vector&lt; Block &gt;</code></pre></div>
+
+<p>Its comparable - however it does come with a whole host of other issues. Added complexity is certainly one. This could be considered early optimization, I don’t usually have more than 100-200 objects so I’d only be doing this for a little bit of fun/learning.</p>
+
+
+</article>
+
+
+
+<!-- 
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/general/2015/01/04/new-year-new-job/" class="post-link">
+        <h4 class="post-title">New Year, Job, Website</h4>
+        <p class="post-summary">A new year starting with an awesome new job.</p>
+      </a>
+    </div>
+  
+ -->
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

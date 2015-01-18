@@ -4,7 +4,7 @@ title:      New Year, Job, Website
 date:       2015-01-04 11:21:29
 summary:    A new year starting with an awesome new job.
 categories: General
-tags: Esri GameDev TagGames SpaceBudgie
+tags: 		Esri GameDev TagGames SpaceBudgie
 ---
 
 So my time in the games industry was short, but it was packed full. I helped start a [games company][3], where I saw my hobby game go into production and published on [Steam][4]. And the last year and a bit I've been working at [Tag Games][1], where one of the projects I got to work on was [Moshi Monsters][2] - How cool! However that brings to a close my time in the games industry.
