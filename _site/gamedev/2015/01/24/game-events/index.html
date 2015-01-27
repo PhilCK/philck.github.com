@@ -93,13 +93,13 @@
 </div>
 
 <article class="post-content">
-  <p>In all forms of OO programming objects need to communicate with other objects, but we also try hard to keep dependencies down. In games we usually have a lot of objects that need to talk to each other. Imagine a player in a first person shooter. There could conceivably be a player object a gun object a health bar object a ammo object, a power up object, an audio object etc, all these objects lead to dependencies.</p>
+  <p>In all forms of OO programming objects need to communicate with other objects, but we also try hard to keep dependencies down. In games we usually have a lot of objects that need to talk to each other. Imagine a player in a first person shooter. There could conceivably be a player object, a gun object, a health bar object, a ammo object, a power up object, an audio object etc. All these objects lead to dependencies.</p>
 
 <p>Using events can help you decouple your code so that nothing depends on anything else (other than the system of events). There are many ways you can do event systems (and I doubt this will be the last time I talk about them here), this is a quick and dirty way of doing it.</p>
 
 <h3 id="lets-get-dirty">Lets Get Dirty</h3>
 
-<p>A quick and dirty event system can be baked right into your object’s. Where the base game object class can contain <em>all</em> the possible events. So when an event is fired, the implementing game object will only respond to an event if it defined the event method.</p>
+<p>A quick and dirty event system can be baked right into your objects. Where the base game object class can contain <em>all</em> the possible events. So when an event is fired, the implementing game object will only respond to an event if it defined the event method.</p>
 
 <div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">GameObject</span>
 <span class="p">{</span>
@@ -129,7 +129,7 @@
   <span class="kt">void</span> <span class="n">onCollision</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span> <span class="cm">/* do collision logic */</span> <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
 
-<p>Now that our objects know what todo when a particular event is fired. They need to be informed that such an event has occurred. This can change depending on your preference. How I’ve been doing it recently, Is to send a lambda to a list of game objects that I’ve already got doing updates on the game objects. In fact you can actually call the update and render of the object using this method. This also gives you some added control if you wish to add extra things it.</p>
+<p>Now that our objects know what todo when a particular event is fired. They need to be informed that such an event has occurred. This can change depending on your preference. How I’ve been doing it recently, is to send a lambda to the broadcast method. In fact you can actually call the update and render of the object using this method. This also gives you some added control if you wish to add extra things it.</p>
 
 <div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// The list of all the game objects that you use to update/render them.</span>
 <span class="k">class</span> <span class="nc">GameObjectList</span>
@@ -181,6 +181,13 @@
 
 <!-- 
   <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/02/01/chaiscript-in-game-objects/" class="post-link">
+        <h4 class="post-title">Chaiscript In Game Objects</h4>
+        <p class="post-summary">Chaiscript is a breeze to get into your game objects.</p>
+      </a>
+    </div>
   
     <div class="post ml2">
       <a href="/gamedev/2015/01/16/game-object-looping/" class="post-link">

@@ -7,14 +7,32 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Chaiscript In Game Objects</title>
+        <description>&lt;p&gt;I’m currently working on a small project where I’ve decided to use [Chaiscript][1] as a scripting layer for my game objects. Embedding a scripting language isn’t as easy as you might think, and even if it is it can represent a very large part of work. Chaiscript has been written to embedded into C++ from the ground up. And it works well. This is a how I approched using Chaiscript with my game objects in a small project I’m working on currently.&lt;/p&gt;
+
+&lt;h3 id=&quot;chaiscript-quickstart&quot;&gt;Chaiscript Quickstart&lt;/h3&gt;
+
+&lt;h3 id=&quot;combining-gameobjects&quot;&gt;Combining GameObjects&lt;/h3&gt;
+
+&lt;h3 id=&quot;further-bits&quot;&gt;Further Bits&lt;/h3&gt;
+
+&lt;p&gt;I’m a fan of embedding scripting languages, they always represent a good way of splitting what is engine and game code, but they are hard work. If this is something you are interested I would recommend checking out [Anglescript][2] and [Lua][3]. I have used both inside my game projects and while I favour Anglescript, Lua has a good standing in games.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 01 Feb 2015 10:08:09 +0000</pubDate>
+        <link>http://www.cooperking.net/gamedev/2015/02/01/chaiscript-in-game-objects/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/02/01/chaiscript-in-game-objects/</guid>
+      </item>
+    
+      <item>
         <title>Quick And Dirty Game Events</title>
-        <description>&lt;p&gt;In all forms of OO programming objects need to communicate with other objects, but we also try hard to keep dependencies down. In games we usually have a lot of objects that need to talk to each other. Imagine a player in a first person shooter. There could conceivably be a player object a gun object a health bar object a ammo object, a power up object, an audio object etc, all these objects lead to dependencies.&lt;/p&gt;
+        <description>&lt;p&gt;In all forms of OO programming objects need to communicate with other objects, but we also try hard to keep dependencies down. In games we usually have a lot of objects that need to talk to each other. Imagine a player in a first person shooter. There could conceivably be a player object, a gun object, a health bar object, a ammo object, a power up object, an audio object etc. All these objects lead to dependencies.&lt;/p&gt;
 
 &lt;p&gt;Using events can help you decouple your code so that nothing depends on anything else (other than the system of events). There are many ways you can do event systems (and I doubt this will be the last time I talk about them here), this is a quick and dirty way of doing it.&lt;/p&gt;
 
 &lt;h3 id=&quot;lets-get-dirty&quot;&gt;Lets Get Dirty&lt;/h3&gt;
 
-&lt;p&gt;A quick and dirty event system can be baked right into your object’s. Where the base game object class can contain &lt;em&gt;all&lt;/em&gt; the possible events. So when an event is fired, the implementing game object will only respond to an event if it defined the event method.&lt;/p&gt;
+&lt;p&gt;A quick and dirty event system can be baked right into your objects. Where the base game object class can contain &lt;em&gt;all&lt;/em&gt; the possible events. So when an event is fired, the implementing game object will only respond to an event if it defined the event method.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GameObject&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -44,7 +62,7 @@
   &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onCollision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* do collision logic */&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Now that our objects know what todo when a particular event is fired. They need to be informed that such an event has occurred. This can change depending on your preference. How I’ve been doing it recently, Is to send a lambda to a list of game objects that I’ve already got doing updates on the game objects. In fact you can actually call the update and render of the object using this method. This also gives you some added control if you wish to add extra things it.&lt;/p&gt;
+&lt;p&gt;Now that our objects know what todo when a particular event is fired. They need to be informed that such an event has occurred. This can change depending on your preference. How I’ve been doing it recently, is to send a lambda to the broadcast method. In fact you can actually call the update and render of the object using this method. This also gives you some added control if you wish to add extra things it.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// The list of all the game objects that you use to update/render them.&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GameObjectList&lt;/span&gt;
