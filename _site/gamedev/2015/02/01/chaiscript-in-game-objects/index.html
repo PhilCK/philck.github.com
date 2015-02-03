@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Chaiscript In Game Objects &#8211; CooperKing.net</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Chaiscript is a breeze to get into your game objects.">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="gamedev">
+    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/02/01/chaiscript-in-game-objects/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Chaiscript In Game Objects">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/02/01/chaiscript-in-game-objects/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/post_index/">Post Index</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Chaiscript In Game Objects</h1>
+  <span class="post-meta">Feb 1, 2015</span><br>
+  
+  <span class="post-meta small">4 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>I’m currently working on a small project where I’ve decided to use <a href="http://chaiscript.com/">Chaiscript</a> as a scripting layer for my game objects. Embedding a scripting language can represent a very large part of work, so I chose Chaiscript for its ease of use. Chaiscript has been written to be embedded into C++ from the ground up. This is a bare bones example of how you could use Chaiscript.</p>
+
+<h3 id="chaiscript-quickstart">Chaiscript Quickstart</h3>
+
+<p>Chaiscript has a lovely interface, and makes binding a doddle.</p>
+
+<p><em>Taken from their <a href="http://chaiscript.com/">website</a></em></p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include &lt;chaiscript/chaiscript.hpp&gt;</span>
+ 
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">helloWorld</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">t_name</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="s">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">t_name</span> <span class="o">+</span> <span class="s">&quot;!&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">chaiscript</span><span class="o">::</span><span class="n">ChaiScript</span> <span class="n">chai</span><span class="p">;</span>
+  <span class="n">chai</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">chaiscript</span><span class="o">::</span><span class="n">fun</span><span class="p">(</span><span class="o">&amp;</span><span class="n">helloWorld</span><span class="p">),</span> 
+           <span class="s">&quot;helloWorld&quot;</span><span class="p">);</span>
+ 
+  <span class="n">chai</span><span class="p">.</span><span class="n">eval</span><span class="p">(</span><span class="s">&quot;puts(helloWorld(</span><span class="se">\&quot;</span><span class="s">Bob</span><span class="se">\&quot;</span><span class="s">));&quot;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Now truth be told most scripting languages show an easy to use - bind a function to the language example. In Chai’s case though, it doesn’t get much harder than this.</p>
+
+<h3 id="combining-game-objects">Combining Game Objects</h3>
+
+<p>I’m going to show you how I dealt with objects in Chaiscript. This is only a very quick condensed example, in reality you’d want to be more cautious as chai will throw exceptions if functions don’t exist.</p>
+
+<p>So our setup will be a Chaiscript object that’s defined in a file. We will then load up that object into our C++ game object.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Your script object</span>
+
+<span class="nx">def</span> <span class="nx">script_object</span><span class="o">::</span><span class="nx">script_object</span><span class="p">()</span>
+<span class="p">{</span> 
+<span class="p">}</span>
+
+<span class="nx">def</span> <span class="nx">script_object</span><span class="o">::</span><span class="nx">on_start</span><span class="p">()</span>
+<span class="p">{</span> 
+<span class="p">}</span>
+
+<span class="nx">def</span> <span class="nx">script_object</span><span class="o">::</span><span class="nx">on_update</span><span class="p">(</span><span class="nx">dt</span><span class="p">)</span>
+<span class="p">{</span> 
+<span class="p">}</span>
+
+<span class="nx">def</span> <span class="nx">script_object</span><span class="o">::</span><span class="nx">on_end</span><span class="p">()</span>
+<span class="p">{</span> 
+<span class="p">}</span></code></pre></div>
+
+<p>Simple - Next you’ll see in our game object we have <code>std::function</code>’s for each of the game object hooks. Chai plays nicely here, other script languages will require you to push arguments onto their stack etc.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// A basic shell of a game object.</span>
+<span class="k">class</span> <span class="nc">GameObject</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="k">explicit</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">chaiscript</span><span class="o">::</span><span class="n">ChaiScript</span> <span class="o">&amp;</span><span class="n">chai</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">scriptFile</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Load up script object</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">obj_id</span> <span class="o">=</span> <span class="s">&quot;obj_&quot;</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+
+    <span class="n">chai</span><span class="p">.</span><span class="n">eval_file</span><span class="p">(</span><span class="n">scriptFile</span><span class="p">);</span>
+    <span class="n">chai</span><span class="p">.</span><span class="n">eval</span><span class="p">(</span><span class="s">&quot;auto &quot;</span> <span class="o">+</span> <span class="n">obj_id</span> <span class="o">+</span> <span class="s">&quot; = script_object();&quot;</span><span class="p">);</span>
+
+    <span class="n">m_onStart</span>  <span class="o">=</span> <span class="n">chai</span><span class="p">.</span><span class="n">eval</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;fun() {&quot;</span> <span class="o">+</span> <span class="n">obj_id</span> <span class="o">+</span> <span class="s">&quot;.on_start(); }&quot;</span><span class="p">);</span>  
+    <span class="n">m_onUpdate</span> <span class="o">=</span> <span class="n">chai</span><span class="p">.</span><span class="n">eval</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;fun(dt) {&quot;</span> <span class="o">+</span> <span class="n">obj_id</span> <span class="o">+</span> <span class="s">&quot;.on_update(dt); }&quot;</span><span class="p">);</span>
+    <span class="n">m_onEnd</span>    <span class="o">=</span> <span class="n">chai</span><span class="p">.</span><span class="n">eval</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;fun() {&quot;</span> <span class="o">+</span> <span class="n">obj_id</span> <span class="o">+</span> <span class="s">&quot;.on_end(); }&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Game object hooks.</span>
+
+  <span class="kt">void</span> <span class="n">onStart</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">m_onStart</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">onUpdate</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">m_onUpdate</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">onEnd</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">m_onEnd</span><span class="p">();</span>
+  <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+
+  <span class="c1">// Calling the chai methods.</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span>             <span class="n">m_onStart</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span><span class="p">)</span><span class="o">&gt;</span>  <span class="n">m_onUpdate</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span>             <span class="n">m_onEnd</span><span class="p">;</span>
+
+<span class="p">};</span></code></pre></div>
+
+<p>And that is really it. We just need to then call those hooks which will pass into the script object.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">chaiscript</span><span class="o">::</span><span class="n">ChaiScript</span> <span class="n">chai</span><span class="p">;</span>
+  
+  <span class="n">GameObject</span> <span class="n">obj</span><span class="p">(</span><span class="n">chai</span><span class="p">,</span> <span class="s">&quot;script_object.chai&quot;</span><span class="p">);</span>
+  
+  <span class="n">obj</span><span class="p">.</span><span class="n">onStart</span><span class="p">();</span>
+  <span class="n">obj</span><span class="p">.</span><span class="n">onUpdate</span><span class="p">(</span><span class="mf">0.16f</span><span class="p">);</span>
+  <span class="n">obj</span><span class="p">.</span><span class="n">onEnd</span><span class="p">();</span>
+
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<h3 id="further-bits">Further Bits</h3>
+
+<p>While I do love Chaiscript it is not without its downsides. Linking is noticeably longer, and the script language itself if very stripped back. Given the size of project I’m currently doing Chaiscript does fit my needs well. I would find myself moving to <a href="http://www.angelcode.com/angelscript/">Anglescript</a> for bigger projects or just sticking with C++.</p>
+
+<p>I am a fan of embedding scripting languages, they always represent a good way of splitting engine code and game code, but they can be a lot of work. If this is something you are interested in, I would recommend checking out Anglescript and <a href="http://www.lua.org/">Lua</a> as well. I have used both inside my game projects and while I favour Anglescript, Lua has a good standing in games.</p>
+
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/01/24/game-events/" class="post-link">
+        <h4 class="post-title">Quick And Dirty Game Events</h4>
+        <p class="post-summary">Game events don't need to be complicated.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/01/16/game-object-looping/" class="post-link">
+        <h4 class="post-title">Game Object Looping</h4>
+        <p class="post-summary">Looping through game objects efficiently.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/01/04/new-year-new-job/" class="post-link">
+        <h4 class="post-title">New Year, Job, Website</h4>
+        <p class="post-summary">A new year starting with an awesome new job.</p>
+      </a>
+    </div>
+  
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
