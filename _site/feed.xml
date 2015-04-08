@@ -7,12 +7,12 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Hair Pulling MSVC Brace Initialization</title>
-        <description>&lt;p&gt;We’ve all had one of those moments where you can’t figure out what the hell is going on. You’ve changed something and all hell has broken loose, mostly the frustration and bewilderment is due to need a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVC it all together stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a &lt;code&gt;single&lt;/code&gt; element.&lt;/p&gt;
+        <title>Hair Pulling MSVS Brace Initialization</title>
+        <description>&lt;p&gt;We’ve all had one of those moments where you can’t figure out what the hell is going on. You’ve changed something in your code and all hell has broken loose, most of the time this is to due to needing a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVS it all together stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a &lt;code&gt;single&lt;/code&gt; element.&lt;/p&gt;
 
 &lt;h3 id=&quot;testcode&quot;&gt;TestCode&lt;/h3&gt;
 
-&lt;p&gt;Curious to what was going on I did the following little &lt;a href=&quot;http://pastie.org/10048059&quot;&gt;test&lt;/a&gt; in MVSC 2013 (Update 4).&lt;/p&gt;
+&lt;p&gt;Curious to what was going on I did the following little &lt;a href=&quot;http://pastie.org/10048059&quot;&gt;test&lt;/a&gt; in MSVS 2013 (Update 4).&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Foo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -56,7 +56,7 @@ b
 boo
 boo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Changing the initialization to single braces fixes the issue, I’m not sure where I picked up the double braced initialization from but I’ve always used it that way.&lt;/p&gt;
+&lt;p&gt;Changing the initialization to single braces fixes the issue, I’m not sure where I picked up the double braced initialization from but I’ve always used them that way.&lt;/p&gt;
 </description>
         <pubDate>Mon, 06 Apr 2015 09:05:06 +0100</pubDate>
         <link>http://www.cooperking.net/general/2015/04/06/brace-initialization/</link>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hair Pulling MSVC Brace Initialization &#8211; CooperKing.net</title>
+    <title>Hair Pulling MSVS Brace Initialization &#8211; CooperKing.net</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="One of these infuriating moments">
+    <meta name="description" content="One of those infuriating moments">
     <meta name="author" content="Phil CK">
     <meta name="keywords" content="general">
     <link rel="canonical" href="http://www.cooperking.net/general/2015/04/06/brace-initialization/">
@@ -25,7 +25,7 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Hair Pulling MSVC Brace Initialization">
+    <meta property="og:title" content="Hair Pulling MSVS Brace Initialization">
     <meta property="og:description" content="My general musings">
     <meta property="og:url" content="http://www.cooperking.net/general/2015/04/06/brace-initialization/">
     <meta property="og:site_name" content="CooperKing.net">
@@ -87,18 +87,18 @@
 
 
 <div class="post-header mb2">
-  <h1>Hair Pulling MSVC Brace Initialization</h1>
+  <h1>Hair Pulling MSVS Brace Initialization</h1>
   <span class="post-meta">Apr 6, 2015</span><br>
   
   <span class="post-meta small">1 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>We’ve all had one of those moments where you can’t figure out what the hell is going on. You’ve changed something and all hell has broken loose, mostly the frustration and bewilderment is due to need a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVC it all together stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a <code>single</code> element.</p>
+  <p>We’ve all had one of those moments where you can’t figure out what the hell is going on. You’ve changed something in your code and all hell has broken loose, most of the time this is to due to needing a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVS it all together stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a <code>single</code> element.</p>
 
 <h3 id="testcode">TestCode</h3>
 
-<p>Curious to what was going on I did the following little <a href="http://pastie.org/10048059">test</a> in MVSC 2013 (Update 4).</p>
+<p>Curious to what was going on I did the following little <a href="http://pastie.org/10048059">test</a> in MSVS 2013 (Update 4).</p>
 
 <div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">Foo</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
@@ -142,7 +142,7 @@ b
 boo
 boo</code></pre></div>
 
-<p>Changing the initialization to single braces fixes the issue, I’m not sure where I picked up the double braced initialization from but I’ve always used it that way.</p>
+<p>Changing the initialization to single braces fixes the issue, I’m not sure where I picked up the double braced initialization from but I’ve always used them that way.</p>
 
 </article>
 

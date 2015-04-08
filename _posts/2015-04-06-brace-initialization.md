@@ -1,17 +1,17 @@
 ---
 layout:     post
-title:      Hair Pulling MSVC Brace Initialization
+title:      Hair Pulling MSVS Brace Initialization
 date:       2015-04-06 08:05:06
-summary:    One of these infuriating moments
+summary:    One of those infuriating moments
 categories: General
 tags: 		C++, MSVS,
 ---
 
-We've all had one of those moments where you can't figure out what the hell is going on. You've changed something and all hell has broken loose, mostly the frustration and bewilderment is due to need a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVC it all together stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a `single` element.
+We've all had one of those moments where you can't figure out what the hell is going on. You've changed something in your code and all hell has broken loose, most of the time this is to due to needing a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVS it all together stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a `single` element.
 
 ### TestCode
 
-Curious to what was going on I did the following little [test](http://pastie.org/10048059) in MVSC 2013 (Update 4).
+Curious to what was going on I did the following little [test](http://pastie.org/10048059) in MSVS 2013 (Update 4).
 
 {% highlight cpp %}
 
