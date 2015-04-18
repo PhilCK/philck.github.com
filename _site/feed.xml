@@ -14,9 +14,11 @@
 
 &lt;p&gt;Terminal is going to be predominantly a text based game, but I want to use 3D scenes to help generate an atmosphere and immersion. The game is going to revolve around a hacker doing what it is that hackers do. This is quite a niche game, but I like that. I don’t have time or resources to take on a huge game.&lt;/p&gt;
 
-&lt;style&gt;.bt-video-container iframe,.bt-video-container object,.bt-video-container embed{position:absolute;top:0;left:0;width:100%;height:100%;margin-top:0}&lt;/style&gt;
-
-&lt;div class=&quot;bt-video-container&quot; style=&quot;position:relative;padding-bottom:56.25%;padding-top:30px;height:0;overflow:hidden&quot;&gt;&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;http://www.youtube.com/embed/yPLYtQxJM1o?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;div class=&quot;embedVideo&quot;&gt;
+    &lt;figure&gt;
+    	&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/yPLYtQxJM1o&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;why-not-unity&quot;&gt;Why Not Unity&lt;/h2&gt;
 
