@@ -8,27 +8,29 @@
     
       <item>
         <title>Terminal Dev Log 0x1</title>
-        <description>&lt;p&gt;This year I started to make an earnest attempt at making Terminal a text based hacking game. I recently found a some sketches I did back in 2007 while digging around an old computer. I think the initial inspiration came from the early joy of playing &lt;a href=&quot;http://en.wikipedia.org/wiki/MUD&quot;&gt;MUD&lt;/a&gt; games on &lt;a href=&quot;http://en.wikipedia.org/wiki/Bulletin_board_system&quot;&gt;BBS&lt;/a&gt; as a child, combined with playing &lt;a href=&quot;http://en.wikipedia.org/wiki/Uplink_%28video_game%29&quot;&gt;Introversions Uplink&lt;/a&gt;. I remember thinking wouldn’t it be cool to make an MMO hacking game (I don’t think that anymore).&lt;/p&gt;
+        <description>&lt;p&gt;This year I started to make an earnest attempt at making Terminal, a text based hacking game. While recently digging around on an old computer I found some sketches I did back in 2007. I think the initial inspiration came from the early joy of playing &lt;a href=&quot;http://en.wikipedia.org/wiki/MUD&quot;&gt;MUD&lt;/a&gt; games on &lt;a href=&quot;http://en.wikipedia.org/wiki/Bulletin_board_system&quot;&gt;BBS’s&lt;/a&gt; as a kid, combined with playing &lt;a href=&quot;http://en.wikipedia.org/wiki/Uplink_%28video_game%29&quot;&gt;Introversions Uplink&lt;/a&gt;. I remember thinking wouldn’t it be cool to make an MMO hacking game (I don’t think that anymore).&lt;/p&gt;
 
 &lt;h2 id=&quot;the-game&quot;&gt;The Game&lt;/h2&gt;
 
 &lt;p&gt;Terminal is going to be predominantly a text based game, but I want to use 3D scenes to help generate an atmosphere and immersion. The game is going to revolve around a hacker doing what it is that hackers do. This is quite a niche game, but I like that. I don’t have time or resources to take on a huge game.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://www.cooperking.net/images/HelloWorld.gif&quot; alt=&quot;HelloWorld&quot; /&gt;&lt;/p&gt;
+&lt;style&gt;.bt-video-container iframe,.bt-video-container object,.bt-video-container embed{position:absolute;top:0;left:0;width:100%;height:100%;margin-top:0}&lt;/style&gt;
+
+&lt;div class=&quot;bt-video-container&quot; style=&quot;position:relative;padding-bottom:56.25%;padding-top:30px;height:0;overflow:hidden&quot;&gt;&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;http://www.youtube.com/embed/yPLYtQxJM1o?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;why-not-unity&quot;&gt;Why Not Unity&lt;/h2&gt;
 
-&lt;p&gt;To be clear I like Unity as a tool, I’ve used it many times - I have no issue with it (except that maybe you become vendor locked). That said I don’t enjoy using it. It doesn’t scratch my itch at all - Game development is complex and I love that, taking that away makes me less happy. Also from experience, I think it makes people less creative. I’ve seen projects suffer from feature creep because Unity provides everything along with the illusion that its magically easy. Features end up being used simply because they are there, which makes for a series of half baked ideas rather than a few ideas amazingly executed. So by starting with nothing (more or less) every feature/technology needs to be justified. Its far easier to be creative and find what maters with hard constraints.&lt;/p&gt;
+&lt;p&gt;To be clear I like Unity as a tool, I’ve used it many times.  I have no issue with it (except that maybe you become vendor locked). That said I don’t enjoy using it. It doesn’t scratch my itch at all - Game development is complex and I love that, taking that away makes me less happy. Also from experience, I think it makes people less creative. I’ve seen projects suffer from feature creep because Unity provides everything along with the illusion that it is magically easy. Features end up being used simply because they are there, which makes for a series of half baked ideas rather than a few ideas amazingly executed. So by starting with nothing (more or less) every feature/technology needs to be justified. Its far easier to be creative and find what matters with hard constraints.&lt;/p&gt;
 
 &lt;h2 id=&quot;caffeine-engine&quot;&gt;Caffeine Engine&lt;/h2&gt;
 
-&lt;p&gt;I’m not starting from scratch however, SDL provides a solid cross platform Window, GL context and Input across many platforms (including the web). This pretty much covers the hardest part of cross platform development. The underlying renderer I’ve been working on for years on and off, its just one of those bits of code most game developers have lying around. I’m also using Lua to write the game code, Terminal is mostly text based so for the most part I’m just exposing the ability to render text to the screen. Why is it called Caffeine, I honestly can’t remember - I’ve been using it as a namespace in code since university as a way to identify whats game code and whats not, and calling it an engine is a little of stretch :)&lt;/p&gt;
+&lt;p&gt;I’m not starting from scratch however, SDL provides a solid cross platform window, GL context and input across many platforms (including the web). This pretty much covers the hardest part of cross platform development. I’ve been working on the underlying renderer for years on and off, its just one of those bits of code most game developers have lying around. I’m also using Lua to write the game code. Terminal is mostly text based so for the most part I’m just exposing the ability to render text to the screen. Why is it called Caffeine, I honestly can’t remember - I’ve been using it as a namespace in code since university as a way to identify whats game code and whats not, and calling it an engine is a little bit of a stretch :)&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://www.cooperking.net/images/SubwayTestLevel.gif&quot; alt=&quot;Subway&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;whats-next&quot;&gt;Whats Next&lt;/h2&gt;
 
-&lt;p&gt;I spend a lot of time traveling so I’ve been trying to write game code on those moments, and do the technology side of things on the weekends. I’m currently working on how the laptop works right now, animation support is next on my technology list of things todo. Further blog posts I’ll talk more directly about how the game is progressing.&lt;/p&gt;
+&lt;p&gt;I spend a lot of time commuting so I’ve been trying to write game code in that time, and do the technology side of things on the weekends. I’m currently working on how the laptop works right now, animation support is next on my technology list of things to do. Further blog posts I’ll talk more directly about how the game is progressing.&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 06 Apr 2015 11:18:06 +0100</pubDate>
