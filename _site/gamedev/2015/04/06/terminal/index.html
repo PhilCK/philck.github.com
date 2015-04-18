@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Terminal Dev Log 0x1 &#8211; CooperKing.net</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Terminal Hacking Game">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="gamedev">
+    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/04/06/terminal/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Terminal Dev Log 0x1">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/04/06/terminal/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/post_index/">Post Index</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Terminal Dev Log 0x1</h1>
+  <span class="post-meta">Apr 6, 2015</span><br>
+  
+  <span class="post-meta small">2 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>This year I started to make an earnest attempt at making Terminal a text based hacking game. I recently found a some sketches I did back in 2007 while digging around an old computer. I think the initial inspiration came from the early joy of playing <a href="http://en.wikipedia.org/wiki/MUD">MUD</a> games on <a href="http://en.wikipedia.org/wiki/Bulletin_board_system">BBS</a> as a child, combined with playing <a href="http://en.wikipedia.org/wiki/Uplink_%28video_game%29">Introversions Uplink</a>. I remember thinking wouldn’t it be cool to make an MMO hacking game (I don’t think that anymore).</p>
+
+<h2 id="the-game">The Game</h2>
+
+<p>Terminal is going to be predominantly a text based game, but I want to use 3D scenes to help generate an atmosphere and immersion. The game is going to revolve around a hacker doing what it is that hackers do. This is quite a niche game, but I like that. I don’t have time or resources to take on a huge game.</p>
+
+<p><img src="http://www.cooperking.net/images/HelloWorld.gif" alt="HelloWorld" /></p>
+
+<h2 id="why-not-unity">Why Not Unity</h2>
+
+<p>To be clear I like Unity as a tool, I’ve used it many times - I have no issue with it (except that maybe you become vendor locked). That said I don’t enjoy using it. It doesn’t scratch my itch at all - Game development is complex and I love that, taking that away makes me less happy. Also from experience, I think it makes people less creative. I’ve seen projects suffer from feature creep because Unity provides everything along with the illusion that its magically easy. Features end up being used simply because they are there, which makes for a series of half baked ideas rather than a few ideas amazingly executed. So by starting with nothing (more or less) every feature/technology needs to be justified. Its far easier to be creative and find what maters with hard constraints.</p>
+
+<h2 id="caffeine-engine">Caffeine Engine</h2>
+
+<p>I’m not starting from scratch however, SDL provides a solid cross platform Window, GL context and Input across many platforms (including the web). This pretty much covers the hardest part of cross platform development. The underlying renderer I’ve been working on for years on and off, its just one of those bits of code most game developers have lying around. I’m also using Lua to write the game code, Terminal is mostly text based so for the most part I’m just exposing the ability to render text to the screen. Why is it called Caffeine, I honestly can’t remember - I’ve been using it as a namespace in code since university as a way to identify whats game code and whats not, and calling it an engine is a little of stretch :)</p>
+
+<p><img src="http://www.cooperking.net/images/SubwayTestLevel.gif" alt="Subway" /></p>
+
+<h2 id="whats-next">Whats Next</h2>
+
+<p>I spend a lot of time traveling so I’ve been trying to write game code on those moments, and do the technology side of things on the weekends. I’m currently working on how the laptop works right now, animation support is next on my technology list of things todo. Further blog posts I’ll talk more directly about how the game is progressing.</p>
+
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/general/2015/04/06/brace-initialization/" class="post-link">
+        <h4 class="post-title">Hair Pulling MSVS Brace Initialization</h4>
+        <p class="post-summary">One of those infuriating moments</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/02/01/chaiscript-in-game-objects/" class="post-link">
+        <h4 class="post-title">Chaiscript In Game Objects</h4>
+        <p class="post-summary">Chaiscript is a breeze to get into your game objects.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/01/24/game-events/" class="post-link">
+        <h4 class="post-title">Quick And Dirty Game Events</h4>
+        <p class="post-summary">Game events don't need to be complicated.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/01/16/game-object-looping/" class="post-link">
+        <h4 class="post-title">Game Object Looping</h4>
+        <p class="post-summary">Looping through game objects efficiently.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/01/04/new-year-new-job/" class="post-link">
+        <h4 class="post-title">New Year, Job, Website</h4>
+        <p class="post-summary">A new year starting with an awesome new job.</p>
+      </a>
+    </div>
+  
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
