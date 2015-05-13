@@ -7,6 +7,60 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>My Top 10 Code Review BS</title>
+        <description>&lt;p&gt;I think code reviews are a good thing, but when a friend posted &lt;a href=&quot;http://kevinlondon.com/2015/05/05/code-review-best-practices.html&quot;&gt;this article&lt;/a&gt; it made me realise that they can sometimes suck. And for the wrong reasons. These are some comments that I’ve seen in reviews, they range from the nit-picky to the insane.&lt;/p&gt;
+
+&lt;p&gt;So on my road to becoming more a jaded developer, these are my top ten code review bullshit comments…&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Disclosure: I admit it - I’m guilty of one or two of these (not admitting to which tho).&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;you-dont-need-to-initalize-that&quot;&gt;09. You Don’t Need To Initalize That.&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;“You know shared_ptr default to null anyway so you don’t need to bother initalizing it.”&lt;/em&gt; Yes, yes I did know that. However since you’ve typedef’d everything to hide the fact its a shared_ptr I’ll just go and make it super obvious to anybody reading code.&lt;/p&gt;
+
+&lt;h3 id=&quot;standard-bashing&quot;&gt;08. Standard Bashing&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;“I know in some cases we use the ‘qw’ prefix, but in this case it should be ‘ddw’, it clearly states it in 3.2.23.42.34a in the 4th version of the standard doc.”&lt;/em&gt; You know what the problem might actually be?&lt;/p&gt;
+
+&lt;h3 id=&quot;non-standard-bashing&quot;&gt;07. Non Standard Bashing&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;“Its not in the standard doc but it’s what I do.”&lt;/em&gt; In other words I should code against your preference because you are doing the review!&lt;/p&gt;
+
+&lt;h3 id=&quot;you-dont-need-to-use-ati&quot;&gt;06. You Don’t Need To Use .at(i)&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;“Since you are looping over the size of the container .at(i) isn’t required! It’s also slower!”&lt;/em&gt; Oh how shortsighted you are. Yes it isn’t ‘required’ today, but functions you know have this habit of being modified beyond their original purpose. So I’ll just leave that in.&lt;/p&gt;
+
+&lt;h3 id=&quot;dont-use-init-lists&quot;&gt;05. Don’t Use Init Lists.&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;“Don’t use init lists because they are unreadable.”&lt;/em&gt; Are we speaking the same language? Do you do a da chacha?&lt;/p&gt;
+
+&lt;h3 id=&quot;make-it-a-sharedptr&quot;&gt;04. Make It A shared_ptr&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;“Make it a shared_ptr, it will solve the ownership.”&lt;/em&gt; NO IT WILL NOT SOLVE THE OWNERSHIP - IT WILL MAKE IT MORE COMPLICATED!&lt;/p&gt;
+
+&lt;h3 id=&quot;you-dont-need-to-const-everything&quot;&gt;03. You Don’t Need To const Everything.&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;“A const isn’t a guarantee that the value wont change.”&lt;/em&gt; I never knew that was possible in C++ - you can change the value of a const variable! NO - WAY! Or perhaps I const’d it for the readers benefit (of which I am now regretting).&lt;/p&gt;
+
+&lt;h3 id=&quot;you-shouldnt-memcpy-becuase-of-vector-of-bools&quot;&gt;02. You Shouldn’t memcpy Becuase Of Vector Of Bools.&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;“What if the vector changes to a vector of bools, its a specialization you know, then your memcpy is dangerous.”&lt;/em&gt; I’m now stressing that I hadn’t considered that my 3D floating point positional data could be represented with bools (yes yes binary blah blah).&lt;/p&gt;
+
+&lt;h3 id=&quot;dont-use-c11-because-we-dont-know-it&quot;&gt;01. Don’t Use C++11 Because We Don’t Know It.&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;“You shouldn’t use C++11 because not everybody knows it.”&lt;/em&gt; Yep you’re in the right industry!&lt;/p&gt;
+
+&lt;h3 id=&quot;assert-is-too-brutal&quot;&gt;00. assert() Is Too Brutal&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;“assert() is detrimental to the user if it gets triggered you know.”&lt;/em&gt; o_O you went to uni right? With a real building and teachers and exams and stuff?&lt;/p&gt;
+
+&lt;h3 id=&quot;final&quot;&gt;Final&lt;/h3&gt;
+
+&lt;p&gt;I look at these in jest, and some of them are valid to a point given the right context. However far too often I’ve seen 40 comments on the correct prefix useage and zero on the overall structure and safety of the program. Reviews serve a point, which is not pointing out the blatantly obvious, or getting out your big nerd hammer, and if you didn’t know assert was a debug tool there are more serious issues.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 16 May 2015 16:41:12 +0100</pubDate>
+        <link>http://www.cooperking.net/general/2015/05/16/code-review-hates/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/general/2015/05/16/code-review-hates/</guid>
+      </item>
+    
+      <item>
         <title>Terminal Dev Log 0x1</title>
         <description>&lt;p&gt;This year I started to make an earnest attempt at making Terminal, a text based hacking game. While recently digging around on an old computer I found some sketches I did back in 2007. I think the initial inspiration came from the early joy of playing &lt;a href=&quot;http://en.wikipedia.org/wiki/MUD&quot;&gt;MUD&lt;/a&gt; games on &lt;a href=&quot;http://en.wikipedia.org/wiki/Bulletin_board_system&quot;&gt;BBS’s&lt;/a&gt; as a kid, combined with playing &lt;a href=&quot;http://en.wikipedia.org/wiki/Uplink_%28video_game%29&quot;&gt;Introversions Uplink&lt;/a&gt;. I remember thinking wouldn’t it be cool to make an MMO hacking game (I don’t think that anymore).&lt;/p&gt;
 

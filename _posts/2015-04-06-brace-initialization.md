@@ -2,7 +2,7 @@
 layout:     post
 title:      Hair Pulling MSVS Brace Initialization
 date:       2015-04-06 08:05:06
-summary:    One of those infuriating moments
+summary:    One of those infuriating moments.
 categories: General
 tags: 		C++, MSVS,
 ---

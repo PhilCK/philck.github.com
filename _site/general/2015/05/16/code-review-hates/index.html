@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Terminal Dev Log 0x1 &#8211; CooperKing.net</title>
+    <title>My Top 10 Code Review BS &#8211; CooperKing.net</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Development log for hacking game.">
+    <meta name="description" content="Code reviews can just suck.">
     <meta name="author" content="Phil CK">
-    <meta name="keywords" content="gamedev">
-    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/04/18/terminal/">
+    <meta name="keywords" content="general">
+    <link rel="canonical" href="http://www.cooperking.net/general/2015/05/16/code-review-hates/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -25,9 +25,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Terminal Dev Log 0x1">
+    <meta property="og:title" content="My Top 10 Code Review BS">
     <meta property="og:description" content="My general musings">
-    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/04/18/terminal/">
+    <meta property="og:url" content="http://www.cooperking.net/general/2015/05/16/code-review-hates/">
     <meta property="og:site_name" content="CooperKing.net">
 </head>
 
@@ -87,38 +87,58 @@
 
 
 <div class="post-header mb2">
-  <h1>Terminal Dev Log 0x1</h1>
-  <span class="post-meta">Apr 18, 2015</span><br>
+  <h1>My Top 10 Code Review BS</h1>
+  <span class="post-meta">May 16, 2015</span><br>
   
-  <span class="post-meta small">2 minute read</span>
+  <span class="post-meta small">3 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>This year I started to make an earnest attempt at making Terminal, a text based hacking game. While recently digging around on an old computer I found some sketches I did back in 2007. I think the initial inspiration came from the early joy of playing <a href="http://en.wikipedia.org/wiki/MUD">MUD</a> games on <a href="http://en.wikipedia.org/wiki/Bulletin_board_system">BBS’s</a> as a kid, combined with playing <a href="http://en.wikipedia.org/wiki/Uplink_%28video_game%29">Introversions Uplink</a>. I remember thinking wouldn’t it be cool to make an MMO hacking game (I don’t think that anymore).</p>
+  <p>I think code reviews are a good thing, but when a friend posted <a href="http://kevinlondon.com/2015/05/05/code-review-best-practices.html">this article</a> it made me realise that they can sometimes suck. And for the wrong reasons. These are some comments that I’ve seen in reviews, they range from the nit-picky to the insane.</p>
 
-<h2 id="the-game">The Game</h2>
+<p>So on my road to becoming more a jaded developer, these are my top ten code review bullshit comments…</p>
 
-<p>Terminal is going to be predominantly a text based game, but I want to use 3D scenes to help generate an atmosphere and immersion. The game is going to revolve around a hacker doing what it is that hackers do. This is quite a niche game, but I like that. I don’t have time or resources to take on a huge game.</p>
+<p><em>Disclosure: I admit it - I’m guilty of one or two of these (not admitting to which tho).</em></p>
 
-<div class="embedVideo">
-    <figure>
-    	<iframe width="560" height="315" src="https://www.youtube.com/embed/yPLYtQxJM1o" frameborder="0" allowfullscreen=""></iframe>
-    </figure>
-</div>
+<h3 id="you-dont-need-to-initalize-that">09. You Don’t Need To Initalize That.</h3>
 
-<h2 id="why-not-unity">Why Not Unity</h2>
+<p><em>“You know shared_ptr default to null anyway so you don’t need to bother initalizing it.”</em> Yes, yes I did know that. However since you’ve typedef’d everything to hide the fact its a shared_ptr I’ll just go and make it super obvious to anybody reading code.</p>
 
-<p>To be clear I like Unity as a tool, I’ve used it many times.  I have no issue with it (except that maybe you become vendor locked). That said I don’t enjoy using it. It doesn’t scratch my itch at all - Game development is complex and I love that, taking that away makes me less happy. Also from experience, I think it makes people less creative. I’ve seen projects suffer from feature creep because Unity provides everything along with the illusion that it is magically easy. Features end up being used simply because they are there, which makes for a series of half baked ideas rather than a few ideas amazingly executed. So by starting with nothing (more or less) every feature/technology needs to be justified. Its far easier to be creative and find what matters with hard constraints.</p>
+<h3 id="standard-bashing">08. Standard Bashing</h3>
+<p><em>“I know in some cases we use the ‘qw’ prefix, but in this case it should be ‘ddw’, it clearly states it in 3.2.23.42.34a in the 4th version of the standard doc.”</em> You know what the problem might actually be?</p>
 
-<h2 id="caffeine-engine">Caffeine Engine</h2>
+<h3 id="non-standard-bashing">07. Non Standard Bashing</h3>
+<p><em>“Its not in the standard doc but it’s what I do.”</em> In other words I should code against your preference because you are doing the review!</p>
 
-<p>I’m not starting from scratch however, SDL provides a solid cross platform window, GL context and input across many platforms (including the web). This pretty much covers the hardest part of cross platform development. I’ve been working on the underlying renderer for years on and off, its just one of those bits of code most game developers have lying around. I’m also using Lua to write the game code. Terminal is mostly text based so for the most part I’m just exposing the ability to render text to the screen. Why is it called Caffeine, I honestly can’t remember - I’ve been using it as a namespace in code since university as a way to identify whats game code and whats not, and calling it an engine is a little bit of a stretch :)</p>
+<h3 id="you-dont-need-to-use-ati">06. You Don’t Need To Use .at(i)</h3>
 
-<p><img src="http://www.cooperking.net/images/SubwayTestLevel.gif" alt="Subway" /></p>
+<p><em>“Since you are looping over the size of the container .at(i) isn’t required! It’s also slower!”</em> Oh how shortsighted you are. Yes it isn’t ‘required’ today, but functions you know have this habit of being modified beyond their original purpose. So I’ll just leave that in.</p>
 
-<h2 id="whats-next">Whats Next</h2>
+<h3 id="dont-use-init-lists">05. Don’t Use Init Lists.</h3>
 
-<p>I spend a lot of time commuting so I’ve been trying to write game code in that time, and do the technology side of things on the weekends. I’m currently working on how the laptop works right now, animation support is next on my technology list of things to do. Further blog posts I’ll talk more directly about how the game is progressing.</p>
+<p><em>“Don’t use init lists because they are unreadable.”</em> Are we speaking the same language? Do you do a da chacha?</p>
+
+<h3 id="make-it-a-sharedptr">04. Make It A shared_ptr</h3>
+
+<p><em>“Make it a shared_ptr, it will solve the ownership.”</em> NO IT WILL NOT SOLVE THE OWNERSHIP - IT WILL MAKE IT MORE COMPLICATED!</p>
+
+<h3 id="you-dont-need-to-const-everything">03. You Don’t Need To const Everything.</h3>
+<p><em>“A const isn’t a guarantee that the value wont change.”</em> I never knew that was possible in C++ - you can change the value of a const variable! NO - WAY! Or perhaps I const’d it for the readers benefit (of which I am now regretting).</p>
+
+<h3 id="you-shouldnt-memcpy-becuase-of-vector-of-bools">02. You Shouldn’t memcpy Becuase Of Vector Of Bools.</h3>
+
+<p><em>“What if the vector changes to a vector of bools, its a specialization you know, then your memcpy is dangerous.”</em> I’m now stressing that I hadn’t considered that my 3D floating point positional data could be represented with bools (yes yes binary blah blah).</p>
+
+<h3 id="dont-use-c11-because-we-dont-know-it">01. Don’t Use C++11 Because We Don’t Know It.</h3>
+<p><em>“You shouldn’t use C++11 because not everybody knows it.”</em> Yep you’re in the right industry!</p>
+
+<h3 id="assert-is-too-brutal">00. assert() Is Too Brutal</h3>
+
+<p><em>“assert() is detrimental to the user if it gets triggered you know.”</em> o_O you went to uni right? With a real building and teachers and exams and stuff?</p>
+
+<h3 id="final">Final</h3>
+
+<p>I look at these in jest, and some of them are valid to a point given the right context. However far too often I’ve seen 40 comments on the correct prefix useage and zero on the overall structure and safety of the program. Reviews serve a point, which is not pointing out the blatantly obvious, or getting out your big nerd hammer, and if you didn’t know assert was a debug tool there are more serious issues.</p>
 
 
 </article>
@@ -129,9 +149,9 @@
   <h3 class="related-post-title">Related Posts</h3>
   
     <div class="post ml2">
-      <a href="/general/2015/05/16/code-review-hates/" class="post-link">
-        <h4 class="post-title">My Top 10 Code Review BS</h4>
-        <p class="post-summary">Code reviews can just suck.</p>
+      <a href="/gamedev/2015/04/18/terminal/" class="post-link">
+        <h4 class="post-title">Terminal Dev Log 0x1</h4>
+        <p class="post-summary">Development log for hacking game.</p>
       </a>
     </div>
   
