@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Who Do You Code For? &#8211; CooperKing.net</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Chances are it isn't your boss.">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="general">
+    <link rel="canonical" href="http://www.cooperking.net/general/2015/05/19/who-are-you-coding-for/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Who Do You Code For?">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/general/2015/05/19/who-are-you-coding-for/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/post_index/">Post Index</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/squidvsshark"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Who Do You Code For?</h1>
+  <span class="post-meta">May 19, 2015</span><br>
+  
+  <span class="post-meta small">9 minute read</span>
+</div>
+
+<article class="post-content">
+  <p><em>“Who are you coding for?”</em> Seems like an easy enough statement. Though if you’ve answered ‘your boss’ or ‘your company’ or ‘the product’ you’ve likely missed your target audience.</p>
+
+<blockquote>
+  <p><a href="http://blog.codinghorror.com/coding-for-violent-psychopaths/">Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live.</a></p>
+</blockquote>
+
+<p>The majority of code is maintenance, so its seems that coders spend the majority of the time reading code and not writing it. So like an author of a book you are writing for your audience and that’s the other coders you work with. So when somebody extends your function to encorporate some new feature and a bug is caused, then you share the blame for that, as much as your share the credit for the inital code. You could be laying down the foundation for dozens of modifications, so do it right. I’m not talking Space Shuttle bullet proof, just make it safe, clear, and extendable without a PhD into your mind.</p>
+
+<p>These are little day to day things I like to do, to try and help the next guy along when he has to modify what I’ve left behind.</p>
+
+<h2 id="local-scope">Local scope</h2>
+
+<p>Often I come accross big methods that do several different things. It can be quite hard to get your head around these methods. Local scoping responibilites can help refacting later down the line, but really helps with understanding of whats going on.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">your_uber_long_function</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Safe bet this is used in multiple scopes</span>
+  <span class="k">const</span> <span class="kt">float</span> <span class="n">lucky_number_punk</span> <span class="o">=</span> <span class="mf">0.1666f</span><span class="p">;</span>
+
+  <span class="c1">// A comment above a set of curlies helps define a chunk.</span>
+  <span class="p">{</span>
+    <span class="c1">// Anybody reading knows this ani&#39;t going to interact with anything outside.</span>
+      <span class="k">const</span> <span class="kt">float</span> <span class="n">local_var</span> <span class="o">=</span> <span class="mf">1.234f</span><span class="p">;</span>
+
+    <span class="c1">// Cool code goes here.</span>
+  <span class="p">}</span>
+
+  <span class="kt">float</span> <span class="n">a_variable_above_curlies</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Indicates logic beloew sets it.</span>
+  <span class="p">{</span>
+    <span class="c1">// looks like an inline function, makes it easy to pull out.</span>
+  <span class="p">}</span>
+
+  <span class="c1">// .. more cool stuff</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Scoping goes one way and one way only. As soon as you graduate a variable’s scope you can be pretty sure that nobody is ever going to reduce it. From local to file, file to global. Scope down hard. In some circumstances I’ll even push arrays inside the loop i’m iterating in, I certainly will for constants.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">some_size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="kt">float</span> <span class="n">my_float</span> <span class="o">=</span> <span class="mf">1.234f</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">some_size</span><span class="p">);</span>
+
+  <span class="n">arr</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">my_float</span><span class="p">;</span>
+  <span class="c1">// ... </span>
+<span class="p">}</span></code></pre></div>
+
+<p>The shared_ptr people will bring this up in review also, “Did you know you can move that array and constant outside?”. Yes yes I did.</p>
+
+<h2 id="avoid-sharedptr">Avoid shared_ptr</h2>
+
+<p>This is pretty much the same as local scope but I seperated because people don’t seem to consider shared_ptrs todo with scope. Really tho, shared_ptrs, globals and singletons all have similar issues. There state can get modified by who knows what, who knows where. Its a good chance you are doing multithreaded, or task based multithreading. You’ll waste hours trying to understand state changes when ‘everything’ is a shared_ptr, global, or a singleton.</p>
+
+<p>I find most situations with shared_ptr’s can be avoided, but quite often the lazy approch is taken. Or the its just like GC mentality sets in. Its not GC, you likely don’t want GC and its not solving your design issues. You can’t always avoid it, especially when working on a system thats been in dev for a while, but don’t add to that crap unless you have to.</p>
+
+<h2 id="hate-chaining-objects">Hate Chaining Objects</h2>
+
+<p>Object orientation can lead to alot of repeated <code>this_object.some_method().other_method().that_method()</code> type thing. this makes code a bit messy. If you are doing it repeatedly please make it into references to help the next guy who comes along. He’ll be able to read it better.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this_object</span><span class="p">.</span><span class="n">some_method</span><span class="p">().</span><span class="n">another_method</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">this_object</span><span class="p">.</span><span class="n">some_method</span><span class="p">().</span><span class="n">that_method</span><span class="p">();</span>
+  <span class="n">another_object</span><span class="p">.</span><span class="n">cool_method</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+<p>vs</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="o">&amp;</span><span class="n">obj</span> <span class="o">=</span> <span class="n">this_object</span><span class="p">.</span><span class="n">some_method</span><span class="p">();</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">another_method</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">obj</span><span class="p">.</span><span class="n">that_method</span><span class="p">();</span>
+  <span class="n">another_object</span><span class="p">.</span><span class="n">cool_method</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Much better! It looks nicer, and makes it clear what is being used accross a large file.</p>
+
+<h2 id="dry-up-do-not-repeate-yourself---do-not-">DRY Up ‘Do Not Repeate Yourself - Do Not …’</h2>
+
+<p>When ever I see repeated code I have an inbuilt urge to refactor it. Less code paths usually mean easier debuging, and extending. I once opened up a file on a project and saw 12 hefety functions that where all just cut and pasted duplicates with a minor variable changed. Lazy and bug prone - urgh!</p>
+
+<p>When ever I see repeated code I have an inbuilt urge to refactor it. Less code paths usually mean easier debuging, and extending. I once opened up a file on a project and saw 12 hefety functions that where all just cut and pasted duplicates with a minor variable changed. Lazy and bug prone - urgh!</p>
+
+<p><em>see how annoying that is!</em></p>
+
+<h2 id="const-as-much-as-possible">Const As Much As Possible</h2>
+
+<p>Really in big methods and objects consting is godsend to the reader. Its very easy to iscolate the moving parts of a program, and thus be able to generate quickly some understanding of how things work.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">float</span> <span class="nf">wicked_calculation</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="kt">float</span> <span class="n">foo</span> <span class="o">=</span> <span class="mf">1.f</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">float</span> <span class="n">bar</span> <span class="o">=</span> <span class="mf">2.f</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">baz</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span> <span class="c1">// You can already tell that baz - its likely going to change.</span>
+  <span class="c1">// lots of lines</span>
+
+  <span class="k">return</span> <span class="n">return_a_sony_random_number</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+<h2 id="use-safe-things">Use Safe Things.</h2>
+
+<p>Sloppy code breeds sloppy code I always say (I don’t). Consider this.</p>
+
+<p>Your simple little loop</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">container</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// few lines of logic.</span>
+  <span class="n">container</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>suddenly gets modified by somebody else, and somebody else, and somebody else beyond that…</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">other_container</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// lots of more logic.</span>
+  <span class="n">container</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span><span class="p">;</span> <span class="c1">// container now indexed by other_container&#39;s size()</span>
+<span class="p">}</span></code></pre></div>
+
+<p>When the modifications of other_container get to the point where they are different size’s you are suddenly writting on sombody else’s memory. If you are luckly you’ll cause a crash, unluckly you could be tweaking somebody else’s variable causeing some other error down the line. This can be a nightmare situation to debug (one I’ve had to debug before). Although if the original author had used .at(i). as soon as the containers changed size this would have failed. std:: has lot of these type of things. use them where possible. Save somebody else some stress.</p>
+
+<h2 id="dont-go-mental-with-abstraction">Don’t Go Mental With Abstraction</h2>
+
+<p>Coders have an obession with abstraction, an unhealthy one. Its far more helpfuly to me if I know a type is a float, or shared_ptr straight up. If they are all hidden beneath layers and layers of typedefs and abstractions it can be a royal pain. Keep things flat where you can, and stop saying “Another layer of abstraction solves everything.” If you’re abstracting for the sake of future proofing you are likely making more work for youself, and the next guy trying to understand what you left behind, so he can modifiy it.</p>
+
+<h2 id="alias-namespace-locally">Alias Namespace Locally</h2>
+
+<p>Recently I moved job, and I’ve been spending alot of time trying to get to know as much of the codebase as possible, and the various <code>using namespace x</code> type thing makes it harder, because as I read the code I have litterally no idea where this stuff is comming from. What makes it worse is we have several definitions of a type <code>point</code> which as the new guy it makes it hard. Although I do understand why - our namespace aren’t a simple <code>std::</code>, they are massive and typing them out is a nightmare and makes code look ugly. Though dumping the namespace isn’t the answer. Alias it, preferably in the function (scope down hard) otherwise file.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">your_amazing_cool_func</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">short_ns</span> <span class="o">=</span> <span class="o">::</span><span class="n">your_really</span><span class="o">::</span><span class="n">really</span><span class="o">::</span><span class="kt">long</span><span class="o">::</span><span class="k">namespace</span><span class="p">;</span>
+  <span class="n">short_ns</span><span class="o">::</span><span class="n">point</span> <span class="o">=</span> <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span></code></pre></div>
+
+<h2 id="assert-lots">Assert Lots</h2>
+
+<p>Assert implies alot of things for you. Whats better a comment that says “This can’t be null” or <code>assert(your_ptr)</code> If passing null, or 3, or “hi bob” is invalid make it explicitly invalid.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">radical_function</span><span class="p">(</span><span class="n">bar</span> <span class="o">*</span><span class="n">in_boo</span><span class="p">,</span> <span class="n">boo</span> <span class="o">*</span><span class="n">in_baz</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">in_boo</span> <span class="o">&amp;&amp;</span> <span class="n">in_baz</span><span class="p">);</span>
+  <span class="c1">// ... continue</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Assert’s enforce your assumptions on the code your wrote, it also forces these assumptions on the guy who’s extending your code. Comments do not.</p>
+
+<h2 id="further-things">Further Things</h2>
+
+<p>Often lazy coding comes with a ‘time is money’ or ‘my time is better spent elsewhere’ rebuttle. Both these are as short sighted as I am on a Friday evening. If you are generating situations where bugs are easily generated then somebody is spending hours/days tracking them down. Which is likely going to cost more to fix (not to mention demoralization of people working on it).</p>
+
+<p>Please please please read Scot Myers books if you can, they are really good. Also this talk from Jonathon Blow has some good bit in it also.</p>
+
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/16/code-review-hates/" class="post-link">
+        <h4 class="post-title">My Top 10 Code Review BS</h4>
+        <p class="post-summary">Code reviews can just suck.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/04/18/terminal/" class="post-link">
+        <h4 class="post-title">Terminal Dev Log 0x1</h4>
+        <p class="post-summary">Development log for hacking game.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/04/06/brace-initialization/" class="post-link">
+        <h4 class="post-title">Hair Pulling MSVS Brace Initialization</h4>
+        <p class="post-summary">One of those infuriating moments.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/02/01/chaiscript-in-game-objects/" class="post-link">
+        <h4 class="post-title">Chaiscript In Game Objects</h4>
+        <p class="post-summary">Chaiscript is a breeze to get into your game objects.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/01/24/game-events/" class="post-link">
+        <h4 class="post-title">Quick And Dirty Game Events</h4>
+        <p class="post-summary">Game events don't need to be complicated.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/01/16/game-object-looping/" class="post-link">
+        <h4 class="post-title">Game Object Looping</h4>
+        <p class="post-summary">Looping through game objects efficiently.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/01/04/new-year-new-job/" class="post-link">
+        <h4 class="post-title">New Year, Job, Website</h4>
+        <p class="post-summary">A new year starting with an awesome new job.</p>
+      </a>
+    </div>
+  
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
