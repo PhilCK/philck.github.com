@@ -8,7 +8,7 @@ tags: 		GeneralDev, Coding,
 ---
 
 
-List of books that I've read and recomend. In no particular order...
+List of books that I've read and recommend. In no particular order...
 
 
 ## Scott Meyers
@@ -41,7 +41,7 @@ These books should be mandatory for C++ developers everywhere! They are good to 
 
 ## The Lean Startup, Getting Real, and Rework
 
-These books aren't directly about software development, but there is a very good common theme that runs right through it. Less is more! Even if you aren't starting a company I would recomend reading them if you are software developer. As much of the mentality in these books is relatable.
+These books aren't directly about software development, but there is a very good common theme that runs right through it. Less is more! Even if you aren't starting a company as much of the mentality in these books are relatable, I would recommend reading them if you are a software developer.
 
 
 <div style="text-align:center;">
@@ -69,7 +69,7 @@ These books aren't directly about software development, but there is a very good
 
 ## Bonus: No Asshole Rule and Remote
 
-Not a software books but a good reads.
+Not software books but are good reads.
 
 
 <div style="text-align:center;">
