@@ -7,6 +7,87 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Book Recommendations</title>
+        <description>&lt;p&gt;List of books that I’ve read and recomend. In no particular order…&lt;/p&gt;
+
+&lt;h2 id=&quot;scott-meyers&quot;&gt;Scott Meyers&lt;/h2&gt;
+
+&lt;p&gt;These books should be mandatory for C++ developers everywhere! They are good to get up to speed with good C++ practices. Read em!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center;&quot;&gt;
+
+	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/&quot;&gt;
+		&lt;img src=&quot;http://2.bp.blogspot.com/-eOUamjgchSI/U6cJGkNW-vI/AAAAAAAAAOY/zOgPNpFvqH8/s1600/front%2Bcover.jpg&quot; /&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+
+	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/Effective-Specific-Programs-Professional-Computing/dp/0321334876/&quot;&gt;
+		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/71lC2NLUvuL.jpg&quot; /&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+
+	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/Effective-STL-Specific-Professional-Computing/dp/0201749629&quot;&gt;
+		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/416gOk71-DL.jpg&quot; /&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;the-lean-startup-getting-real-and-rework&quot;&gt;The Lean Startup, Getting Real, and Rework&lt;/h2&gt;
+
+&lt;p&gt;These books aren’t directly about software development, but there is a very good common theme that runs right through it. Less is more! Even if you aren’t starting a company I would recomend reading them if you are software developer. As much of the mentality in these books is relatable.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center;&quot;&gt;
+
+	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/Lean-Startup-Innovation-Successful-Businesses/dp/0670921602/&quot;&gt;
+		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/71Ed2BslK0L.jpg&quot; /&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+
+	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/Getting-Real-smarter-successful-application/dp/0578012812/&quot;&gt;
+		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/31jvYr2h6GL.jpg&quot; /&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+
+	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/ReWork-Change-Way-Work-Forever/dp/0091929784/&quot;&gt;
+		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/61GFc%2Bk-5PL.jpg&quot; /&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;bonus-no-asshole-rule-and-remote&quot;&gt;Bonus: No Asshole Rule and Remote&lt;/h2&gt;
+
+&lt;p&gt;Not a software books but a good reads.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center;&quot;&gt;
+
+	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/Asshole-Rule-Civilised-Workplace-Surviving/dp/0749954035/&quot;&gt;
+		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/61XPJCzklvL.jpg&quot; /&gt;
+	&lt;/a&gt;
+	&lt;/div&gt;
+
+	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
+		&lt;a href=&quot;http://www.amazon.co.uk/Remote-Required-David-Heinemeier-Hansson-ebook/dp/B00CZ7OC46/&quot;&gt;
+		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/41iNTaTZrbL.jpg&quot; /&gt;
+	&lt;/a&gt;
+	&lt;/div&gt;	
+
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 25 May 2015 22:25:18 +0100</pubDate>
+        <link>http://www.cooperking.net/general/2015/05/25/software-book-recommendations/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/general/2015/05/25/software-book-recommendations/</guid>
+      </item>
+    
+      <item>
         <title>Who Do You Code For?</title>
         <description>&lt;p&gt;&lt;em&gt;“Who are you coding for?”&lt;/em&gt; Seems like an easy enough statement. Though if you’ve answered ‘your boss’ or ‘your company’ or ‘the product’ you’ve likely missed your target audience.&lt;/p&gt;
 
