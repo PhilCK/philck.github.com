@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Book Recommendations &#8211; CooperKing.net</title>
+    <title>C++ Build Gem &#8211; CooperKing.net</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Good software books.">
+    <meta name="description" content="Ruby gem to build C++ files.">
     <meta name="author" content="Phil CK">
     <meta name="keywords" content="general">
-    <link rel="canonical" href="http://www.cooperking.net/general/2015/05/25/software-book-recommendations/">
+    <link rel="canonical" href="http://www.cooperking.net/general/2015/06/16/cpp_build/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -25,9 +25,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Book Recommendations">
+    <meta property="og:title" content="C++ Build Gem">
     <meta property="og:description" content="My general musings">
-    <meta property="og:url" content="http://www.cooperking.net/general/2015/05/25/software-book-recommendations/">
+    <meta property="og:url" content="http://www.cooperking.net/general/2015/06/16/cpp_build/">
     <meta property="og:site_name" content="CooperKing.net">
 </head>
 
@@ -87,86 +87,51 @@
 
 
 <div class="post-header mb2">
-  <h1>Book Recommendations</h1>
-  <span class="post-meta">May 25, 2015</span><br>
+  <h1>C++ Build Gem</h1>
+  <span class="post-meta">Jun 16, 2015</span><br>
   
   <span class="post-meta small">1 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>List of books that I’ve read and recommend. In no particular order…</p>
+  <p>My first gem! I’m sure this must be a special moment if I was sentimental enough to care about that kinda thing :) This is a gem to help build C++ files.</p>
 
-<h2 id="scott-meyers">Scott Meyers</h2>
+<h2 id="why">Why</h2>
 
-<p>These books should be mandatory for C++ developers everywhere! They are good to get up to speed with good C++ practices. Read em!</p>
+<p>I started this little gem to bridge the gap between using full blown IDE’s and compiling on the command line. I sometimes find that making a project is too verbose for compiling a bunch of files, while the command line quickly becomes tedious.</p>
 
-<div style="text-align:center;">
+<p>Why not just use Rake? Well I wanted something a little more geared towards C++, and while I use Rake for a lot of things both in and out of work, I would still end up having to write and cut and paste code to build the command line string.</p>
 
-	<div style="width:30%; display: inline-block;">
-		<a href="http://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/">
-		<img src="http://2.bp.blogspot.com/-eOUamjgchSI/U6cJGkNW-vI/AAAAAAAAAOY/zOgPNpFvqH8/s1600/front%2Bcover.jpg" />
-		</a>
-	</div>
+<h2 id="how-to-use-it">How To Use It</h2>
 
-	<div style="width:30%; display:inline-block;">
-		<a href="http://www.amazon.co.uk/Effective-Specific-Programs-Professional-Computing/dp/0321334876/">
-		<img src="http://ecx.images-amazon.com/images/I/71lC2NLUvuL.jpg" />
-		</a>
-	</div>
+<p>It’s very similar to Rake so it shouldn’t feel out of place.</p>
 
-	<div style="width:30%; display:inline-block;">
-		<a href="http://www.amazon.co.uk/Effective-STL-Specific-Professional-Computing/dp/0201749629">
-		<img src="http://ecx.images-amazon.com/images/I/416gOk71-DL.jpg" />
-		</a>
-	</div>
+<p>The usual</p>
 
-</div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install cpp_builder</code></pre></div>
 
-<h2 id="the-lean-startup-getting-real-and-rework">The Lean Startup, Getting Real, and Rework</h2>
+<p>Create a file called <code>buildfile</code> in the directory you wish to run it from. Then edit the file to be something like this…</p>
 
-<p>These books aren’t directly about software development, but there is a very good common theme that runs right through it. Less is more! Even if you aren’t starting a company as much of the mentality in these books are relatable, I would recommend reading them if you are a software developer.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">CppBuild</span><span class="o">.</span><span class="n">build</span> <span class="ss">:test_basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span>
 
-<div style="text-align:center;">
+  <span class="n">b</span><span class="o">.</span><span class="n">compiler</span> <span class="o">=</span> <span class="ss">:clang</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">inc_dirs</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/local/include&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">lib_dirs</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/local/lib&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">libs</span>     <span class="o">=</span> <span class="s2">&quot;SDL&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">files</span>    <span class="o">=</span> <span class="s2">&quot;main.cpp&quot;</span><span class="p">,</span> <span class="s2">&quot;foo.cpp&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">config</span>   <span class="o">=</span> <span class="ss">:debug</span>
 
-	<div style="width:30%; display: inline-block;">
-		<a href="http://www.amazon.co.uk/Lean-Startup-Innovation-Successful-Businesses/dp/0670921602/">
-		<img src="http://ecx.images-amazon.com/images/I/71Ed2BslK0L.jpg" />
-		</a>
-	</div>
+<span class="k">end</span></code></pre></div>
 
-	<div style="width:30%; display:inline-block;">
-		<a href="http://www.amazon.co.uk/Getting-Real-smarter-successful-application/dp/0578012812/">
-		<img src="http://ecx.images-amazon.com/images/I/31jvYr2h6GL.jpg" />
-		</a>
-	</div>
+<p>Then call from the command line.</p>
 
-	<div style="width:30%; display:inline-block;">
-		<a href="http://www.amazon.co.uk/ReWork-Change-Way-Work-Forever/dp/0091929784/">
-		<img src="http://ecx.images-amazon.com/images/I/61GFc%2Bk-5PL.jpg" />
-		</a>
-	</div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>cpp_build test_basic</code></pre></div>
 
-</div>
+<p>And it will compile your program.</p>
 
-<h2 id="bonus-no-asshole-rule-and-remote">Bonus: No Asshole Rule and Remote</h2>
+<h2 id="support-and-future-dev">Support and Future Dev</h2>
 
-<p>Not software books but are good reads.</p>
-
-<div style="text-align:center;">
-
-	<div style="width:30%; display: inline-block;">
-		<a href="http://www.amazon.co.uk/Asshole-Rule-Civilised-Workplace-Surviving/dp/0749954035/">
-		<img src="http://ecx.images-amazon.com/images/I/61XPJCzklvL.jpg" />
-	</a>
-	</div>
-
-	<div style="width:30%; display: inline-block;">
-		<a href="http://www.amazon.co.uk/Remote-Required-David-Heinemeier-Hansson-ebook/dp/B00CZ7OC46/">
-		<img src="http://ecx.images-amazon.com/images/I/41iNTaTZrbL.jpg" />
-	</a>
-	</div>	
-
-</div>
+<p>Currently it only supports OSX and Clang. I hope to get other support in quite soon, in particular support for other compilers. While I still have a need for this I’ll keep improving it. When I’m happy with Clang support I’ll move to GCC. Windows is a little finicky because its command line interface isn’t available by default usually, but I’d like to get that support there to.</p>
 
 </article>
 
@@ -176,9 +141,9 @@
   <h3 class="related-post-title">Related Posts</h3>
   
     <div class="post ml2">
-      <a href="/general/2015/06/16/cpp_build/" class="post-link">
-        <h4 class="post-title">C++ Build Gem</h4>
-        <p class="post-summary">Ruby gem to build C++ files.</p>
+      <a href="/general/2015/05/25/software-book-recommendations/" class="post-link">
+        <h4 class="post-title">Book Recommendations</h4>
+        <p class="post-summary">Good software books.</p>
       </a>
     </div>
   

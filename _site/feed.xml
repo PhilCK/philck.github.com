@@ -7,6 +7,52 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>C++ Build Gem</title>
+        <description>&lt;p&gt;My first gem! I’m sure this must be a special moment if I was sentimental enough to care about that kinda thing :) This is a gem to help build C++ files.&lt;/p&gt;
+
+&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
+
+&lt;p&gt;I started this little gem to bridge the gap between using full blown IDE’s and compiling on the command line. I sometimes find that making a project is too verbose for compiling a bunch of files, while the command line quickly becomes tedious.&lt;/p&gt;
+
+&lt;p&gt;Why not just use Rake? Well I wanted something a little more geared towards C++, and while I use Rake for a lot of things both in and out of work, I would still end up having to write and cut and paste code to build the command line string.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-use-it&quot;&gt;How To Use It&lt;/h2&gt;
+
+&lt;p&gt;It’s very similar to Rake so it shouldn’t feel out of place.&lt;/p&gt;
+
+&lt;p&gt;The usual&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install cpp_builder&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Create a file called &lt;code&gt;buildfile&lt;/code&gt; in the directory you wish to run it from. Then edit the file to be something like this…&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;CppBuild&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:test_basic&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;compiler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:clang&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inc_dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;./&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/usr/local/include&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lib_dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;./&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/usr/local/lib&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libs&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;SDL&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;files&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;main.cpp&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;foo.cpp&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:debug&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then call from the command line.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cpp_build test_basic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And it will compile your program.&lt;/p&gt;
+
+&lt;h2 id=&quot;support-and-future-dev&quot;&gt;Support and Future Dev&lt;/h2&gt;
+
+&lt;p&gt;Currently it only supports OSX and Clang. I hope to get other support in quite soon, in particular support for other compilers. While I still have a need for this I’ll keep improving it. When I’m happy with Clang support I’ll move to GCC. Windows is a little finicky because its command line interface isn’t available by default usually, but I’d like to get that support there to.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 16 Jun 2015 18:50:18 +0100</pubDate>
+        <link>http://www.cooperking.net/general/2015/06/16/cpp_build/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/general/2015/06/16/cpp_build/</guid>
+      </item>
+    
+      <item>
         <title>Book Recommendations</title>
         <description>&lt;p&gt;List of books that I’ve read and recommend. In no particular order…&lt;/p&gt;
 

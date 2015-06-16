@@ -2,7 +2,7 @@
 layout:     post
 title:      Book Recommendations
 date:       2015-05-25 21:25:18
-summary:    Good Software Books.
+summary:    Good software books.
 categories: General
 tags: 		GeneralDev, Coding,
 ---
