@@ -12,11 +12,11 @@
 
 &lt;h2 id=&quot;what-is-it&quot;&gt;What Is It?&lt;/h2&gt;
 
-&lt;p&gt;Its a header only math library, that handles most vector, and matrix math. It has other things it. I’ve been porting it over in small bits as I write tests for those components. Also gives me a chance to add missing functions that should be in a math library but I’ve not had a need for.&lt;/p&gt;
+&lt;p&gt;It’s a header only math library, that handles most vector, and matrix math. It has other things in it as well. I’ve been porting it over in small bits as I write tests for those components. Also gives me a chance to add missing functions that should be in a math library but I’ve not had a need for.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-to-use-it&quot;&gt;How To Use It?&lt;/h2&gt;
 
-&lt;p&gt;Its completely function based. And all functions start with the type name to make things like intellisence easier.&lt;/p&gt;
+&lt;p&gt;It’s completely function based. And all functions start with the type name to make things like intellisence easier.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_velocity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -27,11 +27,11 @@
 
 &lt;h2 id=&quot;no-simd&quot;&gt;No SIMD&lt;/h2&gt;
 
-&lt;p&gt;It’s always been one of those things I’ve meant to add, but usually I find speed up’s elsewhere so I use them. Combined with my projects being small scale. However its something I’d like to add after I’ve finished porting/testing the varioius components.&lt;/p&gt;
+&lt;p&gt;It’s always been one of those things I’ve meant to add, but usually I find speed up’s elsewhere so I use them. Combined with my projects being small scale. However its something I’d like to add after I’ve finished porting/testing the various components.&lt;/p&gt;
 
 &lt;h2 id=&quot;what-next&quot;&gt;What Next&lt;/h2&gt;
 
-&lt;p&gt;I need to finish Matrix support and I have some other basic goemetry math I need to add for a project, I’ll add that to the library when I come to that. And hopefully I can get SIMD done stuff at the end of summer.&lt;/p&gt;
+&lt;p&gt;I need to finish Matrix support and I have some other basic geometry math I need to add for a project, I’ll add that to the library when I come to that. And hopefully I can get SIMD done stuff at the end of summer.&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 20 Jun 2015 23:01:18 +0100</pubDate>
