@@ -7,6 +7,39 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Caffeine Math</title>
+        <description>&lt;p&gt;A little while ago I started putting up some of my math code onto Github which can be found &lt;a href=&quot;https://github.com/PhilCK/caffeine-math&quot;&gt;here&lt;/a&gt;. Its a small simple math library that I use for my hobby projects (mostly games).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-it&quot;&gt;What Is It?&lt;/h2&gt;
+
+&lt;p&gt;Its a header only math library, that handles most vector, and matrix math. It has other things it. I’ve been porting it over in small bits as I write tests for those components. Also gives me a chance to add missing functions that should be in a math library but I’ve not had a need for.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-use-it&quot;&gt;How To Use It?&lt;/h2&gt;
+
+&lt;p&gt;Its completely function based. And all functions start with the type name to make things like intellisence easier.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_velocity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_velocity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Most of it works along those lines.&lt;/p&gt;
+
+&lt;h2 id=&quot;no-simd&quot;&gt;No SIMD&lt;/h2&gt;
+
+&lt;p&gt;It’s always been one of those things I’ve meant to add, but usually I find speed up’s elsewhere so I use them. Combined with my projects being small scale. However its something I’d like to add after I’ve finished porting/testing the varioius components.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-next&quot;&gt;What Next&lt;/h2&gt;
+
+&lt;p&gt;I need to finish Matrix support and I have some other basic goemetry math I need to add for a project, I’ll add that to the library when I come to that. And hopefully I can get SIMD done stuff at the end of summer.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 20 Jun 2015 23:01:18 +0100</pubDate>
+        <link>http://www.cooperking.net/general/2015/06/20/caffeine-math/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/general/2015/06/20/caffeine-math/</guid>
+      </item>
+    
+      <item>
         <title>C++ Build Gem</title>
         <description>&lt;p&gt;My first gem! I’m sure this must be a special moment if I was sentimental enough to care about that kinda thing :) This is a gem to help build C++ files.&lt;/p&gt;
 
@@ -748,24 +781,6 @@ boo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         <pubDate>Fri, 16 Jan 2015 11:21:29 +0000</pubDate>
         <link>http://www.cooperking.net/gamedev/2015/01/16/game-object-looping/</link>
         <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/01/16/game-object-looping/</guid>
-      </item>
-    
-      <item>
-        <title>New Year, Job, Website</title>
-        <description>&lt;p&gt;So my time in the games industry was short, but it was packed full. I helped start a &lt;a href=&quot;http://spacebudgie.com/&quot;&gt;games company&lt;/a&gt;, where I saw my hobby game go into production and published on &lt;a href=&quot;http://store.steampowered.com/app/290060/&quot;&gt;Steam&lt;/a&gt;. And the last year and a bit I’ve been working at &lt;a href=&quot;http://www.tag-games.com&quot;&gt;Tag Games&lt;/a&gt;, where one of the projects I got to work on was &lt;a href=&quot;https://itunes.apple.com/gb/app/moshi-monsters-village/id635912603?mt=8&quot;&gt;Moshi Monsters&lt;/a&gt; - How cool! However that brings to a close my time in the games industry.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.cooperking.net/images/moshi.jpg&quot; alt=&quot;Moshi Monsters Village&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It wasn’t a conscious decision to exit the games industry, but more simply an amazing opportunity presented itself and I couldn’t say no. Tomorrow (5th Jan 2015) I start my new job as a ‘Product Engineer’ at Esri. I’m super excited.&lt;/p&gt;
-
-&lt;p&gt;So with so much change I thought I’d update my website while I’m at it. It was a blog, then an online portfolio, now its going to be a mix of the two, I still want to work on game related things, I love the tech, the challenges, and making stuff. So I shall push up those details here.&lt;/p&gt;
-
-&lt;p&gt;The website itself it built using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; with the &lt;a href=&quot;https://github.com/johnotander/pixyll&quot;&gt;Pixyll&lt;/a&gt; theme.&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 04 Jan 2015 11:21:29 +0000</pubDate>
-        <link>http://www.cooperking.net/general/2015/01/04/new-year-new-job/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/general/2015/01/04/new-year-new-job/</guid>
       </item>
     
   </channel>
