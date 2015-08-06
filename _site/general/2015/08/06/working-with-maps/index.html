@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hair Pulling MSVS Brace Initialization &#8211; CooperKing.net</title>
+    <title>Working With Maps &#8211; CooperKing.net</title>
     <script src="http://stats.squidvsshark.com/?js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="One of those infuriating moments.">
+    <meta name="description" content="8 months in maps.">
     <meta name="author" content="Phil CK">
     <meta name="keywords" content="general">
-    <link rel="canonical" href="http://www.cooperking.net/general/2015/04/06/brace-initialization/">
+    <link rel="canonical" href="http://www.cooperking.net/general/2015/08/06/working-with-maps/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -26,9 +26,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Hair Pulling MSVS Brace Initialization">
+    <meta property="og:title" content="Working With Maps">
     <meta property="og:description" content="My general musings">
-    <meta property="og:url" content="http://www.cooperking.net/general/2015/04/06/brace-initialization/">
+    <meta property="og:url" content="http://www.cooperking.net/general/2015/08/06/working-with-maps/">
     <meta property="og:site_name" content="CooperKing.net">
 </head>
 
@@ -88,62 +88,33 @@
 
 
 <div class="post-header mb2">
-  <h1>Hair Pulling MSVS Brace Initialization</h1>
-  <span class="post-meta">Apr 6, 2015</span><br>
+  <h1>Working With Maps</h1>
+  <span class="post-meta">Aug 6, 2015</span><br>
   
   <span class="post-meta small">1 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>We’ve all had one of those moments where you can’t figure out what the hell is going on. You’ve changed something in your code and all hell has broken loose, most of the time this is to due to needing a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVS it altogether stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a <code>single</code> element.</p>
+  <p>Eight months into my job at Esri UK, I’ve passed my probation and still loving it. While many games company make a big deal about their ‘culture’, which is usually a subtext to ‘We let you have fun at work, now do unpaid overtime’. Esri UK by contrast has an awsome culture. I do miss the tech aspect of games, but in reality I would have had to leave Scotland todo that kind of work.</p>
 
-<h3 id="testcode">TestCode</h3>
+<p>Working with maps has been fun. I’m surrounded by smart people and difficult problems. Heaven!</p>
 
-<p>Curious to what was going on I did the following little <a href="http://pastie.org/10048059">test</a> in MSVS 2013 (Update 4).</p>
+<h2 id="scale">Scale</h2>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">Foo</span> <span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
-<span class="p">};</span>
- 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">fooOne</span> <span class="o">=</span> <span class="p">{{</span> 
-  <span class="p">{</span><span class="s">&quot;fooOne&quot;</span><span class="p">},</span>
-<span class="p">}};</span>
+<p>Representing the world on a map is fairly straightforward to render. The issues come with rendering a map of the world, then zooming in to your street corner. You can’t exactly just scale up the quad and hope to get away with it (I did, it failed). If you scale up your map, you have to scale up your points on the map, which also fails for the same reason. This is where games knowlage comes in handy these are solved issues in games.</p>
 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">fooTwo</span> <span class="o">=</span> <span class="p">{{</span> 
-  <span class="n">Foo</span><span class="p">{</span><span class="s">&quot;fooTwo&quot;</span><span class="p">},</span>
-<span class="p">}};</span> 
+<h2 id="content">Content</h2>
 
-<span class="k">struct</span> <span class="n">Bar</span> <span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-<span class="p">};</span>
- 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;</span> <span class="n">barOne</span> <span class="o">=</span> <span class="p">{{</span> 
-  <span class="p">{</span><span class="s">&quot;barOne&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span>
-<span class="p">}};</span>
+<p>After you’ve got your map sorted there is content. Some of the datasets are huge! And they want them to work. Millions of points or polygons spread across this massivly scalable world, Nice!</p>
 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;</span> <span class="n">barTwo</span> <span class="o">=</span> <span class="p">{{</span> 
-  <span class="n">Bar</span><span class="p">{</span><span class="s">&quot;barTwo&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span>
-<span class="p">}};</span>
+<h2 id="platform">Platform</h2>
 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">booOne</span> <span class="o">=</span> <span class="p">{{</span> 
-  <span class="p">{</span><span class="s">&quot;boo&quot;</span><span class="p">},</span>
-<span class="p">}};</span>
+<p>While the performace of iDevices are impressive, they still aren’t a desktop with 4 gb of ram. Getting all this onto a phone and have it running correctly is a massive issue. Trying to have dynamic maps that don’t kill your batter and run a decent framerate with these big datasets - ouch. Games can be isolated fairly well, give me a GL context and I’ll do the rest. We need a bit more in maps, which means more external libraries, more platform dependencies, more platform issues.</p>
 
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">booTwo</span> <span class="o">=</span> <span class="p">{{</span> 
-  <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">{</span><span class="s">&quot;boo&quot;</span><span class="p">},</span>
-<span class="p">}};</span></code></pre></div>
+<h2 id="problems">Problems</h2>
 
-<p>Top points if this is the output that you are expecting.</p>
+<p>This area is filled with problems, smart people and no easy solutions. Loving it!</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">fooOne
-
-b
-
-boo
-boo</code></pre></div>
-
-<p>Changing the initialization to single braces fixes the issue, I’m not sure where I picked up the double braced initialization from but I’ve always used them that way.</p>
 
 </article>
 
@@ -151,13 +122,6 @@ boo</code></pre></div>
 
 
   <h3 class="related-post-title">Related Posts</h3>
-  
-    <div class="post ml2">
-      <a href="/general/2015/08/06/working-with-maps/" class="post-link">
-        <h4 class="post-title">Working With Maps</h4>
-        <p class="post-summary">8 months in maps.</p>
-      </a>
-    </div>
   
     <div class="post ml2">
       <a href="/general/2015/06/20/caffeine-math/" class="post-link">
@@ -198,6 +162,13 @@ boo</code></pre></div>
       <a href="/gamedev/2015/04/18/terminal/" class="post-link">
         <h4 class="post-title">Terminal Dev Log 0x1</h4>
         <p class="post-summary">Development log for hacking game.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/04/06/brace-initialization/" class="post-link">
+        <h4 class="post-title">Hair Pulling MSVS Brace Initialization</h4>
+        <p class="post-summary">One of those infuriating moments.</p>
       </a>
     </div>
   
