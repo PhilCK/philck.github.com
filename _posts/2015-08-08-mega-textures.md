@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      Mega Textures
-date:       2015-08-10 22:10:14
-summary:    Textureing the MEGA
+date:       2015-08-08 22:10:14
+summary:    Texturing the MEGA
 categories: GameDev
 tags:       C++, Coding, Maps
 ---
