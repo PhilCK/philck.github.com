@@ -3,8 +3,8 @@ layout:     post
 title:      Working With Maps
 date:       2015-08-06 22:10:14
 summary:    7 months in maps.
-categories: General
-tags:       GeneralDev, Coding,
+categories: MapDev
+tags:       GeneralDev, Coding, MapDev
 ---
 
 

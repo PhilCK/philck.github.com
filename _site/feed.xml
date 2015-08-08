@@ -7,6 +7,45 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Mega Textures</title>
+        <description>&lt;p&gt;Back in university I did my honours project on &lt;a href=&quot;https://vimeo.com/66203380&quot;&gt;Virtual Textures&lt;/a&gt;. Mega Textures could be considered the predecessor to Virtual Textures. It’s actually a very simple idea, and was surprisingly easy to knock up a simple application.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-it&quot;&gt;What Is It&lt;/h2&gt;
+
+&lt;p&gt;In short it is a dynamic mip-map system. With a handful of 512x512 textures you can texture a massively &lt;em&gt;unique&lt;/em&gt; terrain. With a very small memory overhead. If you can imagine drawing rings around the camera that go further and further out. Each one of these rings is a 512x512 texture that stretches further and further away. A notable example in games was Quake Wars, but the idea was around well before John Carmack made it popular.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-does-it-work&quot;&gt;How Does It Work&lt;/h2&gt;
+
+&lt;p&gt;In this demo I created a big texture and also created all the mip layers up-front, this makes it easier to sample on the fly without having to think about things like filtering as well. HDD space is cheap, memory, CPU and GPU are less cheap.&lt;/p&gt;
+
+&lt;p&gt;So for a given point we build a new mip map layer.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.cooperking.net/images/mega_tex/mega_tex_mips.png&quot; alt=&quot;Mip Levels&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The different colors in the screen shot indicate a different texture (mip) being sampled around the origin (&lt;em&gt;note: you would usually do this around the camera&lt;/em&gt;).&lt;/p&gt;
+
+&lt;h2 id=&quot;limitations&quot;&gt;Limitations&lt;/h2&gt;
+
+&lt;p&gt;It is 2D really. Mega Textures fail with overhangs and things like that. Which means it can’t be extended to texturing other objects you may have in the world. However its easy! So for texturing large areas like we do in GIS it might be handy.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.cooperking.net/images/mega_tex/mega_tex_textured.png&quot; alt=&quot;Textured&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this screenshot the textures are being sampled, which results in seemless transition between the mips.&lt;/p&gt;
+
+&lt;h2 id=&quot;my-solution&quot;&gt;My Solution&lt;/h2&gt;
+
+&lt;p&gt;The code for the demo can be found &lt;a href=&quot;https://github.com/PhilCK/mega-texture&quot;&gt;here&lt;/a&gt;, its very limited and doesn’t rebuild the maps when you move the camera, although that should be trivial enough to add. I’m also using 6 mips as I had in mind mapping of very very large areas, but I was having an issue making a large enough dataset so 6 mips might seem like an overkill for what is being renderered. The dataset isn’t included in the repo as Github doesn’t like files of 1gb. However you can easily open up your favourite image editor and make a massive texture, be sure to udpate the size of the texture in the code.&lt;/p&gt;
+
+&lt;h2 id=&quot;final&quot;&gt;Final&lt;/h2&gt;
+
+&lt;p&gt;Virtual Textures are far superior, and can help abstract alot of your texture management, but for a cheap texturing solution this is still viable. I’d like to take another crack at Virtual Textures time permitting but I might try and do it in a map context rather than a game one.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 10 Aug 2015 23:10:14 +0100</pubDate>
+        <link>http://www.cooperking.net/gamedev/2015/08/10/mega-textures/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/08/10/mega-textures/</guid>
+      </item>
+    
+      <item>
         <title>Working With Maps</title>
         <description>&lt;p&gt;Seven months into my job at Esri UK, I’ve passed my probation and still loving it. While many games companies make a big deal about their ‘culture’, which is usually a subtext to ‘We let you have fun at work, now do unpaid overtime’. Esri UK by contrast has an awesome culture. I do miss the tech aspect of games, but in reality I would have had to leave Scotland to do that kind of work.&lt;/p&gt;
 
@@ -30,8 +69,8 @@
 
 </description>
         <pubDate>Thu, 06 Aug 2015 23:10:14 +0100</pubDate>
-        <link>http://www.cooperking.net/general/2015/08/06/working-with-maps/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/general/2015/08/06/working-with-maps/</guid>
+        <link>http://www.cooperking.net/mapdev/2015/08/06/working-with-maps/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/mapdev/2015/08/06/working-with-maps/</guid>
       </item>
     
       <item>
@@ -625,95 +664,6 @@ boo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         <pubDate>Sun, 01 Feb 2015 10:08:09 +0000</pubDate>
         <link>http://www.cooperking.net/gamedev/2015/02/01/chaiscript-in-game-objects/</link>
         <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/02/01/chaiscript-in-game-objects/</guid>
-      </item>
-    
-      <item>
-        <title>Quick And Dirty Game Events</title>
-        <description>&lt;p&gt;In all forms of OO programming objects need to communicate with other objects, but we also try hard to keep dependencies down. In games we usually have a lot of objects that need to talk to each other. Imagine a player in a first person shooter. There could conceivably be a player object, a gun object, a health bar object, a ammo object, a power up object, an audio object etc. All these objects lead to dependencies.&lt;/p&gt;
-
-&lt;p&gt;Using events can help you decouple your code so that nothing depends on anything else (other than the system of events). There are many ways you can do event systems (and I doubt this will be the last time I talk about them here), this is a quick and dirty way of doing it.&lt;/p&gt;
-
-&lt;h3 id=&quot;lets-get-dirty&quot;&gt;Lets Get Dirty&lt;/h3&gt;
-
-&lt;p&gt;A quick and dirty event system can be baked right into your objects. Where the base game object class can contain &lt;em&gt;all&lt;/em&gt; the possible events. So when an event is fired, the implementing game object will only respond to an event if it defined the event method.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GameObject&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// Event List //&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;virtual&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onCollision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theOtherObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;virtual&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onPlayerJump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;virtual&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onPlayerMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vec3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newPosition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// .. continue to list every event in this manor .. //&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Now for each object that needs to respond to a particular event&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// override that particular event.&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AudioManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// .. class stuff ..&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onPlayerJump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;playAudio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;jumpSound&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onPlayerMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;playAudio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;walkSound&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Player&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onCollision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* do collision logic */&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now that our objects know what todo when a particular event is fired. They need to be informed that such an event has occurred. This can change depending on your preference. How I’ve been doing it recently, is to send a lambda to the broadcast method. In fact you can actually call the update and render of the object using this method. This also gives you some added control if you wish to add extra things it.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// The list of all the game objects that you use to update/render them.&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GameObjectList&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;allYourGameObjects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// Update all game objects&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updateGameObjects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// We can use the event caller for this as well.&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;broadcastEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([](&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();});&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;broadcastEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;gameObj&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;allYourGameObjects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gameObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Player sends an event when it moved.&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Player&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;vec3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;playerPos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pressedMoveKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;playerPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;moveVec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-      &lt;span class=&quot;n&quot;&gt;allMyObjects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;broadcastEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;playerPos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onPlayerMoved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;playerPos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h3&gt;
-
-&lt;p&gt;This is really a quick slap method of doing game events, I would only recommend it for small projects. For bigger projects you don’t want to be blindly sending events to all the objects in this manor. You might also want game objects to be able to respond to events, or swallow them so they don’t propagate further.&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 24 Jan 2015 14:14:29 +0000</pubDate>
-        <link>http://www.cooperking.net/gamedev/2015/01/24/game-events/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/01/24/game-events/</guid>
       </item>
     
   </channel>

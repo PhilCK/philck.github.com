@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Working With Maps &#8211; CooperKing.net</title>
+    <title>Mega Textures &#8211; CooperKing.net</title>
     <script src="http://stats.squidvsshark.com/?js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="7 months in maps.">
+    <meta name="description" content="Textureing the MEGA">
     <meta name="author" content="Phil CK">
-    <meta name="keywords" content="general">
-    <link rel="canonical" href="http://www.cooperking.net/general/2015/08/06/working-with-maps/">
+    <meta name="keywords" content="gamedev">
+    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/08/10/mega-textures/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -26,9 +26,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Working With Maps">
+    <meta property="og:title" content="Mega Textures">
     <meta property="og:description" content="My general musings">
-    <meta property="og:url" content="http://www.cooperking.net/general/2015/08/06/working-with-maps/">
+    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/08/10/mega-textures/">
     <meta property="og:site_name" content="CooperKing.net">
 </head>
 
@@ -88,33 +88,44 @@
 
 
 <div class="post-header mb2">
-  <h1>Working With Maps</h1>
-  <span class="post-meta">Aug 6, 2015</span><br>
+  <h1>Mega Textures</h1>
+  <span class="post-meta">Aug 10, 2015</span><br>
   
-  <span class="post-meta small">1 minute read</span>
+  <span class="post-meta small">2 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>Seven months into my job at Esri UK, I’ve passed my probation and still loving it. While many games companies make a big deal about their ‘culture’, which is usually a subtext to ‘We let you have fun at work, now do unpaid overtime’. Esri UK by contrast has an awesome culture. I do miss the tech aspect of games, but in reality I would have had to leave Scotland to do that kind of work.</p>
+  <p>Back in university I did my honours project on <a href="https://vimeo.com/66203380">Virtual Textures</a>. Mega Textures could be considered the predecessor to Virtual Textures. It’s actually a very simple idea, and was surprisingly easy to knock up a simple application.</p>
 
-<p>Working with maps has been fun. I’m surrounded by smart people and difficult problems. Heaven!</p>
+<h2 id="what-is-it">What Is It</h2>
 
-<h2 id="scale">Scale</h2>
+<p>In short it is a dynamic mip-map system. With a handful of 512x512 textures you can texture a massively <em>unique</em> terrain. With a very small memory overhead. If you can imagine drawing rings around the camera that go further and further out. Each one of these rings is a 512x512 texture that stretches further and further away. A notable example in games was Quake Wars, but the idea was around well before John Carmack made it popular.</p>
 
-<p>Representing the world on a map is fairly straightforward to render. The issues come with rendering a map of the world, then zooming in to your street corner. You can’t exactly just scale up the quad and hope to get away with it (I did, it failed). If you scale up your map, you have to scale up your points on the map, which also fails for the same reason. This is where games knowledge comes in handy, some of these are solved issues in games.</p>
+<h2 id="how-does-it-work">How Does It Work</h2>
 
-<h2 id="content">Content</h2>
+<p>In this demo I created a big texture and also created all the mip layers up-front, this makes it easier to sample on the fly without having to think about things like filtering as well. HDD space is cheap, memory, CPU and GPU are less cheap.</p>
 
-<p>After you’ve got your map sorted there is content. Some of the datasets are huge! And they want them to work. Millions of points or polygons spread across this massively scalable world, Nice!</p>
+<p>So for a given point we build a new mip map layer.</p>
 
-<h2 id="platform">Platform</h2>
+<p><img src="http://www.cooperking.net/images/mega_tex/mega_tex_mips.png" alt="Mip Levels" /></p>
 
-<p>While the performance of iDevices are impressive, they still aren’t a desktop with 4 gb of ram. Getting all this onto a phone and have it running correctly is a massive issue. Trying to have dynamic maps that don’t kill your battery and run a decent frame-rate with these big datasets - ouch. Games can be isolated fairly well, give me a GL context and I’ll do the rest. We need a bit more in maps, which means more external libraries, more platform dependencies, more platform issues.</p>
+<p>The different colors in the screen shot indicate a different texture (mip) being sampled around the origin (<em>note: you would usually do this around the camera</em>).</p>
 
-<h2 id="problems">Problems</h2>
+<h2 id="limitations">Limitations</h2>
 
-<p>This area is filled with problems, smart people and no easy solutions. Loving it!</p>
+<p>It is 2D really. Mega Textures fail with overhangs and things like that. Which means it can’t be extended to texturing other objects you may have in the world. However its easy! So for texturing large areas like we do in GIS it might be handy.</p>
 
+<p><img src="http://www.cooperking.net/images/mega_tex/mega_tex_textured.png" alt="Textured" /></p>
+
+<p>In this screenshot the textures are being sampled, which results in seemless transition between the mips.</p>
+
+<h2 id="my-solution">My Solution</h2>
+
+<p>The code for the demo can be found <a href="https://github.com/PhilCK/mega-texture">here</a>, its very limited and doesn’t rebuild the maps when you move the camera, although that should be trivial enough to add. I’m also using 6 mips as I had in mind mapping of very very large areas, but I was having an issue making a large enough dataset so 6 mips might seem like an overkill for what is being renderered. The dataset isn’t included in the repo as Github doesn’t like files of 1gb. However you can easily open up your favourite image editor and make a massive texture, be sure to udpate the size of the texture in the code.</p>
+
+<h2 id="final">Final</h2>
+
+<p>Virtual Textures are far superior, and can help abstract alot of your texture management, but for a cheap texturing solution this is still viable. I’d like to take another crack at Virtual Textures time permitting but I might try and do it in a map context rather than a game one.</p>
 
 </article>
 
@@ -122,6 +133,13 @@
 
 
   <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/mapdev/2015/08/06/working-with-maps/" class="post-link">
+        <h4 class="post-title">Working With Maps</h4>
+        <p class="post-summary">7 months in maps.</p>
+      </a>
+    </div>
   
     <div class="post ml2">
       <a href="/general/2015/06/20/caffeine-math/" class="post-link">
@@ -183,13 +201,6 @@
       <a href="/gamedev/2015/01/24/game-events/" class="post-link">
         <h4 class="post-title">Quick And Dirty Game Events</h4>
         <p class="post-summary">Game events don't need to be complicated.</p>
-      </a>
-    </div>
-  
-    <div class="post ml2">
-      <a href="/gamedev/2015/01/16/game-object-looping/" class="post-link">
-        <h4 class="post-title">Game Object Looping</h4>
-        <p class="post-summary">Looping through game objects efficiently.</p>
       </a>
     </div>
   
