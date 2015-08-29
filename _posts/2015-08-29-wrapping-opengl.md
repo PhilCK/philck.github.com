@@ -8,7 +8,7 @@ tags:       C++, Coding
 ---
 
 
-I've been creating a [simple wrapper](#) for OpenGL to help me with some common things. While I'm not a huge fan of archetypal object orientation, I chose to write this wrapper in that way for ease of prototyping. However wrapping OpenGL (or any C style resource) is not as easy as you might think.
+I've been creating a [simple wrapper](https://github.com/PhilCK/simple-renderer) for OpenGL to help me with some common things. While I'm not a huge fan of archetypal object orientation, I chose to write this wrapper in that way for ease of prototyping. However wrapping OpenGL (or any C style resource) is not as easy as you might think.
 
 
 ## Simple Resource Wrap
@@ -76,4 +76,4 @@ This isn't ideal. One possible solution would be to make the internal shared_ptr
 
 ## Remember Requirements
 
-Its very easy to get caught up with what is the 'correct' way to do something. And while that is certainly something worthy to stive to, I tend to think that I am an engineer first and foremost. Simple Wrapper was supposed to be a simple tool to allow me to use textures and shaders quickly. So to that end the internal shared_ptr wins. It may hurt my eyes slightly, it may not be nice (I find OOP rarely is anyway), but it works with minimum fuss.
+Its very easy to get caught up with what is the 'correct' way to do something. And while that is certainly something worthy to stive to, I tend to think that I am an engineer first and foremost. This wrapper was supposed to be a simple tool to allow me to use textures and shaders quickly. So to that end the internal shared_ptr wins. It may hurt my eyes slightly, it may not be nice (I find OOP rarely is anyway), but it works with minimum fuss.

@@ -8,7 +8,7 @@
     
       <item>
         <title>Wrapping OpenGL</title>
-        <description>&lt;p&gt;I’ve been creating a &lt;a href=&quot;#&quot;&gt;simple wrapper&lt;/a&gt; for OpenGL to help me with some common things. While I’m not a huge fan of archetypal object orientation, I chose to write this wrapper in that way for ease of prototyping. However wrapping OpenGL (or any C style resource) is not as easy as you might think.&lt;/p&gt;
+        <description>&lt;p&gt;I’ve been creating a &lt;a href=&quot;https://github.com/PhilCK/simple-renderer&quot;&gt;simple wrapper&lt;/a&gt; for OpenGL to help me with some common things. While I’m not a huge fan of archetypal object orientation, I chose to write this wrapper in that way for ease of prototyping. However wrapping OpenGL (or any C style resource) is not as easy as you might think.&lt;/p&gt;
 
 &lt;h2 id=&quot;simple-resource-wrap&quot;&gt;Simple Resource Wrap&lt;/h2&gt;
 
@@ -65,7 +65,7 @@
 
 &lt;h2 id=&quot;remember-requirements&quot;&gt;Remember Requirements&lt;/h2&gt;
 
-&lt;p&gt;Its very easy to get caught up with what is the ‘correct’ way to do something. And while that is certainly something worthy to stive to, I tend to think that I am an engineer first and foremost. Simple Wrapper was supposed to be a simple tool to allow me to use textures and shaders quickly. So to that end the internal shared_ptr wins. It may hurt my eyes slightly, it may not be nice (I find OOP rarely is anyway), but it works with minimum fuss.&lt;/p&gt;
+&lt;p&gt;Its very easy to get caught up with what is the ‘correct’ way to do something. And while that is certainly something worthy to stive to, I tend to think that I am an engineer first and foremost. This wrapper was supposed to be a simple tool to allow me to use textures and shaders quickly. So to that end the internal shared_ptr wins. It may hurt my eyes slightly, it may not be nice (I find OOP rarely is anyway), but it works with minimum fuss.&lt;/p&gt;
 </description>
         <pubDate>Sat, 29 Aug 2015 12:12:43 +0100</pubDate>
         <link>http://www.cooperking.net/gamedev/2015/08/29/wrapping-opengl/</link>
