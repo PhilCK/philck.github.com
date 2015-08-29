@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Wrapping OpenGL &#8211; CooperKing.net</title>
+    <script src="http://stats.squidvsshark.com/?js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Object Orientated OpenGL.">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="gamedev">
+    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/08/29/wrapping-opengl/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Wrapping OpenGL">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/08/29/wrapping-opengl/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/post_index/">Post Index</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/squidvsshark"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Wrapping OpenGL</h1>
+  <span class="post-meta">Aug 29, 2015</span><br>
+  
+  <span class="post-meta small">3 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>I’ve been creating a <a href="#">simple wrapper</a> for OpenGL to help me with some common things. While I’m not a huge fan of archetypal object orientation, I chose to write this wrapper in that way for ease of prototyping. However wrapping OpenGL (or any C style resource) is not as easy as you might think.</p>
+
+<h2 id="simple-resource-wrap">Simple Resource Wrap</h2>
+
+<p>Its easy right? I just initialize the resource in the constructor and release it in the destructor. RAII is all you need right?</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">texture</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">texture</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">filename</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// ... other stuff</span>
+    <span class="n">glGenTextures</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_tex_id</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">texture</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">glDeleteTextures</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tex_id</span><span class="p">)</span>
+  <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+
+  <span class="n">GLuint</span> <span class="n">tex_id</span><span class="p">;</span>
+
+<span class="p">};</span></code></pre></div>
+
+<p>We’re done! - No we aren’t. What if I copy this texture? Then the first copy to go out of scope will take the resource with it. Well that can be solved by making the copy and assignment private, and defining a move and move assignment. This works to a degree, however you’d be surprised how many implicit copy’s you make, so it invalidates my need for a simple wrapper for quick prototyping. However I’d consider this the most correct in an academic sense, but not an engineering one.</p>
+
+<h2 id="i-know-sharedptrs">I Know, Shared_ptrs!</h2>
+
+<p><em>Apparently</em> shared_ptrs solve everything.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">texture</span><span class="o">&gt;</span> <span class="n">my_texture</span><span class="p">;</span> <span class="c1">// Solved?</span></code></pre></div>
+
+<p>This is horrid, but it does fit the ‘easier’ for prototyping angle, there is a tweak we can do to make this less horrid though.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">texture</span>
+<span class="p">{</span>
+  <span class="c1">// texture impl</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">texture_resource</span><span class="o">&gt;</span> <span class="n">m_gl_texture</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>This makes things somewhat cleaner. I’m not passing shared_ptr’s around everywhere, and at the same time the resource isn’t destroyed until all copies have vanished, but it still suffers from the whole shared_ptr thing. It is in essence a global, its state can be changed by who knows what, who knows where.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">texture</span> <span class="nf">my_texture</span><span class="p">(</span><span class="s">&quot;my_512_texture.png&quot;</span><span class="p">);</span>
+<span class="n">my_texture</span><span class="p">.</span><span class="n">get_width</span><span class="p">();</span> <span class="c1">// 512</span>
+
+<span class="n">texture</span> <span class="nf">copy</span><span class="p">(</span><span class="n">my_texture</span><span class="p">);</span>
+<span class="n">copy</span><span class="p">.</span><span class="n">load_data</span><span class="p">(</span><span class="s">&quot;other_256_texture.png&quot;</span><span class="p">);</span>
+
+<span class="n">my_texture</span><span class="p">.</span><span class="n">get_width</span><span class="p">();</span> <span class="c1">// 256</span></code></pre></div>
+
+<p>This isn’t ideal. One possible solution would be to make the internal shared_ptr const (I am a fan of immutable objects), and then the RAII thing comes back to life a little. However the issue with RAII is that it assumes all resources are equal. Its quite often the case with textures that you would want to update them, so this doesn’t solve the issue where copies can change the state.</p>
+
+<h2 id="remember-requirements">Remember Requirements</h2>
+
+<p>Its very easy to get caught up with what is the ‘correct’ way to do something. And while that is certainly something worthy to stive to, I tend to think that I am an engineer first and foremost. Simple Wrapper was supposed to be a simple tool to allow me to use textures and shaders quickly. So to that end the internal shared_ptr wins. It may hurt my eyes slightly, it may not be nice (I find OOP rarely is anyway), but it works with minimum fuss.</p>
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/11/prototypes/" class="post-link">
+        <h4 class="post-title">Prototypes</h4>
+        <p class="post-summary">Some little prototypes I made.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/08/mega-textures/" class="post-link">
+        <h4 class="post-title">Mega Textures</h4>
+        <p class="post-summary">Texturing the MEGA</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/mapdev/2015/08/06/working-with-maps/" class="post-link">
+        <h4 class="post-title">Working With Maps</h4>
+        <p class="post-summary">7 months in maps.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/20/caffeine-math/" class="post-link">
+        <h4 class="post-title">Caffeine Math</h4>
+        <p class="post-summary">Small hobby math engine.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/16/cpp_build/" class="post-link">
+        <h4 class="post-title">C++ Build Gem</h4>
+        <p class="post-summary">Ruby gem to build C++ files.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/25/software-book-recommendations/" class="post-link">
+        <h4 class="post-title">Book Recommendations</h4>
+        <p class="post-summary">Good software books.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/19/who-are-you-coding-for/" class="post-link">
+        <h4 class="post-title">Who Do You Code For?</h4>
+        <p class="post-summary">Chances are it isn't your boss.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/16/code-review-hates/" class="post-link">
+        <h4 class="post-title">My Top 10 Code Review BS</h4>
+        <p class="post-summary">Code reviews can just suck.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/04/18/terminal/" class="post-link">
+        <h4 class="post-title">Terminal Dev Log 0x1</h4>
+        <p class="post-summary">Development log for hacking game.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/04/06/brace-initialization/" class="post-link">
+        <h4 class="post-title">Hair Pulling MSVS Brace Initialization</h4>
+        <p class="post-summary">One of those infuriating moments.</p>
+      </a>
+    </div>
+  
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
