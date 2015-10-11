@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Draw Text In One Draw Call &#8211; CooperKing.net</title>
+    <script src="http://stats.squidvsshark.com/?js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="One technique at batching text.">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="gamedev">
+    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/10/10/rendering_text_in_one_draw_call/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Draw Text In One Draw Call">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/10/10/rendering_text_in_one_draw_call/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/post_index/">Post Index</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/squidvsshark"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Draw Text In One Draw Call</h1>
+  <span class="post-meta">Oct 10, 2015</span><br>
+  
+  <span class="post-meta small">5 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>Drawing text seems like it should be a free lunch, but it’s not. Simplest way is to draw a character per quad, but a naive implementation will have each character a seperate draw call. This might be fine for some simple text like ‘Level Up’ but when you have a screen of text this becomes problematic. You really want to be able to batch your calls somehow. This is how I’ve been doing it, there are other techniques out there so don’t consider this a definitive guide to text batching. Also I’m not going into how to render the text in any detail, as that really is another topic.</p>
+
+<p><img src="http://www.cooperking.net/images/drawing_text.png" alt="Drawing Text" /></p>
+
+<p>What I’ve done in Terminal to render text is to push all the data into a texture, use the geometry buffer to build the quad in the correct place with the correct scale, and then in the fragment shader lookup the font glyph.</p>
+
+<h2 id="data-texture">Data Texture</h2>
+
+<p>This is the most expensive step, we need to build a texture with all the data inside it, and potentially update each frame.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">text_data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kt">char</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">character_id</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">position_x</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">position_x</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">tex_u</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">tex_v</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">width</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">height</span><span class="p">,</span> <span class="c1">// other attributes.</span>
+  <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">character_id</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">position_x</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">position_x</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">tex_u</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">tex_v</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">width</span><span class="p">,</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">height</span><span class="p">,</span> <span class="c1">// other attributes.</span>
+  <span class="c1">// Rest of text...</span>
+<span class="p">};</span></code></pre></div>
+
+<p>Use this data as texture data, but we aren’t going to use GL_RGBA as our pixel format as we wont get the same data backvout of the texture. Instead we will build our texture with GL_RGBA32F, this way our values will not get clipped.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">GLuint</span> <span class="n">tex_id</span><span class="p">;</span>
+<span class="n">glGenTextures</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tex_id</span><span class="p">);</span>
+<span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">tex_id</span><span class="p">);</span>
+<span class="n">glTexImage2D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">GL_RGBA32F</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">GL_RGBA</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">text_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span></code></pre></div>
+
+<h2 id="render-points">Render Points</h2>
+
+<p>Since we are using the Geometry shader to generate the quads, we need to pass the geo shader some way to index the data texture. We could have a vertex format with an ‘id’, and generate a large vertex buffer of points, However there is a nice feature in OpenGL we can use. if you render a bunch of nothings, the vertex shader will still get called with unique gl_VertexID, We can pass this along to the geo shader to use as an index into our data texture.</p>
+
+<p>Calling this (With your data texture bound of course).</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">uint32_t</span> <span class="n">how_many_characters_you_want_to_render</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_POINTS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">how_many_characters_you_want_to_render</span><span class="p">);</span></code></pre></div>
+
+<h2 id="vertex-shader">Vertex Shader</h2>
+
+<p>We can can get the vertex id in the vertex shader (notice no input).</p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#version 150 core</span>
+
+<span class="n">out</span> <span class="n">VertexData</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">inID</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">vertexOut</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">vertexOut</span><span class="p">.</span><span class="n">inID</span> <span class="o">=</span> <span class="n">gl_VertexID</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>And pass it straight to the geo shader.</p>
+
+<h2 id="geometry-shader">Geometry Shader</h2>
+
+<p>In the geometry shader we can use the vertex id combined with texelFetch (which takes an x,y co-ord into a texture) to get the information from the texture for the quads we need.</p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#version 150</span>
+
+<span class="n">layout</span> <span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="n">in</span><span class="p">;</span>
+<span class="n">layout</span> <span class="p">(</span><span class="n">triangle_strip</span><span class="p">,</span> <span class="n">max_vertices</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="n">out</span><span class="p">;</span>
+
+<span class="n">in</span> <span class="n">VertexData</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">inID</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">vertexIn</span><span class="p">[];</span>
+
+<span class="n">out</span> <span class="n">vec2</span> <span class="n">texC</span><span class="p">;</span>
+
+<span class="n">uniform</span> <span class="n">sampler2D</span> <span class="n">dataLookup</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">vec4</span> <span class="n">dataChunk1</span> <span class="o">=</span> <span class="n">texelFetch</span><span class="p">(</span><span class="n">dataLookup</span><span class="p">,</span> <span class="n">ivec2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">vertexIn</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">inID</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">vec4</span> <span class="n">dataChunk2</span> <span class="o">=</span> <span class="n">texelFetch</span><span class="p">(</span><span class="n">dataLookup</span><span class="p">,</span> <span class="n">ivec2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">vertexIn</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">inID</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="c1">// Any other data chunks.</span>
+
+  <span class="c1">// Generate billboard.</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="cm">/*</span>
+<span class="cm">     We now have all the information to build the quad.</span>
+<span class="cm">    */</span>
+
+    <span class="n">EmitVertex</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="n">EndPrimitive</span><span class="p">();}</span></code></pre></div>
+
+<h2 id="fragment-shader">Fragment Shader</h2>
+
+<p>Now we can just sample from the texture that contains all the character glyphs.</p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#version 150</span>
+
+<span class="n">in</span> <span class="n">vec2</span> <span class="n">texC</span><span class="p">;</span>
+
+<span class="n">uniform</span> <span class="n">sampler2D</span> <span class="n">fontLookup</span><span class="p">;</span> <span class="c1">// Contains glyphs of all the characters.</span>
+
+<span class="n">out</span> <span class="n">vec4</span> <span class="n">outColor</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">outColor</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">fontLookup</span><span class="p">,</span> <span class="n">texC</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+<h2 id="other-stuff">Other Stuff</h2>
+
+<p>Text is a big topic I purposely avoided talking about UTF-8, and the actual rendering processes as those are their own topics. Being able to batch text like this is pretty cool, I don’t see a reason why this couldn’t be extended to Sprites.</p>
+
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/29/wrapping-opengl/" class="post-link">
+        <h4 class="post-title">Wrapping OpenGL</h4>
+        <p class="post-summary">Object Orientated OpenGL.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/11/prototypes/" class="post-link">
+        <h4 class="post-title">Prototypes</h4>
+        <p class="post-summary">Some little prototypes I made.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/08/mega-textures/" class="post-link">
+        <h4 class="post-title">Mega Textures</h4>
+        <p class="post-summary">Texturing the MEGA</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/mapdev/2015/08/06/working-with-maps/" class="post-link">
+        <h4 class="post-title">Working With Maps</h4>
+        <p class="post-summary">7 months in maps.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/20/caffeine-math/" class="post-link">
+        <h4 class="post-title">Caffeine Math</h4>
+        <p class="post-summary">Small hobby math engine.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/16/cpp_build/" class="post-link">
+        <h4 class="post-title">C++ Build Gem</h4>
+        <p class="post-summary">Ruby gem to build C++ files.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/25/software-book-recommendations/" class="post-link">
+        <h4 class="post-title">Book Recommendations</h4>
+        <p class="post-summary">Good software books.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/19/who-are-you-coding-for/" class="post-link">
+        <h4 class="post-title">Who Do You Code For?</h4>
+        <p class="post-summary">Chances are it isn't your boss.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/16/code-review-hates/" class="post-link">
+        <h4 class="post-title">My Top 10 Code Review BS</h4>
+        <p class="post-summary">Code reviews can just suck.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/04/18/terminal/" class="post-link">
+        <h4 class="post-title">Terminal Dev Log 0x1</h4>
+        <p class="post-summary">Development log for hacking game.</p>
+      </a>
+    </div>
+  
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
