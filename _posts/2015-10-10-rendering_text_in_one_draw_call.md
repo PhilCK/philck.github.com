@@ -38,7 +38,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, width, height, 0, GL_RGBA, GL_FLOAT, 
 
 ## Render Points
 
-Since we are using the Geometry shader to generate the quads, we need to pass the geo shader some way to index the data texture. We could have a vertex format with an 'id', and generate a large vertex buffer of points, However there is a nice feature in OpenGL we can use. if you render a bunch of nothings, the vertex shader will still get called with unique gl_VertexID, We can pass this along to the geo shader to use as an index into our data texture.
+Since we are using the Geometry shader to generate the quads, we need to pass the geo shader some way to index the data texture. We could have a vertex format with an 'id', and generate a large vertex buffer of points, However there is a nice feature in OpenGL we can use. If you render a bunch of nothings, the vertex shader will still get called with unique gl_VertexID. We can pass this along to the geo shader to use as an index into our data texture.
 
 Calling this (With your data texture bound of course).
 
