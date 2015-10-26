@@ -1,0 +1,58 @@
+<p>I’ve been creating a <a href="https://github.com/PhilCK/simple-renderer">simple wrapper</a> for OpenGL to help me with some common things. While I’m not a huge fan of archetypal object orientation, I chose to write this wrapper in that way for ease of prototyping. However wrapping OpenGL (or any C style resource) is not as easy as you might think.</p>
+
+<h2 id="simple-resource-wrap">Simple Resource Wrap</h2>
+
+<p>Its easy right? I just initialize the resource in the constructor and release it in the destructor. RAII is all you need right?</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">texture</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="n">texture</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">filename</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// ... other stuff</span>
+    <span class="n">glGenTextures</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_tex_id</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">texture</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">glDeleteTextures</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tex_id</span><span class="p">)</span>
+  <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+
+  <span class="n">GLuint</span> <span class="n">tex_id</span><span class="p">;</span>
+
+<span class="p">};</span></code></pre></div>
+
+<p>We’re done! - No we aren’t. What if I copy this texture? Then the first copy to go out of scope will take the resource with it. Well that can be solved by making the copy and assignment private, and defining a move and move assignment. This works to a degree, however you’d be surprised how many implicit copy’s you make, so it invalidates my need for a simple wrapper for quick prototyping. However I’d consider this the most correct in an academic sense, but not an engineering one.</p>
+
+<h2 id="i-know-sharedptrs">I Know, Shared_ptrs!</h2>
+
+<p><em>Apparently</em> shared_ptrs solve everything.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">texture</span><span class="o">&gt;</span> <span class="n">my_texture</span><span class="p">;</span> <span class="c1">// Solved?</span></code></pre></div>
+
+<p>This is horrid, but it does fit the ‘easier’ for prototyping angle, there is a tweak we can do to make this less horrid though.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">texture</span>
+<span class="p">{</span>
+  <span class="c1">// texture impl</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">texture_resource</span><span class="o">&gt;</span> <span class="n">m_gl_texture</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>This makes things somewhat cleaner. I’m not passing shared_ptr’s around everywhere, and at the same time the resource isn’t destroyed until all copies have vanished, but it still suffers from the whole shared_ptr thing. It is in essence a global, its state can be changed by who knows what, who knows where.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">texture</span> <span class="nf">my_texture</span><span class="p">(</span><span class="s">&quot;my_512_texture.png&quot;</span><span class="p">);</span>
+<span class="n">my_texture</span><span class="p">.</span><span class="n">get_width</span><span class="p">();</span> <span class="c1">// 512</span>
+
+<span class="n">texture</span> <span class="nf">copy</span><span class="p">(</span><span class="n">my_texture</span><span class="p">);</span>
+<span class="n">copy</span><span class="p">.</span><span class="n">load_data</span><span class="p">(</span><span class="s">&quot;other_256_texture.png&quot;</span><span class="p">);</span>
+
+<span class="n">my_texture</span><span class="p">.</span><span class="n">get_width</span><span class="p">();</span> <span class="c1">// 256</span></code></pre></div>
+
+<p>This isn’t ideal. One possible solution would be to make the internal shared_ptr const (I am a fan of immutable objects), and then the RAII thing comes back to life a little. However the issue with RAII is that it assumes all resources are equal. Its quite often the case with textures that you would want to update them, so this doesn’t solve the issue where copies can change the state.</p>
+
+<h2 id="remember-requirements">Remember Requirements</h2>
+
+<p>Its very easy to get caught up with what is the ‘correct’ way to do something. And while that is certainly something worthy to stive to, I tend to think that I am an engineer first and foremost. This wrapper was supposed to be a simple tool to allow me to use textures and shaders quickly. So to that end the internal shared_ptr wins. It may hurt my eyes slightly, it may not be nice (I find OOP rarely is anyway), but it works with minimum fuss.</p>

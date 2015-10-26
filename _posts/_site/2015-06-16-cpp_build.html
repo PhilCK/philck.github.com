@@ -1,0 +1,38 @@
+<p>My first gem! I’m sure this must be a special moment if I was sentimental enough to care about that kinda thing :) This is a gem to help build C++ files.</p>
+
+<h2 id="why">Why</h2>
+
+<p>I started this little gem to bridge the gap between using full blown IDE’s and compiling on the command line. I sometimes find that making a project is too verbose for compiling a bunch of files, while the command line quickly becomes tedious.</p>
+
+<p>Why not just use Rake? Well I wanted something a little more geared towards C++, and while I use Rake for a lot of things both in and out of work, I would still end up having to write and cut and paste code to build the command line string.</p>
+
+<h2 id="how-to-use-it">How To Use It</h2>
+
+<p>It’s very similar to Rake so it shouldn’t feel out of place.</p>
+
+<p>The usual</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install cpp_builder</code></pre></div>
+
+<p>Create a file called <code>buildfile</code> in the directory you wish to run it from. Then edit the file to be something like this…</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">CppBuild</span><span class="o">.</span><span class="n">build</span> <span class="ss">:test_basic</span> <span class="k">do</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span>
+
+  <span class="n">b</span><span class="o">.</span><span class="n">compiler</span> <span class="o">=</span> <span class="ss">:clang</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">inc_dirs</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/local/include&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">lib_dirs</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/local/lib&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">libs</span>     <span class="o">=</span> <span class="s2">&quot;SDL&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">files</span>    <span class="o">=</span> <span class="s2">&quot;main.cpp&quot;</span><span class="p">,</span> <span class="s2">&quot;foo.cpp&quot;</span>
+  <span class="n">b</span><span class="o">.</span><span class="n">config</span>   <span class="o">=</span> <span class="ss">:debug</span>
+
+<span class="k">end</span></code></pre></div>
+
+<p>Then call from the command line.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>cpp_build test_basic</code></pre></div>
+
+<p>And it will compile your program.</p>
+
+<h2 id="support-and-future-dev">Support and Future Dev</h2>
+
+<p>Currently it only supports OSX and Clang. I hope to get other support in quite soon, in particular support for other compilers. While I still have a need for this I’ll keep improving it. When I’m happy with Clang support I’ll move to GCC. Windows is a little finicky because its command line interface isn’t available by default usually, but I’d like to get that support there to.</p>

@@ -1,0 +1,49 @@
+<p>We’ve all had one of those moments where you can’t figure out what the hell is going on. You’ve changed something in your code and all hell has broken loose, most of the time this is to due to needing a rest or at least a change of gear. When porting some code that I had been working on with Clang over to MSVS it altogether stopped working. After a few expletives I was quite surprised to find out it that was due to double brace initialization combined with only a <code>single</code> element.</p>
+
+<h3 id="testcode">TestCode</h3>
+
+<p>Curious to what was going on I did the following little <a href="http://pastie.org/10048059">test</a> in MSVS 2013 (Update 4).</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">Foo</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+ 
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">fooOne</span> <span class="o">=</span> <span class="p">{{</span> 
+  <span class="p">{</span><span class="s">&quot;fooOne&quot;</span><span class="p">},</span>
+<span class="p">}};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span> <span class="n">fooTwo</span> <span class="o">=</span> <span class="p">{{</span> 
+  <span class="n">Foo</span><span class="p">{</span><span class="s">&quot;fooTwo&quot;</span><span class="p">},</span>
+<span class="p">}};</span> 
+
+<span class="k">struct</span> <span class="n">Bar</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">};</span>
+ 
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;</span> <span class="n">barOne</span> <span class="o">=</span> <span class="p">{{</span> 
+  <span class="p">{</span><span class="s">&quot;barOne&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span>
+<span class="p">}};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Bar</span><span class="o">&gt;</span> <span class="n">barTwo</span> <span class="o">=</span> <span class="p">{{</span> 
+  <span class="n">Bar</span><span class="p">{</span><span class="s">&quot;barTwo&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span>
+<span class="p">}};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">booOne</span> <span class="o">=</span> <span class="p">{{</span> 
+  <span class="p">{</span><span class="s">&quot;boo&quot;</span><span class="p">},</span>
+<span class="p">}};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">booTwo</span> <span class="o">=</span> <span class="p">{{</span> 
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">{</span><span class="s">&quot;boo&quot;</span><span class="p">},</span>
+<span class="p">}};</span></code></pre></div>
+
+<p>Top points if this is the output that you are expecting.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">fooOne
+
+b
+
+boo
+boo</code></pre></div>
+
+<p>Changing the initialization to single braces fixes the issue, I’m not sure where I picked up the double braced initialization from but I’ve always used them that way.</p>

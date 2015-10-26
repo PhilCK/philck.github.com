@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Simplistic Variant &#8211; CooperKing.net</title>
+    <script src="http://stats.squidvsshark.com/?js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simple C++ union solution">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="general">
+    <link rel="canonical" href="http://www.cooperking.net/general/2015/10/10/simple-variant/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Simplistic Variant">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/general/2015/10/10/simple-variant/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/post_index/">Post Index</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/squidvsshark"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Simplistic Variant</h1>
+  <span class="post-meta">Oct 10, 2015</span><br>
+  
+  <span class="post-meta small">4 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>Variants are C++’s union solution. Since C style unions in C++ can only support basic types, they are quite limited. Unions and variants can be pretty good for things like event data, or storing json (or any other interchange format) data. You might choose to use a variant to pass data around a callback system.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">my_event_callback</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint32_t</span> <span class="n">id</span><span class="p">,</span> <span class="k">const</span> <span class="n">Variant</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">switch</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span>
+    <span class="p">{</span>
+      <span class="k">const</span> <span class="kt">float</span> <span class="n">my_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span>
+      <span class="n">my_float_setter</span><span class="p">(</span><span class="n">my_data</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">:</span>
+    <span class="p">{</span>
+      <span class="k">const</span> <span class="n">vec3</span> <span class="n">my_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">vec3</span><span class="o">&gt;</span><span class="p">();</span>
+      <span class="n">my_vec3_setter</span><span class="p">(</span><span class="n">my_data</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>But if you’ve ever cracked open Boost’s variant or looked at some of the other variants out there it can be hard to understand what’s going on under the hood. And there is usually a lot going on as there are a few edge cases you need to consider. However even fundamentally understanding what is going on can be a challenge as templates can quickly become hard to read.</p>
+
+<h2 id="type-agnostic-data-store">Type Agnostic Data Store</h2>
+
+<p>You might have already done something like this for getting data out of an xml/json etc.</p>
+
+<p>We just have a chunk of memory that we use to dump various different data types into.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Node</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="k">explicit</span> <span class="n">Node</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">new</span><span class="p">(</span><span class="n">data_store</span><span class="p">)</span> <span class="kt">float</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">explicit</span> <span class="n">Node</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">new</span><span class="p">(</span><span class="n">data_store</span><span class="p">)</span> <span class="kt">int</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Other type ctors</span>
+
+  <span class="kt">float</span> <span class="n">as_float</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">data_store</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">as_int</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">data_store</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Other cast types</span>
+
+<span class="k">private</span><span class="o">:</span>
+  <span class="kt">uint8_t</span> <span class="n">data_store</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span> <span class="c1">// the actual data.</span>
+<span class="p">};</span></code></pre></div>
+
+<p>This way we can push what we want into data_store as long as its within the maximum size of the data_store.</p>
+
+<p>Well really that’s half way to a simple variant class. Extracting out this logic we can very quickly make a simple generic variant.</p>
+
+<h2 id="a-simplistic-variant">A Simplistic Variant</h2>
+
+<p>We can use templates to get and set the data in the data store, and std::aligned_union will allow us to get the size of the biggest type we might need to store.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include &lt;type_traits&gt;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Variant</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_store</span><span class="p">)</span> <span class="n">T</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Args</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...);</span>
+  <span class="p">}</span>
+
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">T</span><span class="o">&amp;</span> <span class="n">get</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_store</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+  <span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">aligned_union</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ts</span><span class="p">...</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">data_store</span><span class="p">;</span>
+<span class="p">};</span></code></pre></div>
+
+<p>To use the variant we need to pass in the types that it should support. This way the template can figure out how much space is required.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Variant</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">my_variant</span><span class="p">;</span>
+
+<span class="n">my_variant</span><span class="p">.</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">1.234f</span><span class="p">);</span>
+<span class="n">my_variant</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// returns 1.234</span>
+
+<span class="n">my_variant</span><span class="p">.</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
+<span class="n">my_variant</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// returns &quot;Hello World&quot;</span></code></pre></div>
+
+<p>The variant’s size will be the size of its biggest element, which is something to be aware of.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Variant</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="n">vec3</span><span class="p">,</span> <span class="n">vec4</span><span class="p">,</span> <span class="n">mat33</span><span class="p">,</span> <span class="n">mat44</span><span class="o">&gt;</span> <span class="n">math_variant</span><span class="p">;</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">math_variant</span><span class="p">);</span> <span class="c1">// mat44 is float * 16 == 64 bytes.</span></code></pre></div>
+
+<p>And thats about it.</p>
+
+<h2 id="is-that-really-it">Is That Really It?</h2>
+
+<p>Well no, not really. I’ve left out a lot of details so I could show the barebones of how a variant works, without getting bogged down in a lot of detail (There are a bunch of posts that go into that detail). Most notably whats missing is type checking. You really want some type_id system to be able to force an error if you are trying to get a float from an std::string etc.</p>
+
+<p>However this is a good starting point for creating your own variant, it’s mine anyway.</p>
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/10/10/rendering_text_in_one_draw_call/" class="post-link">
+        <h4 class="post-title">Draw Text In One Draw Call</h4>
+        <p class="post-summary">One technique at batching text.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/29/wrapping-opengl/" class="post-link">
+        <h4 class="post-title">Wrapping OpenGL</h4>
+        <p class="post-summary">Object Orientated OpenGL.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/11/prototypes/" class="post-link">
+        <h4 class="post-title">Prototypes</h4>
+        <p class="post-summary">Some little prototypes I made.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/08/mega-textures/" class="post-link">
+        <h4 class="post-title">Mega Textures</h4>
+        <p class="post-summary">Texturing the MEGA</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/mapdev/2015/08/06/working-with-maps/" class="post-link">
+        <h4 class="post-title">Working With Maps</h4>
+        <p class="post-summary">7 months in maps.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/20/caffeine-math/" class="post-link">
+        <h4 class="post-title">Caffeine Math</h4>
+        <p class="post-summary">Small hobby math engine.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/16/cpp_build/" class="post-link">
+        <h4 class="post-title">C++ Build Gem</h4>
+        <p class="post-summary">Ruby gem to build C++ files.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/25/software-book-recommendations/" class="post-link">
+        <h4 class="post-title">Book Recommendations</h4>
+        <p class="post-summary">Good software books.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/19/who-are-you-coding-for/" class="post-link">
+        <h4 class="post-title">Who Do You Code For?</h4>
+        <p class="post-summary">Chances are it isn't your boss.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/05/16/code-review-hates/" class="post-link">
+        <h4 class="post-title">My Top 10 Code Review BS</h4>
+        <p class="post-summary">Code reviews can just suck.</p>
+      </a>
+    </div>
+  
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
