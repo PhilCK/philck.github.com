@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Simplistic Variant 
-date:       2015-10-10 09:01:32
+date:       2015-10-26 21:10:22
 summary:    Simple C++ union solution
 categories: General
 tags:       C++, Coding
