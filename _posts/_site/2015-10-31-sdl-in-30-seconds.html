@@ -1,0 +1,82 @@
+<p>Ok! Sometimes we want a GL context, just a GL context and we want it now! Well assuming you have brew and command line tools installed you can.</p>
+
+<h2 id="install-sdl2">Install SDL2</h2>
+
+<p>Lets get into terminal and type.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">brew install sdl2</code></pre></div>
+
+<h2 id="create-a-simple-program">Create A Simple Program</h2>
+
+<p>Create a cpp file and open in your fav editor (Sublime Right?).</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">mkdir sdl2_in_a_flash
+cd sdl2_in_a_flash
+touch main.cpp
+subl main.cpp</code></pre></div>
+
+<p>Then add the bare minimum to get SDL2 up and running.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#include &lt;SDL2/SDL.h&gt;</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// SDL Window</span>
+  <span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_EVERYTHING</span><span class="p">);</span>
+
+  <span class="k">auto</span> <span class="n">sdl_window</span> <span class="o">=</span> <span class="n">SDL_CreateWindow</span><span class="p">(</span><span class="s">&quot;SDL2 in 30 seconds.&quot;</span><span class="p">,</span>
+                <span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span>
+                <span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span>
+                <span class="mi">800</span><span class="p">,</span>
+                <span class="mi">480</span><span class="p">,</span>
+                <span class="n">SDL_WINDOW_ALLOW_HIGHDPI</span> <span class="o">|</span> <span class="n">SDL_WINDOW_OPENGL</span><span class="p">);</span>
+
+  <span class="c1">// GL</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_CONTEXT_MAJOR_VERSION</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_CONTEXT_MINOR_VERSION</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_CONTEXT_PROFILE_MASK</span><span class="p">,</span> <span class="n">SDL_GL_CONTEXT_PROFILE_CORE</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_RED_SIZE</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_GREEN_SIZE</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_BLUE_SIZE</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_DEPTH_SIZE</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_STENCIL_SIZE</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_DOUBLEBUFFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_MULTISAMPLEBUFFERS</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">SDL_GL_SetAttribute</span><span class="p">(</span><span class="n">SDL_GL_MULTISAMPLESAMPLES</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+  
+  <span class="k">auto</span> <span class="n">gl_context</span> <span class="o">=</span> <span class="n">SDL_GL_CreateContext</span><span class="p">(</span><span class="n">sdl_window</span><span class="p">);</span>
+
+  <span class="n">SDL_GL_MakeCurrent</span><span class="p">(</span><span class="n">sdl_window</span><span class="p">,</span> <span class="n">gl_context</span><span class="p">);</span>
+
+  <span class="c1">// Game loop</span>
+  <span class="kt">bool</span> <span class="n">is_running</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">is_running</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Process Events</span>
+    <span class="n">SDL_Event</span> <span class="n">sdl_event</span><span class="p">;</span>
+  
+    <span class="k">while</span> <span class="p">(</span><span class="n">SDL_PollEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sdl_event</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">sdl_event</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">SDL_QUIT</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">is_running</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// *** Do Your Stuff.</span>
+
+  <span class="p">}</span>
+
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<h2 id="compile-and-run">Compile And Run</h2>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">clang++ main.cpp -std=c++11 -I/usr/local/include -L/user/local/lib -lsdl2 -F OpenGL
+./a.out</code></pre></div>
+
+<h2 id="rejoice">Rejoice!</h2>
+
+<p>I’m not sure it could be easier really.</p>
