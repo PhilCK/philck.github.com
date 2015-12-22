@@ -7,6 +7,99 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>The Component Entity Pattern</title>
+        <description>&lt;p&gt;One thing I think games development is really good at is object composition, I think thats because the game industry has simply tried all the ways to do it. Some are better than others, others scale poorly but are good enough for a project at a certain size.&lt;/p&gt;
+
+&lt;p&gt;When we talk about object composition we are usually talking about making an entity on the screen (or off) have certain functionality, and some other entity a different but possibly similar set of functionality. Sharing this functionality across different entity types can be useful in terms of sharing common code, and also in terms of a common interface with your game engine.&lt;/p&gt;
+
+&lt;h2 id=&quot;object-composition-through-inheritance&quot;&gt;Object Composition Through Inheritance&lt;/h2&gt;
+
+&lt;p&gt;The easiest form of object composition is of course using inheritance.&lt;/p&gt;
+
+&lt;h3 id=&quot;single-inheritance&quot;&gt;Single Inheritance&lt;/h3&gt;
+
+&lt;p&gt;The ‘classical’ way is straight up inheritance. This good for small projects, but deep inheritance tree’s quickly becomes problematic.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GameObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Spaceship&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GameObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Destroyer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Spaceship&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SuperDestroyer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Destroyer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Very soon we end up with a special case type ship that may or may not share characteristics with other ships.&lt;/p&gt;
+
+&lt;p&gt;The arcytyple example to this problem is the Animal one.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mammal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// can walk&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Fish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// can swim&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bird&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// can fly&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But then when we want to implement a Penguin we really want to inherit of Fish to get the swim. Or a Whale, we want to inherit of Fish even though its a Mammal.&lt;/p&gt;
+
+&lt;p&gt;Still this is a reasonable way to-do it for certain projects. I tend to worry after about 3 deep inheritance, I always feel the chances of framework hell increase exponentially with each layer of inheritance.&lt;/p&gt;
+
+&lt;h3 id=&quot;multi-inheritance&quot;&gt;Multi-Inheritance&lt;/h3&gt;
+
+&lt;p&gt;Most languages don’t support multi-inheritance (with good reason), but if I express a game object like this, it almost ‘feels’ right.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Player&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Renderable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Collidable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;However I don’t think ‘feels’ outweighs the problems it has. It comes with the diamond inheritance issue, and also (I feel) makes things slightly confusing.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-oop-component-entity&quot;&gt;The OOP Component Entity&lt;/h2&gt;
+
+&lt;p&gt;Not a huge fan of OOP these days, however I do think its good for displaying concepts.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Component_interface&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;explicit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+   &lt;span class=&quot;n&quot;&gt;Entity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get_parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Entity&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;final&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Component_interface&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* search through m_components and return or nullptr */&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is nice. we have made the Entity just a container class for all the components, to the point where we can just stop any inheritance from it. The components can talk to each other in a sideways fashion if they need to, and even change there behavior based on what other components are attached.&lt;/p&gt;
+
+&lt;h2 id=&quot;data-or-logic&quot;&gt;Data or Logic&lt;/h2&gt;
+
+&lt;p&gt;Unity uses a component system, but I think it makes for a blurry example, and quite likely doesn’t really represent whats going on underneath but just has an abstracted GUI for the user ease (of which it is). Unity makes no distinction between what is data and what is logic. Most of the existing components feel more like data, while the ones you add feel more like logic.&lt;/p&gt;
+
+&lt;p&gt;I prefer data over logic (your solution might make sense to do the other way around), The main issue I run into with ‘logic’ can be summed up with Transforms and Rigidbodies, who owns the positional data? The transform or the physics engine? When thinking in terms of logic this makes things (at least to me) blurry. However shifting your view point to that of data, the answer becomes a little simpler, nether! Its just positional data, of which the Transform and Physics can both interact with.&lt;/p&gt;
+
+&lt;p&gt;There are other overlaps, you might want to use the AABB for collision information, but you might also want to use it for culling objects in the scene. The animation system and renderer both also want access to the mesh data.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;entity&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;has_data&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;transform_data&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;aabb_data&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;mesh_data&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;material_data&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;has_logic&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;transform_logic&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;rigidbody_logic&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;renderer_logic&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I think looking at it like this makes things easier to see that logic can share data, this uncoupling makes some of the complexities of treating components all as equal resolve itself.&lt;/p&gt;
+
+&lt;h2 id=&quot;final&quot;&gt;Final&lt;/h2&gt;
+
+&lt;p&gt;This was a very wish washy article. I’ve used a component system of sorts for most projects, however the more I separate out the data from the logic the easier I find some of this stuff to-do.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 20 Dec 2015 16:19:07 +0000</pubDate>
+        <link>http://www.cooperking.net/gamedev/2015/12/20/component-entity/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/12/20/component-entity/</guid>
+      </item>
+    
+      <item>
         <title>Quick SDL2 Context</title>
         <description>&lt;p&gt;Ok! Sometimes we want a GL context, just a GL context and we want it now! Well assuming you have brew and command line tools installed you can.&lt;/p&gt;
 
@@ -94,6 +187,96 @@ subl main.cpp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         <pubDate>Sat, 31 Oct 2015 16:19:07 +0000</pubDate>
         <link>http://www.cooperking.net/gamedev/2015/10/31/sdl-in-30-seconds/</link>
         <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/10/31/sdl-in-30-seconds/</guid>
+      </item>
+    
+      <item>
+        <title>Events</title>
+        <description>&lt;p&gt;I’m a big fan of event systems, used correctly they give you a nice mechanism to seperate dependencies.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-sdl2&quot;&gt;Install SDL2&lt;/h2&gt;
+
+&lt;p&gt;Lets get into terminal and type.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;brew install sdl2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;create-a-simple-program&quot;&gt;Create A Simple Program&lt;/h2&gt;
+
+&lt;p&gt;Create a cpp file and open in your fav editor (Sublime Right?).&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;mkdir sdl2_in_a_flash
+cd sdl2_in_a_flash
+touch main.cpp
+subl main.cpp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then add the bare minimum to get SDL2 up and running.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;SDL2/SDL.h&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// SDL Window&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_INIT_EVERYTHING&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sdl_window&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDL_CreateWindow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;SDL2 in 30 seconds.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;SDL_WINDOWPOS_CENTERED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;SDL_WINDOWPOS_CENTERED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;mi&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;mi&quot;&gt;480&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;SDL_WINDOW_ALLOW_HIGHDPI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDL_WINDOW_OPENGL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// GL&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_CONTEXT_MAJOR_VERSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_CONTEXT_MINOR_VERSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_CONTEXT_PROFILE_MASK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDL_GL_CONTEXT_PROFILE_CORE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_RED_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_GREEN_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_BLUE_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_DEPTH_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_STENCIL_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_DOUBLEBUFFER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_MULTISAMPLEBUFFERS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_SetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_GL_MULTISAMPLESAMPLES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gl_context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDL_GL_CreateContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sdl_window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;SDL_GL_MakeCurrent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sdl_window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gl_context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// Game loop&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is_running&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_running&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Process Events&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;SDL_Event&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sdl_event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SDL_PollEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sdl_event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sdl_event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDL_QUIT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;is_running&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// *** Do Your Stuff.&lt;/span&gt;
+
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;compile-and-run&quot;&gt;Compile And Run&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;clang++ main.cpp -std=c++11 -I/usr/local/include -L/user/local/lib -lsdl2 -F OpenGL
+./a.out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;rejoice&quot;&gt;Rejoice!&lt;/h2&gt;
+
+&lt;p&gt;I’m not sure it could be easier really.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 31 Oct 2015 16:19:07 +0000</pubDate>
+        <link>http://www.cooperking.net/gamedev/2015/10/31/events/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/10/31/events/</guid>
       </item>
     
       <item>
@@ -512,133 +695,6 @@ subl main.cpp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         <pubDate>Sat, 20 Jun 2015 23:01:18 +0100</pubDate>
         <link>http://www.cooperking.net/general/2015/06/20/caffeine-math/</link>
         <guid isPermaLink="true">http://www.cooperking.net/general/2015/06/20/caffeine-math/</guid>
-      </item>
-    
-      <item>
-        <title>C++ Build Gem</title>
-        <description>&lt;p&gt;My first gem! I’m sure this must be a special moment if I was sentimental enough to care about that kinda thing :) This is a gem to help build C++ files.&lt;/p&gt;
-
-&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
-
-&lt;p&gt;I started this little gem to bridge the gap between using full blown IDE’s and compiling on the command line. I sometimes find that making a project is too verbose for compiling a bunch of files, while the command line quickly becomes tedious.&lt;/p&gt;
-
-&lt;p&gt;Why not just use Rake? Well I wanted something a little more geared towards C++, and while I use Rake for a lot of things both in and out of work, I would still end up having to write and cut and paste code to build the command line string.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-use-it&quot;&gt;How To Use It&lt;/h2&gt;
-
-&lt;p&gt;It’s very similar to Rake so it shouldn’t feel out of place.&lt;/p&gt;
-
-&lt;p&gt;The usual&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install cpp_builder&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Create a file called &lt;code&gt;buildfile&lt;/code&gt; in the directory you wish to run it from. Then edit the file to be something like this…&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;CppBuild&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:test_basic&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;compiler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:clang&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inc_dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;./&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/usr/local/include&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lib_dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;./&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/usr/local/lib&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libs&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;SDL&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;files&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;main.cpp&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;foo.cpp&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:debug&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Then call from the command line.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cpp_build test_basic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;And it will compile your program.&lt;/p&gt;
-
-&lt;h2 id=&quot;support-and-future-dev&quot;&gt;Support and Future Dev&lt;/h2&gt;
-
-&lt;p&gt;Currently it only supports OSX and Clang. I hope to get other support in quite soon, in particular support for other compilers. While I still have a need for this I’ll keep improving it. When I’m happy with Clang support I’ll move to GCC. Windows is a little finicky because its command line interface isn’t available by default usually, but I’d like to get that support there to.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 16 Jun 2015 18:50:18 +0100</pubDate>
-        <link>http://www.cooperking.net/general/2015/06/16/cpp_build/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/general/2015/06/16/cpp_build/</guid>
-      </item>
-    
-      <item>
-        <title>Book Recommendations</title>
-        <description>&lt;p&gt;List of books that I’ve read and recommend. In no particular order…&lt;/p&gt;
-
-&lt;h2 id=&quot;scott-meyers&quot;&gt;Scott Meyers&lt;/h2&gt;
-
-&lt;p&gt;These books should be mandatory for C++ developers everywhere! They are good to get up to speed with good C++ practices. Read em!&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center;&quot;&gt;
-
-	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/Effective-Modern-Specific-Ways-Improve/dp/1491903996/&quot;&gt;
-		&lt;img src=&quot;http://2.bp.blogspot.com/-eOUamjgchSI/U6cJGkNW-vI/AAAAAAAAAOY/zOgPNpFvqH8/s1600/front%2Bcover.jpg&quot; /&gt;
-		&lt;/a&gt;
-	&lt;/div&gt;
-
-	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/Effective-Specific-Programs-Professional-Computing/dp/0321334876/&quot;&gt;
-		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/71lC2NLUvuL.jpg&quot; /&gt;
-		&lt;/a&gt;
-	&lt;/div&gt;
-
-	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/Effective-STL-Specific-Professional-Computing/dp/0201749629&quot;&gt;
-		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/416gOk71-DL.jpg&quot; /&gt;
-		&lt;/a&gt;
-	&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id=&quot;the-lean-startup-getting-real-and-rework&quot;&gt;The Lean Startup, Getting Real, and Rework&lt;/h2&gt;
-
-&lt;p&gt;These books aren’t directly about software development, but there is a very good common theme that runs right through it. Less is more! Even if you aren’t starting a company as much of the mentality in these books are relatable, I would recommend reading them if you are a software developer.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center;&quot;&gt;
-
-	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/Lean-Startup-Innovation-Successful-Businesses/dp/0670921602/&quot;&gt;
-		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/71Ed2BslK0L.jpg&quot; /&gt;
-		&lt;/a&gt;
-	&lt;/div&gt;
-
-	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/Getting-Real-smarter-successful-application/dp/0578012812/&quot;&gt;
-		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/31jvYr2h6GL.jpg&quot; /&gt;
-		&lt;/a&gt;
-	&lt;/div&gt;
-
-	&lt;div style=&quot;width:30%; display:inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/ReWork-Change-Way-Work-Forever/dp/0091929784/&quot;&gt;
-		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/61GFc%2Bk-5PL.jpg&quot; /&gt;
-		&lt;/a&gt;
-	&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id=&quot;bonus-no-asshole-rule-and-remote&quot;&gt;Bonus: No Asshole Rule and Remote&lt;/h2&gt;
-
-&lt;p&gt;Not software books but are good reads.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center;&quot;&gt;
-
-	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/Asshole-Rule-Civilised-Workplace-Surviving/dp/0749954035/&quot;&gt;
-		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/61XPJCzklvL.jpg&quot; /&gt;
-	&lt;/a&gt;
-	&lt;/div&gt;
-
-	&lt;div style=&quot;width:30%; display: inline-block;&quot;&gt;
-		&lt;a href=&quot;http://www.amazon.co.uk/Remote-Required-David-Heinemeier-Hansson-ebook/dp/B00CZ7OC46/&quot;&gt;
-		&lt;img src=&quot;http://ecx.images-amazon.com/images/I/41iNTaTZrbL.jpg&quot; /&gt;
-	&lt;/a&gt;
-	&lt;/div&gt;	
-
-&lt;/div&gt;
-</description>
-        <pubDate>Mon, 25 May 2015 22:25:18 +0100</pubDate>
-        <link>http://www.cooperking.net/general/2015/05/25/software-book-recommendations/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/general/2015/05/25/software-book-recommendations/</guid>
       </item>
     
   </channel>

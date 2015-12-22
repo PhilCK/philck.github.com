@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Component Entity Pattern &#8211; CooperKing.net</title>
+    <script src="http://stats.squidvsshark.com/?js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Organizing code.">
+    <meta name="author" content="Phil CK">
+    <meta name="keywords" content="gamedev">
+    <link rel="canonical" href="http://www.cooperking.net/gamedev/2015/12/20/component-entity/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+    <link rel="stylesheet" href="/css/extra.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Component Entity Pattern">
+    <meta property="og:description" content="My general musings">
+    <meta property="og:url" content="http://www.cooperking.net/gamedev/2015/12/20/component-entity/">
+    <meta property="og:site_name" content="CooperKing.net">
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://www.cooperking.net" class="site-title">CooperKing.net</a>
+      <nav class="site-nav right">
+        <a href="/portfolio/">Portfolio</a>
+<a href="/about/">About</a>
+<a href="/post_index/">Post Index</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/PhilCK"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-twitter" href="https://twitter.com/squidvsshark"></a>
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:phil@cooperking.net"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/philcooperking"></a>
+    
+    
+    
+      <a class="fa fa-vimeo-square" href="http://vimeo.com/user752924"></a>
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>The Component Entity Pattern</h1>
+  <span class="post-meta">Dec 20, 2015</span><br>
+  
+  <span class="post-meta small">4 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>One thing I think games development is really good at is object composition, I think thats because the game industry has simply tried all the ways to do it. Some are better than others, others scale poorly but are good enough for a project at a certain size.</p>
+
+<p>When we talk about object composition we are usually talking about making an entity on the screen (or off) have certain functionality, and some other entity a different but possibly similar set of functionality. Sharing this functionality across different entity types can be useful in terms of sharing common code, and also in terms of a common interface with your game engine.</p>
+
+<h2 id="object-composition-through-inheritance">Object Composition Through Inheritance</h2>
+
+<p>The easiest form of object composition is of course using inheritance.</p>
+
+<h3 id="single-inheritance">Single Inheritance</h3>
+
+<p>The ‘classical’ way is straight up inheritance. This good for small projects, but deep inheritance tree’s quickly becomes problematic.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">GameObject</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">Spaceship</span> <span class="o">:</span> <span class="k">public</span> <span class="n">GameObject</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">Destroyer</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Spaceship</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">SuperDestroyer</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Destroyer</span><span class="p">;</span></code></pre></div>
+
+<p>Very soon we end up with a special case type ship that may or may not share characteristics with other ships.</p>
+
+<p>The arcytyple example to this problem is the Animal one.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Animal</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">Mammal</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Animal</span><span class="p">;</span> <span class="c1">// can walk</span>
+<span class="k">class</span> <span class="nc">Fish</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Animal</span><span class="p">;</span> <span class="c1">// can swim</span>
+<span class="k">class</span> <span class="nc">Bird</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Animal</span><span class="p">;</span> <span class="c1">// can fly</span></code></pre></div>
+
+<p>But then when we want to implement a Penguin we really want to inherit of Fish to get the swim. Or a Whale, we want to inherit of Fish even though its a Mammal.</p>
+
+<p>Still this is a reasonable way to-do it for certain projects. I tend to worry after about 3 deep inheritance, I always feel the chances of framework hell increase exponentially with each layer of inheritance.</p>
+
+<h3 id="multi-inheritance">Multi-Inheritance</h3>
+
+<p>Most languages don’t support multi-inheritance (with good reason), but if I express a game object like this, it almost ‘feels’ right.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Player</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">Renderable</span><span class="p">,</span> <span class="n">Collidable</span><span class="p">;</span></code></pre></div>
+
+<p>However I don’t think ‘feels’ outweighs the problems it has. It comes with the diamond inheritance issue, and also (I feel) makes things slightly confusing.</p>
+
+<h2 id="the-oop-component-entity">The OOP Component Entity</h2>
+
+<p>Not a huge fan of OOP these days, however I do think its good for displaying concepts.</p>
+
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Component_interface</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="k">explicit</span><span class="p">(</span><span class="n">Entity</span> <span class="o">*</span><span class="n">parent</span><span class="p">);</span>
+
+   <span class="n">Entity</span> <span class="o">*</span><span class="nf">get_parent</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Entity</span> <span class="k">final</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Component_interface</span><span class="o">&gt;</span> <span class="n">m_components</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">T</span><span class="o">*</span> <span class="n">get_component</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* search through m_components and return or nullptr */</span> <span class="p">}</span>
+<span class="p">};</span></code></pre></div>
+
+<p>This is nice. we have made the Entity just a container class for all the components, to the point where we can just stop any inheritance from it. The components can talk to each other in a sideways fashion if they need to, and even change there behavior based on what other components are attached.</p>
+
+<h2 id="data-or-logic">Data or Logic</h2>
+
+<p>Unity uses a component system, but I think it makes for a blurry example, and quite likely doesn’t really represent whats going on underneath but just has an abstracted GUI for the user ease (of which it is). Unity makes no distinction between what is data and what is logic. Most of the existing components feel more like data, while the ones you add feel more like logic.</p>
+
+<p>I prefer data over logic (your solution might make sense to do the other way around), The main issue I run into with ‘logic’ can be summed up with Transforms and Rigidbodies, who owns the positional data? The transform or the physics engine? When thinking in terms of logic this makes things (at least to me) blurry. However shifting your view point to that of data, the answer becomes a little simpler, nether! Its just positional data, of which the Transform and Physics can both interact with.</p>
+
+<p>There are other overlaps, you might want to use the AABB for collision information, but you might also want to use it for culling objects in the scene. The animation system and renderer both also want access to the mesh data.</p>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">entity</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">has_data</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">transform_data</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">aabb_data</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">mesh_data</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">material_data</span><span class="p-Indicator">:</span>
+
+  <span class="l-Scalar-Plain">has_logic</span>
+    <span class="l-Scalar-Plain">transform_logic</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">rigidbody_logic</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">renderer_logic</span><span class="p-Indicator">:</span></code></pre></div>
+
+<p>I think looking at it like this makes things easier to see that logic can share data, this uncoupling makes some of the complexities of treating components all as equal resolve itself.</p>
+
+<h2 id="final">Final</h2>
+
+<p>This was a very wish washy article. I’ve used a component system of sorts for most projects, however the more I separate out the data from the logic the easier I find some of this stuff to-do.</p>
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/10/31/sdl-in-30-seconds/" class="post-link">
+        <h4 class="post-title">Quick SDL2 Context</h4>
+        <p class="post-summary">SDL2 context in 30 seconds on a Mac.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/10/31/events/" class="post-link">
+        <h4 class="post-title">Events</h4>
+        <p class="post-summary">Another event system.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/10/26/simple-variant/" class="post-link">
+        <h4 class="post-title">Simplistic Variant</h4>
+        <p class="post-summary">Simple C++ union solution.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/10/10/rendering_text_in_one_draw_call/" class="post-link">
+        <h4 class="post-title">Draw Text In One Draw Call</h4>
+        <p class="post-summary">One technique at batching text.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/29/wrapping-opengl/" class="post-link">
+        <h4 class="post-title">Wrapping OpenGL</h4>
+        <p class="post-summary">Object Orientated OpenGL.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/11/prototypes/" class="post-link">
+        <h4 class="post-title">Prototypes</h4>
+        <p class="post-summary">Some little prototypes I made.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/gamedev/2015/08/08/mega-textures/" class="post-link">
+        <h4 class="post-title">Mega Textures</h4>
+        <p class="post-summary">Texturing the MEGA</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/mapdev/2015/08/06/working-with-maps/" class="post-link">
+        <h4 class="post-title">Working With Maps</h4>
+        <p class="post-summary">7 months in maps.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/20/caffeine-math/" class="post-link">
+        <h4 class="post-title">Caffeine Math</h4>
+        <p class="post-summary">Small hobby math engine.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/16/cpp_build/" class="post-link">
+        <h4 class="post-title">C++ Build Gem</h4>
+        <p class="post-summary">Ruby gem to build C++ files.</p>
+      </a>
+    </div>
+  
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cooperkingnet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+      	Blog powered by <a href="http://jekyllrb.com/">Jekyll</a> with <a href="http://johnotander.com">John Otander's</a> <a href="https://github.com/johnotander/pixyll">Pixyll</a> theme.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
