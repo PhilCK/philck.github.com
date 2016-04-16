@@ -7,6 +7,78 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Life Without STL</title>
+        <description>&lt;p&gt;Coming from games STL can bring up varied comments, but I never really cared for this thinking. My assumption at the time was alot of this
+was down to traditional thinking, rather than any factual thing. Now I work on a large code base and slow build times are
+a reality, so I set my self a task of life without STL for some fun (such a nerd).&lt;/p&gt;
+
+&lt;h2 id=&quot;strings&quot;&gt;Strings&lt;/h2&gt;
+
+&lt;p&gt;The first thing that slapped me in the face was even though std::string is a terrible string class by modern standards,
+string manipulation without std::string are a royal pain. Urgh!&lt;/p&gt;
+
+&lt;p&gt;String manipulation aside I realize that string’s in C++ are a massive pain anyway. Every second 3rd-party API has there own string class, internally
+you might also have your own. One place I worked we had two! an ANSI string class and a UTF8 string class. However without exception they all grant
+access to the underlying data structure with via a c_str() function (more on that later).&lt;/p&gt;
+
+&lt;h3 id=&quot;containers&quot;&gt;Containers&lt;/h3&gt;
+
+&lt;p&gt;My containers became instantly uglier, as I now had to keep a track of the capacity and the size of the array manually.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;My_data&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transform&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transforms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;uint32_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;uint32_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Oh dear!&lt;/p&gt;
+
+&lt;h3 id=&quot;interfaces&quot;&gt;Interfaces&lt;/h3&gt;
+
+&lt;p&gt;One thing I hate about 3rd-party API’s is when they force a point of-view on you, you don’t notice till you don’t share it. An API that requires you to use std::shared_ptrs
+or std::vectors, regardless if your code is using std::unique_ptr and std::array. Moving to a more C style of interface these interface niggles vanish.&lt;/p&gt;
+
+&lt;p&gt;Consider if a third party uses STL like this.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// I find this is annoying!&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ThridPartyAPI&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Annoying now you have to marshel your data into that type or change your underlying data because they said so.&lt;/p&gt;
+
+&lt;p&gt;However if you remove STL from the interface it becomes less obstructive.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// This doesn&amp;#39;t get in my way.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ThridPartyAPI&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size_of_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now this doesn’t matter at all if my data is in a std::array or std::vector or even a c-array.&lt;/p&gt;
+
+&lt;h3 id=&quot;error-reporting&quot;&gt;Error Reporting&lt;/h3&gt;
+
+&lt;p&gt;This isn’t limited to STL but more templates in general, STL is however a good example of this. When things go wrong you get the most insane error string
+when using STL. Not using STL you get errors that are actually readable. This is very helpful.&lt;/p&gt;
+
+&lt;h3 id=&quot;memory&quot;&gt;Memory&lt;/h3&gt;
+
+&lt;p&gt;This is really a double edged sword. While in some circumstances I found it much nicer dealing with the memory directly, and it gave me a much better
+understanding on how my own program was working, this does add a level of required attention and knowledge about the system you are working on. And when dealing with
+little temporary allocations this is becomes burdensome.&lt;/p&gt;
+
+&lt;h3 id=&quot;cleaner-code&quot;&gt;Cleaner Code&lt;/h3&gt;
+
+&lt;p&gt;While it may be partly due to the project I choice to go STL free on, I did find that grouping data together was more natural, and desirable. I do really groan when I have to deal with big OO structures already, so dealing with data directly is such a refreshing thing.&lt;/p&gt;
+
+&lt;h3 id=&quot;all-in-all&quot;&gt;All in All&lt;/h3&gt;
+
+&lt;p&gt;Am I now a detractor of STL? Not really, but I will use it with a lot more care, I like my interfaces STL free now. However a lot my hobby code is fast iteration mucking about. For which STL really helps me focus on what I need to. However at work I’m still waiting for the compiler to finish, urgh!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 06 Apr 2016 17:19:07 +0100</pubDate>
+        <link>http://www.cooperking.net/general/2016/04/06/life-without-stl/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/general/2016/04/06/life-without-stl/</guid>
+      </item>
+    
+      <item>
         <title>The Component Entity Pattern</title>
         <description>&lt;p&gt;One thing I think games development is really good at is object composition, I think thats because the game industry has simply tried all the ways to do it. Some are better than others, others scale poorly but are good enough for a project at a certain size.&lt;/p&gt;
 
@@ -95,8 +167,8 @@
 &lt;p&gt;This was a very wish washy article. I’ve used a component system of sorts for most projects, however the more I separate out the data from the logic the easier I find some of this stuff to-do.&lt;/p&gt;
 </description>
         <pubDate>Sun, 20 Dec 2015 16:19:07 +0000</pubDate>
-        <link>http://www.cooperking.net/gamedev/2015/12/20/component-entity/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/12/20/component-entity/</guid>
+        <link>http://www.cooperking.net/gamedev/2015/12/20/component-entity%20copy/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/12/20/component-entity%20copy/</guid>
       </item>
     
       <item>
@@ -605,52 +677,6 @@ subl main.cpp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         <pubDate>Sat, 20 Jun 2015 23:01:18 +0100</pubDate>
         <link>http://www.cooperking.net/general/2015/06/20/caffeine-math/</link>
         <guid isPermaLink="true">http://www.cooperking.net/general/2015/06/20/caffeine-math/</guid>
-      </item>
-    
-      <item>
-        <title>C++ Build Gem</title>
-        <description>&lt;p&gt;My first gem! I’m sure this must be a special moment if I was sentimental enough to care about that kinda thing :) This is a gem to help build C++ files.&lt;/p&gt;
-
-&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
-
-&lt;p&gt;I started this little gem to bridge the gap between using full blown IDE’s and compiling on the command line. I sometimes find that making a project is too verbose for compiling a bunch of files, while the command line quickly becomes tedious.&lt;/p&gt;
-
-&lt;p&gt;Why not just use Rake? Well I wanted something a little more geared towards C++, and while I use Rake for a lot of things both in and out of work, I would still end up having to write and cut and paste code to build the command line string.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-use-it&quot;&gt;How To Use It&lt;/h2&gt;
-
-&lt;p&gt;It’s very similar to Rake so it shouldn’t feel out of place.&lt;/p&gt;
-
-&lt;p&gt;The usual&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install cpp_builder&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Create a file called &lt;code&gt;buildfile&lt;/code&gt; in the directory you wish to run it from. Then edit the file to be something like this…&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;CppBuild&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:test_basic&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;compiler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:clang&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inc_dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;./&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/usr/local/include&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lib_dirs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;./&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/usr/local/lib&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libs&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;SDL&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;files&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;main.cpp&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;foo.cpp&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:debug&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Then call from the command line.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cpp_build test_basic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;And it will compile your program.&lt;/p&gt;
-
-&lt;h2 id=&quot;support-and-future-dev&quot;&gt;Support and Future Dev&lt;/h2&gt;
-
-&lt;p&gt;Currently it only supports OSX and Clang. I hope to get other support in quite soon, in particular support for other compilers. While I still have a need for this I’ll keep improving it. When I’m happy with Clang support I’ll move to GCC. Windows is a little finicky because its command line interface isn’t available by default usually, but I’d like to get that support there to.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 16 Jun 2015 18:50:18 +0100</pubDate>
-        <link>http://www.cooperking.net/general/2015/06/16/cpp_build/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/general/2015/06/16/cpp_build/</guid>
       </item>
     
   </channel>
