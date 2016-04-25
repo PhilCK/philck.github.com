@@ -167,8 +167,8 @@ little temporary allocations this becomes burdensome.&lt;/p&gt;
 &lt;p&gt;This was a very wish washy article. I’ve used a component system of sorts for most projects, however the more I separate out the data from the logic the easier I find some of this stuff to-do.&lt;/p&gt;
 </description>
         <pubDate>Sun, 20 Dec 2015 16:19:07 +0000</pubDate>
-        <link>http://www.cooperking.net/gamedev/2015/12/20/component-entity%20copy/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/12/20/component-entity%20copy/</guid>
+        <link>http://www.cooperking.net/gamedev/2015/12/20/component-entity/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/gamedev/2015/12/20/component-entity/</guid>
       </item>
     
       <item>
