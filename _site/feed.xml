@@ -7,6 +7,35 @@
     <atom:link href="http://www.cooperking.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>NYAML</title>
+        <description>&lt;p&gt;Interchange formats are many, JSON, BSON, XML, YAML and it goes on. Alot of these formats are very much at home in certain languages and/or task. YAML is very confortable in Ruby, but to get it into C++ requires a fairly hefty library for what it is. XML parsers are easier to get into C++ but XML lacks the readability of YAML.&lt;/p&gt;
+
+&lt;p&gt;I don’t need yaml for what I need in C++, I really just need (want?) a better .INI file for config type things.&lt;/p&gt;
+
+&lt;h2 id=&quot;nyaml-not-yaml&quot;&gt;NYAML (Not YAML!)&lt;/h2&gt;
+
+&lt;p&gt;Taking the main syntax style of YAML, but dropping alot of the specs, we can strip yaml right back to a key value tree.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;800&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;600&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;window title&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;fullscreen&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is nice and readable, no special syntax highlighting required, and we can boil this straight down to a C++ lookup.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;final&quot;&gt;Final&lt;/h2&gt;
+
+&lt;p&gt;I’ve wrapped this up as a single header library that can be found on github &lt;a href=&quot;https://github.com/republic-of-almost/nyaml&quot;&gt;here&lt;/a&gt;. This isn’t meant to be a fully fledge interchange format, its just meant to have a yaml like key/value config file.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 Sep 2016 21:12:40 +0100</pubDate>
+        <link>http://www.cooperking.net/general/2016/09/29/nyaml/</link>
+        <guid isPermaLink="true">http://www.cooperking.net/general/2016/09/29/nyaml/</guid>
+      </item>
+    
+      <item>
         <title>Life Without STL</title>
         <description>&lt;p&gt;Coming from games, STL can bring up varied comments, but I never really cared for this thinking. My assumption at the time was alot of this
 was down to traditional thinking, rather than any factual thing. Now I work on a large code base and slow build times are
@@ -644,39 +673,6 @@ subl main.cpp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         <pubDate>Thu, 06 Aug 2015 23:10:14 +0100</pubDate>
         <link>http://www.cooperking.net/mapdev/2015/08/06/working-with-maps/</link>
         <guid isPermaLink="true">http://www.cooperking.net/mapdev/2015/08/06/working-with-maps/</guid>
-      </item>
-    
-      <item>
-        <title>Caffeine Math</title>
-        <description>&lt;p&gt;A little while ago I started putting up some of my math code onto Github which can be found &lt;a href=&quot;https://github.com/PhilCK/caffeine-math&quot;&gt;here&lt;/a&gt;. Its a small simple math library that I use for my hobby projects (mostly games).&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-it&quot;&gt;What Is It?&lt;/h2&gt;
-
-&lt;p&gt;It’s a header only math library, that handles most vector, and matrix math. It has other things in it as well. I’ve been porting it over in small bits as I write tests for those components. Also gives me a chance to add missing functions that should be in a math library but I’ve not had a need for.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-use-it&quot;&gt;How To Use It?&lt;/h2&gt;
-
-&lt;p&gt;It’s completely function based. And all functions start with the type name to make things like intellisence easier.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_velocity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;vector3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector3_add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_velocity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Most of it works along those lines.&lt;/p&gt;
-
-&lt;h2 id=&quot;no-simd&quot;&gt;No SIMD&lt;/h2&gt;
-
-&lt;p&gt;It’s always been one of those things I’ve meant to add, but usually I find speed up’s elsewhere so I use them. Combined with my projects being small scale. However its something I’d like to add after I’ve finished porting/testing the various components.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-next&quot;&gt;What Next&lt;/h2&gt;
-
-&lt;p&gt;I need to finish Matrix support and I have some other basic geometry math I need to add for a project, I’ll add that to the library when I come to that. And hopefully I can get SIMD done stuff at the end of summer.&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 20 Jun 2015 23:01:18 +0100</pubDate>
-        <link>http://www.cooperking.net/general/2015/06/20/caffeine-math/</link>
-        <guid isPermaLink="true">http://www.cooperking.net/general/2015/06/20/caffeine-math/</guid>
       </item>
     
   </channel>

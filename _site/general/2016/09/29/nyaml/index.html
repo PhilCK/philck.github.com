@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Caffeine Math &#8211; CooperKing.net</title>
+    <title>NYAML &#8211; CooperKing.net</title>
     <script src="http://stats.squidvsshark.com/?js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Small hobby math engine.">
+    <meta name="description" content="Very small subset of yaml">
     <meta name="author" content="Phil CK">
     <meta name="keywords" content="general">
-    <link rel="canonical" href="http://www.cooperking.net/general/2015/06/20/caffeine-math/">
+    <link rel="canonical" href="http://www.cooperking.net/general/2016/09/29/nyaml/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -26,9 +26,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Caffeine Math">
+    <meta property="og:title" content="NYAML">
     <meta property="og:description" content="My general musings">
-    <meta property="og:url" content="http://www.cooperking.net/general/2015/06/20/caffeine-math/">
+    <meta property="og:url" content="http://www.cooperking.net/general/2016/09/29/nyaml/">
     <meta property="og:site_name" content="CooperKing.net">
 </head>
 
@@ -88,38 +88,34 @@
 
 
 <div class="post-header mb2">
-  <h1>Caffeine Math</h1>
-  <span class="post-meta">Jun 20, 2015</span><br>
+  <h1>NYAML</h1>
+  <span class="post-meta">Sep 29, 2016</span><br>
   
   <span class="post-meta small">1 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>A little while ago I started putting up some of my math code onto Github which can be found <a href="https://github.com/PhilCK/caffeine-math">here</a>. Its a small simple math library that I use for my hobby projects (mostly games).</p>
+  <p>Interchange formats are many, JSON, BSON, XML, YAML and it goes on. Alot of these formats are very much at home in certain languages and/or task. YAML is very confortable in Ruby, but to get it into C++ requires a fairly hefty library for what it is. XML parsers are easier to get into C++ but XML lacks the readability of YAML.</p>
 
-<h2 id="what-is-it">What Is It?</h2>
+<p>I don’t need yaml for what I need in C++, I really just need (want?) a better .INI file for config type things.</p>
 
-<p>It’s a header only math library, that handles most vector, and matrix math. It has other things in it as well. I’ve been porting it over in small bits as I write tests for those components. Also gives me a chance to add missing functions that should be in a math library but I’ve not had a need for.</p>
+<h2 id="nyaml-not-yaml">NYAML (Not YAML!)</h2>
 
-<h2 id="how-to-use-it">How To Use It?</h2>
+<p>Taking the main syntax style of YAML, but dropping alot of the specs, we can strip yaml right back to a key value tree.</p>
 
-<p>It’s completely function based. And all functions start with the type name to make things like intellisence easier.</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">window</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">width</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">800</span>
+  <span class="l-Scalar-Plain">height</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">600</span>
+  <span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">window title</span>
+  <span class="l-Scalar-Plain">fullscreen</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">vector3</span> <span class="n">my_position</span> <span class="o">=</span> <span class="n">vector3_init</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">vector3</span> <span class="n">my_velocity</span> <span class="o">=</span> <span class="n">vector3_init</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<p>This is nice and readable, no special syntax highlighting required, and we can boil this straight down to a C++ lookup.</p>
 
-<span class="n">vector3</span> <span class="n">my_position</span> <span class="o">=</span> <span class="n">vector3_add</span><span class="p">(</span><span class="n">my_position</span><span class="p">,</span> <span class="n">my_velocity</span><span class="p">);</span></code></pre></div>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">set_title</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">].</span><span class="n">get_value</span><span class="p">());</span></code></pre></div>
 
-<p>Most of it works along those lines.</p>
+<h2 id="final">Final</h2>
 
-<h2 id="no-simd">No SIMD</h2>
-
-<p>It’s always been one of those things I’ve meant to add, but usually I find speed up’s elsewhere so I use them. Combined with my projects being small scale. However its something I’d like to add after I’ve finished porting/testing the various components.</p>
-
-<h2 id="what-next">What Next</h2>
-
-<p>I need to finish Matrix support and I have some other basic geometry math I need to add for a project, I’ll add that to the library when I come to that. And hopefully I can get SIMD done stuff at the end of summer.</p>
-
+<p>I’ve wrapped this up as a single header library that can be found on github <a href="https://github.com/republic-of-almost/nyaml">here</a>. This isn’t meant to be a fully fledge interchange format, its just meant to have a yaml like key/value config file.</p>
 
 </article>
 
@@ -127,13 +123,6 @@
 
 
   <h3 class="related-post-title">Related Posts</h3>
-  
-    <div class="post ml2">
-      <a href="/general/2016/09/29/nyaml/" class="post-link">
-        <h4 class="post-title">NYAML</h4>
-        <p class="post-summary">Very small subset of yaml</p>
-      </a>
-    </div>
   
     <div class="post ml2">
       <a href="/general/2016/04/06/life-without-stl/" class="post-link">
@@ -195,6 +184,13 @@
       <a href="/mapdev/2015/08/06/working-with-maps/" class="post-link">
         <h4 class="post-title">Working With Maps</h4>
         <p class="post-summary">7 months in maps.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2015/06/20/caffeine-math/" class="post-link">
+        <h4 class="post-title">Caffeine Math</h4>
+        <p class="post-summary">Small hobby math engine.</p>
       </a>
     </div>
   
