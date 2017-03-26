@@ -1,0 +1,48 @@
+
+body {
+  font-family: arial;
+  margin: 0;
+  padding: none;
+  overflow: hidden;
+}
+
+canvas {
+  border: 0px none;
+}
+
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: gray;
+}
+
+a:active {
+  color: gray;
+}
+
+#links {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+}
+
+#nav-left {
+  position:absolute;
+  top:35%;
+  left:0;
+  padding: 20px;
+}
+
+#nav-right {
+  position:absolute;
+  top:35%;
+  right:0;
+  padding: 20px;
+}
